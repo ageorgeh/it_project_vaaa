@@ -1,4 +1,5 @@
-//references:  https://www.emgoto.com/react-search-bar/
+import React from 'react'
+// references:  https://www.emgoto.com/react-search-bar/
 const SearchBar = () => (
     <form action="/" method="get">
         <label htmlFor="header-search">
@@ -11,6 +12,6 @@ const SearchBar = () => (
         />
         <button type="submit">Search</button>
     </form>
-);
+)
 
-export default SearchBar;
+export default SearchBar
