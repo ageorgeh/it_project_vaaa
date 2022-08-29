@@ -63,10 +63,12 @@ getDocs(colRef)
     console.log(err.message)
   })
 
-console.log(app)
 const auth = getAuth(app)
 
 const googleProvider = new GoogleAuthProvider()
+
+// A function to sign in with a google popup
+// Also adds the user information to the firestore DB if they don't already exist
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider)
@@ -87,6 +89,7 @@ const signInWithGoogle = async () => {
   }
 }
 
+// Logs the user out
 const logout = () => {
   signOut(auth)
 }

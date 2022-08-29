@@ -11,6 +11,9 @@ export default function Login () {
   // error
   const [name, setName] = useState('')
   // const navigate = useNavigate()
+
+  // This function sets the name state to the name of the user.
+  // It will throw an error if the user is not logged in
   const fetchUserName = async () => {
     try {
       const q = query(collection(db, 'users'), where('uid', '==', user?.uid))
@@ -22,6 +25,8 @@ export default function Login () {
       alert('An error occured while fetching user data')
     }
   }
+  // This runs after every render of the page
+  // It doesn't navigate the user because they are already on the user page
   useEffect(() => {
     if (loading) return
     // if (!user) return navigate('./login');
@@ -29,6 +34,7 @@ export default function Login () {
     fetchUserName()
   }, [user, loading])
 
+  // Returns different jsx depending on if the user is logged in
   const loginOut = (user) => {
     if (!user) {
       return <button onClick={signInWithGoogle}>
@@ -41,6 +47,7 @@ export default function Login () {
     }
   }
 
+  // Show info only if the user is logged in
   const userInfo = (user) => {
     if (user) {
       return <p><div>{name}</div>You can only see this if you are logged in</p>
