@@ -1,13 +1,13 @@
-import Navbar from "./Components/Navbar"
-import Home from "./Components/Home"
-import Login from "./Components/Login"
-import MyBooks from "./Components/MyBooks"
-import Friends from "./Components/Friends"
+import Navbar from './Components/Navbar'
+import Home from './Components/Home'
+import Login from './Components/Login'
+import MyBooks from './Components/MyBooks'
+import Friends from './Components/Friends'
+import React from 'react'
 
+import { Route, Routes } from 'react-router-dom'
 
-import { Route, Routes } from "react-router-dom"
-
-function App() {
+function App () {
   return (
     <>
       <Navbar />
@@ -17,8 +17,8 @@ function App() {
         <Route path="/friends" element={<Friends />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-    </>  
-    
+    </>
+
   )
 }
 
