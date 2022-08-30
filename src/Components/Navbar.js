@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import SearchBar from './Search'
 import { NavLink } from 'react-router-dom'
 
@@ -6,10 +7,10 @@ export default function Navbar () {
   return (
         <nav className="nav">
             <a href="/" className="my-reads">
-                My-Reads
+                Mid-Reads
             </a>
             {/* import search bar! */}
-            <SearchBar />
+            {/* <SearchBar /> */}
             <ul>
                 <li>
                     {/* NavLink helps user to navigate which bar is active */}

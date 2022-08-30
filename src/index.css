@@ -41,3 +41,19 @@ body {
   background-color: #555;
 }
 
+.title-login {
+  text-align: center;
+  font-weight: bolder;
+  font-size: xx-large;
+  padding-top: 100px;
+}
+
+.google-login {
+  /* aligning the google login to middle */
+  display: grid;
+  margin: auto;
+}
+
+.login-container {
+  text-align: center;
+}

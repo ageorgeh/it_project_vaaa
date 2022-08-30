@@ -5,6 +5,7 @@ import { auth, signInWithGoogle, db, logout } from '../index'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { query, collection, getDocs, where } from 'firebase/firestore'
 // import { getAdditionalUserInfo } from 'firebase/auth'
+import GoogleButton from 'react-google-button'
 
 export default function Login () {
   const [user, loading] = useAuthState(auth)
@@ -37,9 +38,7 @@ export default function Login () {
   // Returns different jsx depending on if the user is logged in
   const loginOut = (user) => {
     if (!user) {
-      return <button onClick={signInWithGoogle}>
-            Login with google
-        </button>
+      return <GoogleButton className="google-login" onClick={signInWithGoogle}></GoogleButton>
     } else {
       return <button onClick={logout}>
             Logout
@@ -54,9 +53,28 @@ export default function Login () {
     }
   }
 
-  return <div>
-        <h1>Login</h1>
-        <view>{userInfo(user)}</view>
+  const renderForm = (
+    <div className="form">
+      <form>
+        <div className="input-container">
+          <label>Username </label>
+          <input type="text" name="uname" required />
+        </div>
+        <div className="input-container">
+          <label>Password </label>
+          <input type="password" name="pass" required />
+        </div>
+        <div className="button-container">
+          <input type="submit" />
+        </div>
+      </form>
+    </div>
+  )
+
+  return <div className="login-container">
+        <div className="title-login">Mid-Reads</div>
+        {/* only render the login container when the user is not logged in */}
+        {user ? <view>{userInfo(user)}</view> : renderForm}
         <view>{loginOut(user)}</view>
         </div>
 }
