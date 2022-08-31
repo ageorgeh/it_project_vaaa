@@ -4,6 +4,8 @@ import SearchBar from './Search'
 import { NavLink } from 'react-router-dom'
 
 export default function Navbar () {
+  /* const { user } = useAuthState(auth)
+  if (user) { */
   return (
         <nav className="nav">
             <a href="/" className="my-reads">
