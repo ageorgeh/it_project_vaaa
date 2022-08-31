@@ -14,7 +14,7 @@ function App () {
   const [user] = useAuthState(auth)
   return (
     <>
-    {user ? <Navbar /> : <h1></h1>}
+    {user ? <Navbar /> : null}
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
