@@ -1,15 +1,17 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import SearchBar from './Search'
 import { NavLink } from 'react-router-dom'
-
 export default function Navbar () {
+  /* const { user } = useAuthState(auth)
+  if (user) { */
   return (
         <nav className="nav">
             <a href="/" className="my-reads">
-                My-Reads
+                Mid-Reads
             </a>
             {/* import search bar! */}
-            <SearchBar />
+            {/* <SearchBar /> */}
             <ul>
                 <li>
                     {/* NavLink helps user to navigate which bar is active */}
@@ -38,10 +40,10 @@ export default function Navbar () {
                 </li>
                 <li>
                     <NavLink
-                      to="/login"
+                      to="/profile"
                     className={({ isActive }) => isActive ? 'active' : ''}
                     >
-                        Login
+                        Profile
                     </NavLink>
                 </li>
             </ul>

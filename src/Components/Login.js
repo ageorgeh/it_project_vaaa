@@ -5,6 +5,8 @@ import { auth, signInWithGoogle, db, logout } from '../index'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { query, collection, getDocs, where } from 'firebase/firestore'
 // import { getAdditionalUserInfo } from 'firebase/auth'
+import GoogleButton from 'react-google-button'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login () {
   const [user, loading] = useAuthState(auth)
@@ -37,9 +39,7 @@ export default function Login () {
   // Returns different jsx depending on if the user is logged in
   const loginOut = (user) => {
     if (!user) {
-      return <button onClick={signInWithGoogle}>
-            Login with google
-        </button>
+      return <GoogleButton className="google-login" onClick={signInWithGoogle}></GoogleButton>
     } else {
       return <button onClick={logout}>
             Logout
@@ -48,15 +48,34 @@ export default function Login () {
   }
 
   // Show info only if the user is logged in
+  // eslint-disable-next-line no-unused-vars
   const userInfo = (user) => {
     if (user) {
       return <p><div>{name}</div>You can only see this if you are logged in</p>
     }
   }
 
-  return <div>
-        <h1>Login</h1>
-        <view>{userInfo(user)}</view>
+  const renderForm = (
+    <div className="form">
+      <form>
+        <div className="input-container">
+          <input type="text" name="uname" className="inputC" placeholder="e-mail" required />
+        </div>
+        <div className="input-container">
+          <input type="password" name="pass" placeholder="password" required />
+        </div>
+        <div className="button-container">
+          <input type="submit" className='buttonC' />
+        </div>
+      </form>
+    </div>
+  )
+  const navigate = useNavigate()
+
+  return <div className="login-container">
+        <div className="title-login">Mid-Reads</div>
+        {/* only render the login container when the user is not logged in */}
+        {user ? navigate('/home') : renderForm}
         <view>{loginOut(user)}</view>
         </div>
 }
