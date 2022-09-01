@@ -54,6 +54,26 @@ body {
   margin: auto;
 }
 
-.login-container {
+.form {
   text-align: center;
+}
+
+.input-container {
+  padding-bottom: 10px;
+}
+
+.inputC {
+  border-radius : 5px;
+}
+
+.button-container {
+  padding-bottom : 10px;
+}
+
+.buttonC{
+  background-color: #000;
+  color:white;
+  font-weight: bolder;
+  font-size: larger;
+  border-radius: 5px;
 }

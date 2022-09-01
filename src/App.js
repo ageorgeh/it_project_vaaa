@@ -4,6 +4,7 @@ import Home from './Components/Home'
 import Login from './Components/Login'
 import MyBooks from './Components/MyBooks'
 import Friends from './Components/Friends'
+import Profile from './Components/Profile'
 import React from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
 import { auth } from './index'
@@ -16,11 +17,12 @@ function App () {
     <>
     {user ? <Navbar /> : null}
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/mybooks" element={<MyBooks />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
 
   </>

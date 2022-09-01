@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { auth } from '../index'
+import { auth, logout } from '../index'
 // signInWithEmailAndPassword
 import { useAuthState } from 'react-firebase-hooks/auth'
 
@@ -13,5 +13,16 @@ export default function Home () {
     if (loading) return
     if (!user) return navigate('../login')
   }, [user, loading])
-  return <h1>Home</h1>
+
+  const loginOut = (user) => {
+    if (user) {
+      return <button onClick={logout}>
+          Logout
+      </button>
+    }
+  }
+  return <>
+  <h1>Home</h1>
+  <view>{loginOut(user)}</view>
+  </>
 }
