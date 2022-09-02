@@ -49,19 +49,20 @@ const db = getFirestore(app)
 // collection ref
 const colRef = collection(db, 'books')
 
-// gets a snapshot of the data in the collection at that point of time
+const books = []
+
+// get an array of all the documents in the collection 'books'
 getDocs(colRef)
   .then(snapshot => {
-    const books = []
     snapshot.docs.forEach(doc => {
-      // shows only the fields and no metadata in console
       books.push({ ...doc.data(), id: doc.id })
     })
-    console.log(books)
   })
   .catch(err => {
     console.log(err.message)
   })
+
+console.log(books)
 
 const auth = getAuth(app)
 
