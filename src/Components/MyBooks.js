@@ -1,15 +1,12 @@
-import Book from './Book';
+import ShelfPane from './ShelfPane';
+import BookPane from './BookPane';
 
 export default function MyBooks() {
     return (
     <>
-        <h1 class="text-3xl font-bold underline">My Books</h1>
-        <div class="bg-blue">
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
+        <ShelfPane />
+        <div className="ml-64 pl-12 pt-3">
+            <BookPane />
         </div>
     </>
     )
