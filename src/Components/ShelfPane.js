@@ -8,15 +8,13 @@ class ShelfPanel extends React.Component {
     }
     
     render() {
-        const shelfElems = this.state.shelves.map((shelf) => 
-            <Shelf name={shelf}/>
+        const shelfElems = this.state.shelves.map((shelf, index) => 
+            <Shelf name={shelf} key={index}/>
         );
         return (
             
             <>
-            <div className="w-64 fixed bg-gray-800 overflow-hidden z-1 top-11 left-6 py-3">
-                <h4 className="text-2xl text-center text-gray-100 font-bold">Shelves</h4>
-                <hr></hr>
+            <div className="sticky top-3 flex-auto w-1/5 rounded-lg bg-gray-700 h-fit mt-3 z-1 left-6 py-3">
                 {shelfElems}
             </div>
             </>
