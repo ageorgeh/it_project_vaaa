@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { auth, logout } from '../index'
+import { auth, logout } from '../firebase-setup'
 // signInWithEmailAndPassword
 import { useAuthState } from 'react-firebase-hooks/auth'
 
@@ -23,6 +23,6 @@ export default function Home () {
   }
   return <>
   <h1>Home</h1>
-  <view>{loginOut(user)}</view>
+  {loginOut(user)}
   </>
 }
