@@ -1,5 +1,5 @@
 
-import { initializeApp } from 'firebase/app'
+import { initializeApp, deleteApp } from 'firebase/app'
 import {
   getFirestore, collection, getDocs,
   query,
@@ -80,9 +80,10 @@ const logout = () => {
   signOut(auth)
 }
 
+
 export {
   auth,
   db,
   signInWithGoogle,
-  logout
+  logout, 
 }
