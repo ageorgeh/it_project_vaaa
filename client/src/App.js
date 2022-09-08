@@ -7,7 +7,7 @@ import Friends from './Components/Friends'
 import Profile from './Components/Profile'
 import React from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
-import { auth } from './index'
+import { auth } from './firebase-setup'
 // signInWithEmailAndPassword
 import { useAuthState } from 'react-firebase-hooks/auth'
 

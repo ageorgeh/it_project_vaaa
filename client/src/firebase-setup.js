@@ -1,10 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App'
-import { BrowserRouter } from 'react-router-dom'
 
-import { initializeApp } from 'firebase/app'
+import { initializeApp, deleteApp } from 'firebase/app'
 import {
   getFirestore, collection, getDocs,
   query,
@@ -22,16 +17,6 @@ import {
   signOut
 } from 'firebase/auth'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-)
-
-// init firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyAaeqcgpLuc8grPbbZreVXyYIWU8gfpp6k',
   authDomain: 'it-project-vaah-dev.firebaseapp.com',
@@ -95,12 +80,10 @@ const logout = () => {
   signOut(auth)
 }
 
+
 export {
   auth,
   db,
   signInWithGoogle,
-  logout
+  logout, 
 }
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
