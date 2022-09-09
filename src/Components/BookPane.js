@@ -5,6 +5,7 @@ class BookPane extends React.Component {
     constructor(props) {
         super(props);
         this.deleteBook = this.deleteBook.bind(this);
+        this.editBook = this.editBook.bind(this);
         this.state = {
             books: [
                 {title: "The Great Gatsby", author: "F. Scott Fitzgerald"},
@@ -31,6 +32,10 @@ class BookPane extends React.Component {
         let currBooks = this.state.books;
         currBooks.splice(bookKey,1);
         this.setState({books: currBooks});
+    }
+
+    editBook(bookKey) {
+        
     }
     
     render() {

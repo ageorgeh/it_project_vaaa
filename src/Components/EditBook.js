@@ -1,4 +1,4 @@
-function EditBook(props) {
+function Edit(props) {
     return (
     <>
     <div>
@@ -8,4 +8,4 @@ function EditBook(props) {
   );
 }
 
-export default EditBook;
+export default Edit;
