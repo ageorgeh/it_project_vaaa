@@ -6,7 +6,7 @@ class ShelfPane extends React.Component {
         super(props);
         this.selectShelf = this.selectShelf.bind(this);
         this.state = {
-            shelves: ['All books', 'Fiction', 'Non-fiction', 'To-read'],
+            shelves: ['All Books', 'Fiction', 'Non-Fiction', 'To-Read'],
         };
     }
 
