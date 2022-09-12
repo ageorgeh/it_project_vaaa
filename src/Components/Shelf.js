@@ -1,11 +1,29 @@
-function Shelf(props) {
-    return (
-    <>
-    <div className="text-center">
-        <button type="button" className="text-white text-center rounded-lg bg-gray-800 hover:bg-gray-900 font-medium text-sm px-5 py-2.5 mr-2 mb-2">{props.name}</button>
-    </div>
-    </>
-  );
+import React from "react";
+
+class Shelf extends React.Component {
+    constructor(props) {
+        super(props);
+        this.selectShelf = this.selectShelf.bind(this);
+    }
+
+    selectShelf() {
+        this.props.onSelect(this.props.shelfKey);
+    }
+
+    render() {
+        return (
+            <>
+                <li>
+                    <div className="mx-2">
+                        <button onClick={this.selectShelf} className="flex items-center py-2 w-full font-normal text-stone-900 rounded-lg dark:text-white hover:bg-stone-100 pl-3 dark:hover:bg-stone-700">
+                        {this.props.name}   
+                        </button>
+                    </div>
+                </li>
+            </>
+        );
+    }
+
 }
 
 export default Shelf;
