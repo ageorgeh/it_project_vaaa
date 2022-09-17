@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const {db} = require('./firebase.js')
-const { collection, query, where, getDocs } = require('firebase/firestore')
+const {db} = require('./models/firebase.js')
 
 const port = process.env.PORT || 3001;
 // Enable cors security headers
@@ -12,6 +11,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
+// MyBooks page routes
 // CREATE: add a new book
 app.post('/MyBooks/AddNewBook', async (req, res) => {
   const { currUID, title } = req.body
@@ -25,10 +25,9 @@ app.post('/MyBooks/AddNewBook', async (req, res) => {
   res.status(200).send('Added new book ' + title + ' for user ' + currUID )
 })
 
-
-// READ: get all books data
+// READ: get books data by user id
 app.get('/MyBooks', async (req, res) => {
-  const { currUID, title } = req.body
+  const { currUID} = req.body
   const booksRef = db.collection('books')
   const booksRes = await booksRef.get()
   let books = [];
@@ -42,15 +41,17 @@ app.get('/MyBooks', async (req, res) => {
 
 // UPDATE: change a book's title
 app.post('/MyBooks/UpdateTitle', async (req, res) => {
-  const { bookID, newTitle } = req.body
+  const { bookID,currUID, newTitle } = req.body
   const bookRef = db.collection('books').doc(bookID)
   const res2 = await bookRef.set({
+      bookID: bookID,
+      currUID: currUID,
       title: newTitle
   }, { merge: true })
   res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID )
 })
 
-// DELETE: delete a book
+// DELETE: deletes a book
 app.post('/MyBooks/DeleteBook', async (req, res) => {
   const {bookID} = req.body
   const bookRef = db.collection('books').doc(bookID).delete();
