@@ -34,6 +34,13 @@ app.post('/MyBooks/UpdateTitle', async (req, res) => {
   res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID )
 })
 
+// DELETE: delete a book
+app.post('/MyBooks/DeleteBook', async (req, res) => {
+  const {bookID} = req.body
+  const bookRef = db.collection('books').doc(bookID).delete();
+  res.status(200).send('Deleted book with bookID ' + bookID )
+})
+
 // home page
 app.get('/', (req, res) => {
   res.send('Hi There')

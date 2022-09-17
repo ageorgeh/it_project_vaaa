@@ -6,8 +6,8 @@ POST http://localhost:3001/MyBooks/AddNewBook
 Content-Type: application/json
 
 {
-    "currUID": "fjrbovr",
-    "title": "Testing2"
+    "currUID": "TEST04",
+    "title": "Testing4"
 }
 
 ### Update a book's title by bookID
@@ -16,5 +16,15 @@ Content-Type: application/json
 
 {
     "bookID": "l8ywe",
+    "title": "Testing3",
     "newTitle": "l8ywe new title using Update API"
+}
+
+### Delete a book's title by bookID
+POST http://localhost:3001/MyBooks/DeleteBook
+Content-Type: application/json
+
+{
+    "bookID": "l8ywe",
+    "title": "l8ywe new title using Update API"
 }
