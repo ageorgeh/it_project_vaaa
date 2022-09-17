@@ -1,11 +1,20 @@
-### GET FRIENDs
+### GET 
 GET http://localhost:3001
 
-### ADD A FRIEND
+### Add a new book
 POST http://localhost:3001/MyBooks/AddNewBook
 Content-Type: application/json
 
 {
-    "currUID": "A03u943",
-    "newTitle": "Testing2"
+    "currUID": "fjrbovr",
+    "title": "Testing2"
+}
+
+### Update a book's title by bookID
+POST http://localhost:3001/MyBooks/UpdateTitle
+Content-Type: application/json
+
+{
+    "bookID": "l8ywe",
+    "newTitle": "l8ywe new title using Update API"
 }

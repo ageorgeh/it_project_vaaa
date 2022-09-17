@@ -13,14 +13,25 @@ app.use(express.urlencoded({ extended: true }));
 
 // CREATE: add a new book
 app.post('/MyBooks/AddNewBook', async (req, res) => {
-  const { currUID, newTitle } = req.body
-  const randomString = (Math.random() + 1).toString(36).substring(7);
-  const newBookRef = db.collection('books').doc(randomString)
+  const { currUID, title } = req.body
+  const bookID = (Math.random() + 1).toString(36).substring(7);
+  const newBookRef = db.collection('books').doc(bookID)
   const res2 = await newBookRef.set({
+      bookID : bookID,
       uid: currUID,
+      title: title
+  }, { merge: true })
+  res.status(200).send('Added new book ' + title + ' for user ' + currUID )
+})
+
+// UPDATE: change a book's title
+app.post('/MyBooks/UpdateTitle', async (req, res) => {
+  const { bookID, newTitle } = req.body
+  const bookRef = db.collection('books').doc(bookID)
+  const res2 = await bookRef.set({
       title: newTitle
   }, { merge: true })
-  res.status(200).send('Added new book ' + newTitle + ' for user ' + currUID )
+  res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID )
 })
 
 // home page
