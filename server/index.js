@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const { db } = require('./firebase.js')
+const {db} = require('./firebase.js')
+const { collection, query, where, getDocs } = require('firebase/firestore')
 
 const port = process.env.PORT || 3001;
 // Enable cors security headers
@@ -22,6 +23,21 @@ app.post('/MyBooks/AddNewBook', async (req, res) => {
       title: title
   }, { merge: true })
   res.status(200).send('Added new book ' + title + ' for user ' + currUID )
+})
+
+
+// READ: get all books data
+app.get('/MyBooks', async (req, res) => {
+  const { currUID, title } = req.body
+  const booksRef = db.collection('books')
+  const booksRes = await booksRef.get()
+  let books = [];
+  booksRes.forEach(doc => {
+    books.push(doc.data());
+  });
+  // filter on currUID
+  const booksByUID = books.filter(book => book.uid == currUID)
+  res.send(booksByUID);
 })
 
 // UPDATE: change a book's title

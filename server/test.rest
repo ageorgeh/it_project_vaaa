@@ -1,13 +1,22 @@
 ### GET 
 GET http://localhost:3001
 
+### returns all books in an array
+GET http://localhost:3001/MyBooks
+Content-Type: application/json
+
+{
+    "currUID": "01",
+    "title": "D"
+}
+
 ### Add a new book
 POST http://localhost:3001/MyBooks/AddNewBook
 Content-Type: application/json
 
 {
-    "currUID": "TEST04",
-    "title": "Testing4"
+    "currUID": "01",
+    "title": "D"
 }
 
 ### Update a book's title by bookID
