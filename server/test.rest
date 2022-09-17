@@ -1,0 +1,11 @@
+### GET FRIENDs
+GET http://localhost:3001
+
+### ADD A FRIEND
+POST http://localhost:3001/MyBooks/AddNewBook
+Content-Type: application/json
+
+{
+    "currUID": "A03u943",
+    "newTitle": "Testing2"
+}
