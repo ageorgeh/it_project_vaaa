@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, logout } from '../firebase-setup'
 // signInWithEmailAndPassword
@@ -17,7 +17,19 @@ export default function Home () {
     .then((response) => {
       console.log(response)
     })
+  }
+
+  const [bookData, setBookData] = useState([{}]);
+
+  useEffect(() => {
+    axios.get("/api")
+    .then(response => {
+        console.log(response)
+        setBookData(response.data)
     }
+    )
+    .catch(error => console.error('Error: ', error))
+  })
 
   useEffect(() => {
     if (loading) return
@@ -33,7 +45,19 @@ export default function Home () {
   }
   return <>
   <h1>Home</h1> 
-  <div>{get()}</div>
+  <div>
+    {
+    (typeof bookData.books === 'undefined') ? (
+      <p>Loading...</p>
+    ) : 
+    (
+      bookData.books.map((book, i) => (
+        <p key={i}> {book} </p>
+      ))
+    )
+    
+    }
+  </div>
   {loginOut(user)}
   </>
 }
