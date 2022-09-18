@@ -11,13 +11,13 @@ export default function Home () {
   // const [name, setName] = useState('')
   const navigate = useNavigate()
 
-  const url = "https://react-test-for-it-api.herokuapp.com/get/"
-  const get  = () => {
-    axios.get(url)
-    .then((response) => {
-      console.log(response)
-    })
-  }
+  // const url = "https://react-test-for-it-api.herokuapp.com/get/"
+  // const get  = () => {
+  //   axios.get(url)
+  //   .then((response) => {
+  //     console.log(response)
+  //   })
+  // }
 
   const [bookData, setBookData] = useState([{}]);
 
