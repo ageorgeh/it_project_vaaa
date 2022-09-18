@@ -58,6 +58,11 @@ app.post('/MyBooks/DeleteBook', async (req, res) => {
   res.status(200).send('Deleted book with bookID ' + bookID)
 })
 
+// test books
+app.get("/api", (req, res) => {
+  res.json({ "books": ["book 1", "book 2", "book 3"] })
+})
+
 // home page
 app.get('/', (req, res) => {
   res.send('Hi There')
