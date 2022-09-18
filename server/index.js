@@ -10,6 +10,11 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
+// test books
+app.get("/api", (req, res) => {
+  res.json({ "books": ["book 1", "book 2", "book 3"] })
+})
+
 // home page
 app.get('/', (req, res) => {
   res.send('Hi There')
@@ -35,4 +40,4 @@ app.put("/update/:bookId", (req, res) => {
   res.send('put')
 })
 
-app.listen(port, () => { })
+app.listen(port, () => {console.log("Server listening on", port)})
