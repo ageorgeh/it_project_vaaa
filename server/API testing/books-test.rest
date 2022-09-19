@@ -6,10 +6,7 @@ GET http://localhost:3001
 GET http://localhost:3001/MyBooks
 Content-Type: application/json
 
-{
-    "currUID": "01",
-    "title": "D"
-}
+{"currUID": "01"}
 
 ### Add a new book
 POST http://localhost:3001/MyBooks/AddNewBook
@@ -17,7 +14,7 @@ Content-Type: application/json
 
 {
     "currUID": "01",
-    "title": "D"
+    "title": "AA"
 }
 
 ### Update a book's title by bookID (need to work on)
@@ -36,6 +33,13 @@ POST http://localhost:3001/MyBooks/DeleteBook
 Content-Type: application/json
 
 {
-    "bookID": "D",
+    "bookID": "osnij",
     "title": "l8ywe new title using Update API"
 }
+# b5flgl
+# b9ihu
+# d6m0l
+# fudpb
+# jey89
+# lzffyg
+# osnij
