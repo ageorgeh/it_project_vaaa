@@ -47,7 +47,7 @@ getDocs(colRef)
     console.log(err.message)
   })
 
-console.log(books)
+//console.log(books)
 
 const auth = getAuth(app)
 
