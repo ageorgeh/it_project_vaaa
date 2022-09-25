@@ -59,8 +59,8 @@ app.post('/MyBooks/DeleteBook', async (req, res) => {
 })
 
 // test books
-app.get("/api", (req, res) => {
-  res.json({ "books": ["book 1", "book 2", "book 3"] })
+app.get('/api', (req, res) => {
+  res.json({ books: ['book 1', 'book 2', 'book 3'] })
 })
 
 // home page
