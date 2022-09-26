@@ -1,8 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const {db} = require('./models/firebase.js')
-
+const { db } = require('./models/firebase.js')
 
 const port = process.env.PORT || 3001
 // Enable cors security headers
@@ -16,50 +15,47 @@ app.use(express.urlencoded({ extended: true }))
 // CREATE: add a new book
 app.post('/MyBooks/AddNewBook', async (req, res) => {
   const { currUID, title } = req.body
-  const bookID = (Math.random() + 1).toString(36).substring(7);
+  const bookID = (Math.random() + 1).toString(36).substring(7)
   const newBookRef = db.collection('books').doc(bookID)
   const res2 = await newBookRef.set({
-      bookID : bookID,
-      uid: currUID,
-      title: title
+    bookID,
+    uid: currUID,
+    title
   }, { merge: true })
-  res.status(200).send('Added new book ' + title + ' for user ' + currUID )
+  res.status(200).send('Added new book ' + title + ' for user ' + currUID)
 })
 
 // READ: get books data by user id
-app.get('/MyBooks', async (req, res) => {
-  const { currUID} = req.body
+app.post('/MyBooks', async (req, res) => {
+  const { currUID } = req.body
   const booksRef = db.collection('books')
   const booksRes = await booksRef.get()
-  let books = [];
+  const books = []
   booksRes.forEach(doc => {
-    books.push(doc.data());
-  });
+    books.push(doc.data())
+  })
   // filter on currUID
-  const booksByUID = books.filter(book => book.uid == currUID)
-  res.send(booksByUID);
+  const booksByUID = books.filter(book => book.uid === currUID)
+  res.send(booksByUID)
 })
 
 // UPDATE: change a book's title
 app.post('/MyBooks/UpdateTitle', async (req, res) => {
-  const { bookID,currUID, newTitle } = req.body
+  const { bookID, currUID, newTitle } = req.body
   const bookRef = db.collection('books').doc(bookID)
   const res2 = await bookRef.set({
-      bookID: bookID,
-      currUID: currUID,
-      title: newTitle
+    bookID,
+    currUID,
+    title: newTitle
   }, { merge: true })
-  res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID )
+  res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID)
 })
 
 // DELETE: deletes a book
 app.post('/MyBooks/DeleteBook', async (req, res) => {
-  const {bookID} = req.body
-  const bookRef = db.collection('books').doc(bookID).delete();
-  res.status(200).send('Deleted book with bookID ' + bookID )
-// test books
-app.get('/api', (req, res) => {
-  res.json({ books: ['book 1', 'book 2', 'book 3'] })
+  const { bookID } = req.body
+  const bookRef = db.collection('books').doc(bookID).delete()
+  res.status(200).send('Deleted book with bookID ' + bookID)
 })
 
 // home page
