@@ -35,7 +35,8 @@ export default function Home () {
   // get all books for user
   const [BookData, setBookData] = useState([{}])
 
-  const getBooks = () => {
+  useEffect(() => {
+    console.log(user)
     axios.post('/MyBooks', {
       currUID: user.uid
     })
@@ -45,15 +46,39 @@ export default function Home () {
         console.log(BookData)
       })
       .catch(error => console.error('Error: ', error))
-  }
+  }, [])
 
-  // add new test book
+  // add new book
   const [title, setTitle] = useState([{}])
 
-  const addNewBook = (title) => {
+  const addNewBook = (tit) => {
     axios.post('/MyBooks/AddNewBook', {
       currUID: user.uid,
-      title
+      title: tit
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error('Error: ', error))
+  }
+
+  // edit book title
+  const editBook = (book, tit) => {
+    axios.post('/MyBooks/UpdateTitle', {
+      currUID: user.uid,
+      newTitle: tit,
+      bookID: book.bookID
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error('Error: ', error))
+  }
+
+  // delete book
+  const deleteBook = (id) => {
+    axios.post('/MyBooks/DeleteBook', {
+      bookID: id
     })
       .then(response => {
         console.log(response)
@@ -65,9 +90,6 @@ export default function Home () {
   <h1>Home</h1>
   <div>
     {
-      getBooks()
-    }
-    {
     // printing all books
     (typeof BookData[0] === 'undefined')
       ? (
@@ -75,7 +97,23 @@ export default function Home () {
         )
       : (
           BookData.map((book, i) => (
-            <p key={i}> {book.title} </p>
+            <div key={i}>
+            <p> {book.title} </p><form>
+            <label>Enter new book title:
+              <input
+                type="text"
+                value={title.value}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <button onClick={() => { editBook(book, title) }}>
+                Update title
+              </button>
+            </label>
+            </form>
+            <button onClick={() => { deleteBook(book.bookID) }}>
+              Delete
+            </button>
+            </div>
           ))
         )
     }
@@ -87,7 +125,7 @@ export default function Home () {
           value={title.value}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <button onClick={addNewBook(title)}>
+        <button onClick={() => { addNewBook(title) }}>
           Add new book
         </button>
       </label>
