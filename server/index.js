@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+// controllers
 const booksController = require('./controllers/booksController')
+const userAuthController = require('./controllers/userAuthController')
 
 const port = process.env.PORT || 3001;
 // Enable cors security headers
@@ -16,18 +18,26 @@ app.get('/', (req, res) => {
   res.send('Hi There')
 });
 
-// MyBooks page routes
+// User Authentication routes
+app.post('/SignIn', async (req, res) => {
+  userAuthController.signIn(req, res);
+});
+app.post('/SignUp', async (req, res) => {
+  userAuthController.signUp(req, res);
+});
+
+// MyBooks routes
 app.post('/MyBooks/AddNewBook', async (req, res) => {
-    booksController.AddNewBook(req, res);
-})
+    booksController.addNewBook(req, res);
+});
 app.get('/MyBooks', async (req, res) => {
   booksController.getUserBooks(req, res);
-})
+});
 app.post('/MyBooks/UpdateTitle', async (req, res) => {
   booksController.updateTitle(req, res);
-})
+});
 app.post('/MyBooks/DeleteBook', async (req, res) => {
   booksController.deleteBook(req, res);
-})
+});
 
 app.listen(port, () => { })

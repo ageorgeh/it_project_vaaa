@@ -1,7 +1,7 @@
-const {db} = require('../models/firebase')
+const {db} = require('../models/admin')
 
 // CREATE: add a new book
-const AddNewBook = async function(req, res) {
+const addNewBook = async function(req, res) {
     const {currUID, title} = req.body;
     const bookID = (Math.random() + 1).toString(36).substring(7);
     const newBookRef = db.collection('books').doc(bookID)
@@ -47,7 +47,7 @@ const deleteBook = async function(req, res) {
 }
 
 module.exports = {
-    AddNewBook,
+    addNewBook,
     getUserBooks,
     updateTitle,
     deleteBook

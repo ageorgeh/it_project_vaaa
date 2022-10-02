@@ -1,0 +1,21 @@
+### need 'REST Client' extension installed for running this file
+### GET 
+GET http://localhost:3001
+
+### Sign up with email and password
+POST  http://localhost:3001/SignUp
+Content-Type: application/json
+
+{
+    "email": "test02@gmail.com",
+    "password": "test02"
+}
+
+### Sign In with email and password
+POST  http://localhost:3001/SignIn
+Content-Type: application/json
+
+{
+    "email": "test02@gmail.com",
+    "password": "test02"
+}
