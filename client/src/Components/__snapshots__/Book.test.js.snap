@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays book 1`] = `
+<div
+  className="relative w-1/6 h-64 place-content-center mb-1"
+>
+  <div
+    className="h-48 w-32 flex justify-center items-center overflow-hidden"
+  >
+    <img
+      alt="book cover"
+      className="shrink-0 min-h-full min-w-full"
+    />
+  </div>
+  <div
+    className="w-32"
+  >
+    <p
+      className="text-stone-100 text-sm break-words line-clamp-2"
+    />
+  </div>
+  <div
+    className="w-32"
+  >
+    <p
+      className="text-stone-300 text-xs break-words line-clamp-1"
+    />
+  </div>
+</div>
+`;

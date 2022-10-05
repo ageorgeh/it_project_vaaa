@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays bookpane 1`] = `
+<div
+  className="w-5/6 m-2 pl-5 rounded-lg"
+>
+  <div
+    className="flex text-center items-center pb-2 border-b-2 mb-8 border-stone-500"
+  >
+    <span
+      className="flex text-stone-100 ml-2 text-3xl"
+    />
+  </div>
+  <div
+    className="flex flex-wrap"
+  />
+</div>
+`;
