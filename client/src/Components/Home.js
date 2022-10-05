@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { auth, logout } from '../firebase-setup'
 // signInWithEmailAndPassword
 import { useAuthState } from 'react-firebase-hooks/auth'
-import axios from 'axios'
 
 export default function Home () {
   const [user, loading] = useAuthState(auth)
@@ -11,15 +10,16 @@ export default function Home () {
   // const [name, setName] = useState('')
   const navigate = useNavigate()
 
-  const url = "https://react-test-for-it-api.herokuapp.com/get/"
-  const get  = () => {
-    axios.get(url)
-    .then((response) => {
-      console.log(response)
-    })
-    }
+  // const url = "https://react-test-for-it-api.herokuapp.com/get/"
+  // const get  = () => {
+  //   axios.get(url)
+  //   .then((response) => {
+  //     console.log(response)
+  //   })
+  // }
 
   useEffect(() => {
+    console.log(user)
     if (loading) return
     if (!user) return navigate('../login')
   }, [user, loading, navigate])
@@ -31,9 +31,9 @@ export default function Home () {
       </button>
     }
   }
+
   return <>
-  <h1>Home</h1> 
-  <div>{get()}</div>
+  <h1>Home</h1>
   {loginOut(user)}
   </>
 }
