@@ -18,7 +18,7 @@ export default function Login () {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // error
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // This runs after every render of the page
   // It doesn't navigate the user because they are already on the user page
@@ -27,7 +27,7 @@ export default function Login () {
     // if (!user) return navigate('./login');
     if (user) return navigate('../home')
     // fetchUserName()
-  }, [user, loading])
+  }, [user, loading, navigate])
 
   const renderForm = (
     <div className="form">
@@ -46,7 +46,6 @@ export default function Login () {
       </div>
     </div>
   )
-  const navigate = useNavigate()
 
   return <div className="login-container" data-testid = 'loginForm'>
         <div className="title-login">Mid-Reads</div>
