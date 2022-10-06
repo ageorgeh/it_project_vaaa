@@ -5,7 +5,6 @@ import {
 
 function EditBook() {
     let {bookid} = useParams();
-    console.log(typeof(bookid));
     
     return (
         <>

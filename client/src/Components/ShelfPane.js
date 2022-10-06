@@ -5,17 +5,14 @@ class ShelfPane extends React.Component {
     constructor(props) {
         super(props);
         this.selectShelf = this.selectShelf.bind(this);
-        this.state = {
-            shelves: ['All Books', 'Fiction', 'Non-Fiction', 'To-Read'],
-        };
     }
 
     selectShelf(shelfKey) {
-        this.props.onSelect(shelfKey, this.state.shelves[shelfKey]);
+        this.props.onSelect(shelfKey);
     }
     
     render() {
-        const shelfElems = this.state.shelves.map((shelf, index) => 
+        const shelfElems = this.props.shelves.map((shelf, index) => 
             <Shelf 
                 name={shelf} 
                 shelfKey={index}
