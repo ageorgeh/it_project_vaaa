@@ -7,23 +7,11 @@ import axios from 'axios'
 
 export default function Home () {
   const [user, loading] = useAuthState(auth)
-  // error
-  // const [name, setName] = useState('')
   const navigate = useNavigate()
-
-  // const url = "https://react-test-for-it-api.herokuapp.com/get/"
-  // const get  = () => {
-  //   axios.get(url)
-  //   .then((response) => {
-  //     console.log(response)
-  //   })
-  // }
-
   useEffect(() => {
     if (loading) return
     if (!user) return navigate('../login')
   }, [user, loading, navigate])
-
   const loginOut = (user) => {
     if (user) {
       return <button onClick={logout}>
@@ -32,26 +20,40 @@ export default function Home () {
     }
   }
 
-  // get all books for user
   const [BookData, setBookData] = useState([{}])
+  const [r, setR] = useState([{}])
+  const [title, setTitle] = useState('')
 
   useEffect(() => {
     console.log(user)
+    if (loading) return
+    if (!user) return navigate('../login')
     axios.post('/MyBooks', {
       currUID: user.uid
     })
       .then(response => {
+        setR(false)
         console.log(response)
         setBookData(response.data)
         console.log(BookData)
       })
       .catch(error => console.error('Error: ', error))
-  }, [])
+  }, [user, loading, navigate, r])
 
   // add new book
-  const [title, setTitle] = useState([{}])
+
+  const handleSubmit = event => {
+    console.log('submit done')
+    event.preventDefault()
+    event.target.reset()
+  }
+
+  const handleChange = event => {
+    setTitle(event.target.value)
+  }
 
   const addNewBook = (tit) => {
+    setR(true)
     axios.post('/MyBooks/AddNewBook', {
       currUID: user.uid,
       title: tit
@@ -64,6 +66,7 @@ export default function Home () {
 
   // edit book title
   const editBook = (book, tit) => {
+    setR(true)
     axios.post('/MyBooks/UpdateTitle', {
       currUID: user.uid,
       newTitle: tit,
@@ -77,6 +80,7 @@ export default function Home () {
 
   // delete book
   const deleteBook = (id) => {
+    setR(true)
     axios.post('/MyBooks/DeleteBook', {
       bookID: id
     })
@@ -85,25 +89,25 @@ export default function Home () {
       })
       .catch(error => console.error('Error: ', error))
   }
-
   return <>
-  <h1>Home</h1>
-  <div>
+    <div>
     {
     // printing all books
     (typeof BookData[0] === 'undefined')
       ? (
-      <p>Loading...</p>
+      <p>You have no book!</p>
         )
       : (
           BookData.map((book, i) => (
             <div key={i}>
-            <p> {book.title} </p><form>
+            <p> {book.title} </p>
+
+            <form onSubmit={handleSubmit}>
             <label>Enter new book title:
               <input
                 type="text"
                 value={title.value}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(handleChange)}
               />
               <button onClick={() => { editBook(book, title) }}>
                 Update title
@@ -118,12 +122,12 @@ export default function Home () {
         )
     }
     {
-      <form>
+      <form onSubmit={handleSubmit}>
       <label>Enter book title:
         <input
           type="text"
           value={title.value}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(handleChange)}
         />
         <button onClick={() => { addNewBook(title) }}>
           Add new book
