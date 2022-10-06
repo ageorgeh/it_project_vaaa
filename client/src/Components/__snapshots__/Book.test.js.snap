@@ -4,14 +4,15 @@ exports[`displays book 1`] = `
 <div
   className="relative w-1/6 h-64 place-content-center mb-1"
 >
-  <div
-    className="h-48 w-32 flex justify-center items-center overflow-hidden"
+  <button
+    className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
   >
     <img
       alt="book cover"
       className="shrink-0 min-h-full min-w-full"
+      src="testbook.jpg"
     />
-  </div>
+  </button>
   <div
     className="w-32"
   >

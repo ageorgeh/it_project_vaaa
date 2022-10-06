@@ -4,13 +4,7 @@ import Book from './Book';
 class BookPane extends React.Component {
     constructor(props) {
         super(props);
-        this.deleteBook = this.deleteBook.bind(this);
-    }
-
-    deleteBook(bookKey) {
-        let currBooks = this.props.books;
-        currBooks.splice(bookKey,1);
-        this.setState({books: currBooks});
+        this.props = props;
     }
     
     render() {
@@ -56,3 +50,9 @@ class BookPane extends React.Component {
 }
 
 export default BookPane;
+
+// deleteBook(bookKey) {
+//     let currBooks = this.props.books;
+//     currBooks.splice(bookKey,1);
+//     this.setState({books: currBooks});
+// }
