@@ -5,7 +5,7 @@ import Login from './Components/Login'
 import MyBooks from './Components/MyBooks'
 import Friends from './Components/Friends'
 import Profile from './Components/Profile'
-import EditBook from './Components/EditBook'
+import ViewBook from './Components/ViewBook'
 import React from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
 import { auth } from './firebase-setup'
@@ -24,7 +24,7 @@ function App () {
       <Route path="/friends" element={<Friends />} />
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/editbook/:bookid" element={<EditBook />} />
+      <Route path="/viewbook/:bookid" element={<ViewBook />} />
     </Routes>
 
   </>

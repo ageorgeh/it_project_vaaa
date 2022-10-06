@@ -14,8 +14,9 @@ class Book extends React.Component {
         return (
             <>
             <div className="relative w-1/6 h-64 place-content-center mb-1">
-                <div className="h-48 w-32 flex justify-center items-center overflow-hidden">
+                <div className="h-48 w-32 flex justify-center items-center overflow-hidden relative">
                     <img src={this.props.image} className="shrink-0 min-h-full min-w-full"alt="book cover" />
+                    <div class="opacity-0 bg-opacity-50 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-3xl text-white font-semibold">Dwayne</div>
                 </div>
                 <div className="w-32">
                     <p className="text-stone-100 text-sm break-words line-clamp-2">{this.props.title}</p>
