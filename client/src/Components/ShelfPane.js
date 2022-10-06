@@ -33,7 +33,7 @@ class ShelfPane extends React.Component {
                         {shelfElems}
                         <li>
                             <div className="mx-2">
-                                <button className="place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-500">
+                                <button className="place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-600">
                                     <div className="flex justify-center w-full">
                                         <div className="w-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6">
