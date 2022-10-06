@@ -14,9 +14,9 @@ class Book extends React.Component {
         return (
             <>
             <div className="relative w-1/6 h-64 place-content-center mb-1">
-                <div className="h-48 w-32 flex justify-center items-center overflow-hidden">
+                <button className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden">
                     <img src="testbook.jpg" className="shrink-0 min-h-full min-w-full"alt="book cover" />
-                </div>
+                </button>
                 <div className="w-32">
                     <p className="text-stone-100 text-sm break-words line-clamp-2">{this.props.title}</p>
                 </div>
