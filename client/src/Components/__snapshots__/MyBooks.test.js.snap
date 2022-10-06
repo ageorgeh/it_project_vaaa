@@ -73,7 +73,7 @@ exports[`displays mybooks 1`] = `
           className="mx-2"
         >
           <button
-            className="place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-500"
+            className="place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-600"
           >
             <div
               className="flex justify-center w-full"
@@ -117,15 +117,43 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600"
+        >
+          <div
+            className="flex justify-center w-full"
+          >
+            <div
+              className="w-12 h-12 text-stone-100"
+            >
+              <svg
+                className="w-full h-full"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/gatsby.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -148,15 +176,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/1984.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -179,15 +207,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/moby.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -210,15 +238,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/catcher.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -241,15 +269,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/alice.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -272,15 +300,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/anna.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -303,15 +331,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/botton.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -334,15 +362,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/dune.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -365,15 +393,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/ea.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -396,15 +424,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/fischer.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -427,15 +455,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/hobbit.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -458,15 +486,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/mockingbird.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -489,15 +517,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/narnia.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -520,15 +548,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/potter1.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -551,15 +579,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/potter2.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -582,15 +610,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/potter3.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -613,15 +641,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/potter4.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -644,15 +672,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/prejudice.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -675,15 +703,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/sapiens.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -706,15 +734,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/time.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -737,15 +765,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/walk.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
@@ -768,15 +796,15 @@ exports[`displays mybooks 1`] = `
       <div
         className="relative w-1/6 h-64 place-content-center mb-1"
       >
-        <div
-          className="h-48 w-32 flex justify-center items-center overflow-hidden"
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
         >
           <img
             alt="book cover"
             className="shrink-0 min-h-full min-w-full"
-            src="img/books/wild.jpg"
+            src="testbook.jpg"
           />
-        </div>
+        </button>
         <div
           className="w-32"
         >
