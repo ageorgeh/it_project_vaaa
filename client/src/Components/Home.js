@@ -8,6 +8,7 @@ import axios from 'axios'
 export default function Home () {
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
+
   useEffect(() => {
     if (loading) return
     if (!user) return navigate('../login')

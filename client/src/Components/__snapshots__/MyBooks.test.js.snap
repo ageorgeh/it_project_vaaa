@@ -1,0 +1,830 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays mybooks 1`] = `
+<div
+  className="flex relative bg-stone-900"
+>
+  <div
+    className="sticky top-3 flex-auto w-1/6 rounded-lg bg-stone-800 h-fit mt-2 z-1 ml-2 py-2"
+  >
+    <a
+      className="flex items-center pl-2.5 mb-2"
+      href="/img/echidna.jpg"
+    >
+      <span
+        className="self-center text-xl ml-2 font-semibold whitespace-nowrap dark:text-white"
+      >
+        Shelves
+      </span>
+    </a>
+    <ul
+      className="space-y-2 border-t-2 border-stone-500 pt-2"
+    >
+      <li>
+        <div
+          className="mx-2"
+        >
+          <button
+            className="flex items-center py-2 w-full font-normal text-stone-900 rounded-lg dark:text-white hover:bg-stone-100 pl-3 dark:hover:bg-stone-700"
+            onClick={[Function]}
+          >
+            All Books
+          </button>
+        </div>
+      </li>
+      <li>
+        <div
+          className="mx-2"
+        >
+          <button
+            className="flex items-center py-2 w-full font-normal text-stone-900 rounded-lg dark:text-white hover:bg-stone-100 pl-3 dark:hover:bg-stone-700"
+            onClick={[Function]}
+          >
+            Fiction
+          </button>
+        </div>
+      </li>
+      <li>
+        <div
+          className="mx-2"
+        >
+          <button
+            className="flex items-center py-2 w-full font-normal text-stone-900 rounded-lg dark:text-white hover:bg-stone-100 pl-3 dark:hover:bg-stone-700"
+            onClick={[Function]}
+          >
+            Non-Fiction
+          </button>
+        </div>
+      </li>
+      <li>
+        <div
+          className="mx-2"
+        >
+          <button
+            className="flex items-center py-2 w-full font-normal text-stone-900 rounded-lg dark:text-white hover:bg-stone-100 pl-3 dark:hover:bg-stone-700"
+            onClick={[Function]}
+          >
+            To-Read
+          </button>
+        </div>
+      </li>
+      <li>
+        <div
+          className="mx-2"
+        >
+          <button
+            className="place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-600"
+          >
+            <div
+              className="flex justify-center w-full"
+            >
+              <div
+                className="w-6"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="w-5/6 m-2 pl-5 rounded-lg"
+  >
+    <div
+      className="flex text-center items-center pb-2 border-b-2 mb-8 border-stone-500"
+    >
+      <span
+        className="flex text-stone-100 ml-2 text-3xl"
+      >
+        All Books
+      </span>
+    </div>
+    <div
+      className="flex flex-wrap"
+    >
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600"
+        >
+          <div
+            className="flex justify-center w-full"
+          >
+            <div
+              className="w-12 h-12 text-stone-100"
+            >
+              <svg
+                className="w-full h-full"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            The Great Gatsby
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            F. Scott Fitzgerald
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            1984
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            George Orwell
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Moby Dick
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Herman Melville
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            The Catcher in the Rye
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            J. D. Salinger
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Alice in Wonderland
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Lewis Carrol
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Anna Karenina
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Leo Tolstoy
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            The Course of Love
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Alain de Botton
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Dune
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Frank Herbert
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            How To Do Good Better
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            William MacAskill
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            My 60 Memorable Games
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Bobby Fischer
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            The Hobbit
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            J.R. Tolkien
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            How to Kill a Mockingbird
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Harper Lee
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            The Lion, the Witch and the Wardrobe
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            C.S. Lewis
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Harry Potter and the Philosopher's Stone
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            J.K Rowling
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Harry Potter and the Chamber of Secrets
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            J.K Rowling
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Harry Potter and the Prisoner of Azkaban
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            J.K Rowling
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Harry Potter and the Goblet of Fire
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            J.K Rowling
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Pride and Prejudice
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Jane Austen
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Sapiens
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Yuval Noah Harrari
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            A Brief History of Time
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Stephen Hawking
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            A Walk in the Woods
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Bill Bryson
+          </p>
+        </div>
+      </div>
+      <div
+        className="relative w-1/6 h-64 place-content-center mb-1"
+      >
+        <button
+          className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden"
+        >
+          <img
+            alt="book cover"
+            className="shrink-0 min-h-full min-w-full"
+            src="testbook.jpg"
+          />
+        </button>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-100 text-sm break-words line-clamp-2"
+          >
+            Into the Wild
+          </p>
+        </div>
+        <div
+          className="w-32"
+        >
+          <p
+            className="text-stone-300 text-xs break-words line-clamp-1"
+          >
+            Jon Krakauer
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
