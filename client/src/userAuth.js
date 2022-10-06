@@ -1,8 +1,8 @@
-const {auth} = require("./config");
-
+import {auth} from './firebase-setup'
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth'
 const signIn = async (email, password) => {
     try {
-      await auth.signInWithEmailAndPassword(auth.getAuth(), email, password);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -11,14 +11,14 @@ const signIn = async (email, password) => {
 
 const signUp = async (name, email, password) => {
     try {
-      await auth.createUserWithEmailAndPassword(auth.getAuth(), email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.error(err);
       alert(err.message);
     }
 };
 
-module.exports = {
+export {
     signIn,
     signUp,
 }

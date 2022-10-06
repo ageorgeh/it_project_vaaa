@@ -4,7 +4,6 @@ const app = express();
 
 // controllers
 const booksController = require('./controllers/booksController')
-const userAuthController = require('./controllers/userAuthController')
 
 const port = process.env.PORT || 3001;
 // Enable cors security headers

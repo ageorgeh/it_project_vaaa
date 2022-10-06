@@ -48,7 +48,7 @@ export default function Login () {
   )
   const navigate = useNavigate()
 
-  return <div className="login-container">
+  return <div className="login-container" data-testid = 'loginForm'>
         <div className="title-login">Mid-Reads</div>
         {renderForm}
         <GoogleButton className="google-login" onClick={signInWithGoogle}></GoogleButton>
