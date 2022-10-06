@@ -9,8 +9,14 @@ import { query, collection, getDocs, where } from 'firebase/firestore'
 import GoogleButton from 'react-google-button'
 import { useNavigate } from 'react-router-dom'
 
+import { signIn } from '../userAuth'
+
 export default function Login () {
   const [user, loading] = useAuthState(auth)
+
+  // login with email password
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   // error
   // const navigate = useNavigate()
 
@@ -27,15 +33,17 @@ export default function Login () {
     <div className="form">
       <form>
         <div className="input-container">
-          <input type="text" name="uname" className="inputC" placeholder="e-mail" required />
+          <input type="text" name="uname" className="inputC" placeholder="e-mail" value={email}
+            onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div className="input-container">
-          <input type="password" name="pass" placeholder="password" required />
-        </div>
-        <div className="button-container">
-          <input type="submit" className='buttonC' />
+          <input type="password" name="pass" placeholder="password" required value={password}
+            onChange={(e) => setPassword(e.target.value)} />
         </div>
       </form>
+      <div className="button-container">
+        <button className='buttonC' onClick={() => signIn(email, password)}> Submit </button>
+      </div>
     </div>
   )
   const navigate = useNavigate()

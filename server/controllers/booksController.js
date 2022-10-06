@@ -29,7 +29,7 @@ const getUserBooks = async function(req, res) {
 
 // UPDATE: change a book's title
 const updateTitle = async function(req, res) {
-    const { bookID,currUID, newTitle } = req.body
+    const { bookID, currUID, newTitle } = req.body
     const bookRef = db.collection('books').doc(bookID)
     const res2 = await bookRef.set({
         bookID: bookID,
@@ -38,6 +38,7 @@ const updateTitle = async function(req, res) {
     }, { merge: true })
   res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID )
 }
+
 
 // DELETE: deletes a book
 const deleteBook = async function(req, res) {

@@ -18,14 +18,6 @@ app.get('/', (req, res) => {
   res.send('Hi There')
 });
 
-// User Authentication routes
-app.post('/SignIn', async (req, res) => {
-  userAuthController.signIn(req, res);
-});
-app.post('/SignUp', async (req, res) => {
-  userAuthController.signUp(req, res);
-});
-
 // MyBooks routes
 app.post('/MyBooks/AddNewBook', async (req, res) => {
     booksController.addNewBook(req, res);
