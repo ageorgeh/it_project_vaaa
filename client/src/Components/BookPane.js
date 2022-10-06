@@ -65,6 +65,7 @@ class BookPane extends React.Component {
                     {bookElems}
                 </div>
             </div>
+            
             </>
         )
     }

@@ -19,7 +19,10 @@ class Book extends React.Component {
                     
                     {/* hover background */}
                     <div className="absolute bg-black w-full h-full opacity-0 transition-opacity duration-500 group-hover:opacity-80" />
-                    <button type="button" className="absolute invisible group-hover:visible text-gray-100 bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 m-2">Edit</button>
+                    {/* the buttons only shows when the parent div is hovered*/}
+                    <button type="button" className="absolute invisible mb-10 group-hover:visible text-gray-100 bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 m-2" id="open-edit">Edit</button>
+                    <button type="button" className="absolute invisible mt-20 group-hover:visible text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 m-2">Delete</button>
+
                 </div>
                 <div className="w-32">
                     <p className="text-stone-100 text-sm break-words line-clamp-2">{this.props.title}</p>
@@ -28,6 +31,8 @@ class Book extends React.Component {
                     <p className="text-stone-300 text-xs break-words line-clamp-1">{this.props.author}</p>
                 </div>
             </div>
+            
+
             </>
           );
     }
