@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 class Book extends React.Component {
     constructor(props) {
         super(props);
@@ -15,11 +15,12 @@ class Book extends React.Component {
             <>
             <div className="group relative w-1/6 h-64 place-content-center mb-1">
                 <div className="h-48 w-32 flex justify-center items-center overflow-hidden relative">
-                    <img src={this.props.image} className="shrink-0 min-h-full min-w-full"alt="book cover" />
-                    
+                    <Link to="/viewbook/:bookid">
+                        <img src={this.props.image} className="shrink-0 min-h-full min-w-full"alt="book cover" />
+                  
                     {/* hover background */}
                     <div className="absolute bg-black w-full h-full opacity-0 transition-opacity duration-500 group-hover:opacity-80" />
-                    
+                    </Link>
 
                 </div>
                 <div className="w-32">
