@@ -15,11 +15,8 @@ class Book extends React.Component {
             <>
             <div className="group relative w-1/6 h-64 place-content-center mb-1">
                 <div className="h-48 w-32 flex justify-center items-center overflow-hidden relative">
-                    <Link to="/viewbook/:bookid">
+                    <Link to={`/viewbook/${this.props.title}`}>
                         <img src={this.props.image} className="shrink-0 min-h-full min-w-full"alt="book cover" />
-                  
-                    {/* hover background */}
-                    <div className="absolute bg-black w-full h-full opacity-0 transition-opacity duration-500 group-hover:opacity-80" />
                     </Link>
 
                 </div>
