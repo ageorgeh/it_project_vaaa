@@ -27,12 +27,12 @@ function MyBooks () {
     }
   }
 
-  // get all books
-  const [BookData, setBookData] = useState([{}])
-  const [r, setR] = useState(false)
-  const [title, setTitle] = useState('')
-  const [books, setBooks] = useState([{}])
+  const [BookData, setBookData] = useState([{}]) // Array of book objects sent from API
+  const [r, setR] = useState(false) // Refresh state
+  const [title, setTitle] = useState('') // Used for update title form
+  const [books, setBooks] = useState([{}]) // Books array in format with mybooks page
 
+  // getting all books and storing
   useEffect(() => {
     if (loading) return
     if (!user) return navigate('../login')
@@ -56,18 +56,17 @@ function MyBooks () {
     addBooksToList()
   }, [user, loading, navigate, r])
 
-  // add new book
+  // const handleSubmit = event => {
+  //   console.log('submit done')
+  //   event.preventDefault()
+  //   event.target.reset()
+  // }
 
-  const handleSubmit = event => {
-    console.log('submit done')
-    event.preventDefault()
-    event.target.reset()
-  }
+  // const handleChange = event => {
+  //   setTitle(event.target.value)
+  // }
 
-  const handleChange = event => {
-    setTitle(event.target.value)
-  }
-
+  // adding a new book
   const addNewBook = (tit) => {
     setR(true)
     axios.post('/MyBooks/AddNewBook', {
