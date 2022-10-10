@@ -15,8 +15,8 @@ export default function Login () {
   const [user, loading] = useAuthState(auth)
 
   // login with email password
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   // error
   const navigate = useNavigate()
 
