@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/MyBooks/AddNewBook', async (req, res) => {
     booksController.addNewBook(req, res);
 });
-app.get('/MyBooks', async (req, res) => {
+app.post('/MyBooks', async (req, res) => {
   booksController.getUserBooks(req, res);
 });
 app.post('/MyBooks/UpdateTitle', async (req, res) => {
