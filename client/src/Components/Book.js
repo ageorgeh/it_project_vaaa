@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
 class Book extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDeletion = this.handleDeletion.bind(this);
-    }
-    
-    handleDeletion() {
-        this.props.onDelete(this.props.bookKey);
-    }
+  constructor (props) {
+    super(props)
+    this.handleDeletion = this.handleDeletion.bind(this)
+  }
 
-    render () {
-        return (
+  handleDeletion () {
+    this.props.onDelete(this.props.bookKey)
+  }
+
+  render () {
+    return (
             <>
             <div className="relative w-1/6 h-64 place-content-center mb-1">
                 <button className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden">
@@ -25,12 +25,11 @@ class Book extends React.Component {
                 </div>
             </div>
             </>
-          );
-    }
-
+    )
+  }
 }
 
-export default Book;
+export default Book
 
 // {this.props.image}
 
@@ -49,7 +48,7 @@ export default Book;
                     </div>
                 </div>
 
-            </div>   
+            </div>
 
 */
 

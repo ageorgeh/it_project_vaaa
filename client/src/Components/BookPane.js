@@ -1,29 +1,29 @@
-import React from 'react';
-import Book from './Book';
+import React from 'react'
+import Book from './Book'
 
 class BookPane extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-    
-    render() {
-        const bookElems = [];
-        for (let i=0; i<this.props.books.length; i++) {
-            if (this.props.books[i].shelves.includes(this.props.currShelf)) {
-                bookElems.push(
-                    <Book 
-                        title={this.props.books[i].title} 
+  constructor (props) {
+    super(props)
+    this.props = props
+  }
+
+  render () {
+    const bookElems = []
+    for (let i = 0; i < this.props.books.length; i++) {
+      if (this.props.books[i].shelves.includes(this.props.currShelf)) {
+        bookElems.push(
+                    <Book
+                        title={this.props.books[i].title}
                         author={this.props.books[i].author}
                         bookKey={i}
                         key={i}
                         onDelete={this.deleteBook}
                         image={this.props.books[i].image}
                     />
-                );
-            }
-        }
-        return (
+        )
+      }
+    }
+    return (
             <>
             <div className="w-5/6 m-2 pl-5 rounded-lg">
                 <div className="flex text-center items-center pb-2 border-b-2 mb-8 border-stone-500">
@@ -45,11 +45,11 @@ class BookPane extends React.Component {
                 </div>
             </div>
             </>
-        )
-    }
+    )
+  }
 }
 
-export default BookPane;
+export default BookPane
 
 // deleteBook(bookKey) {
 //     let currBooks = this.props.books;
