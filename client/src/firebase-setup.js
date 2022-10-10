@@ -47,7 +47,7 @@ getDocs(colRef)
     console.log(err.message)
   })
 
-//console.log(books)
+// console.log(books)
 
 const auth = getAuth(app)
 
@@ -80,10 +80,9 @@ const logout = () => {
   signOut(auth)
 }
 
-
 export {
   auth,
   db,
   signInWithGoogle,
-  logout, 
+  logout
 }

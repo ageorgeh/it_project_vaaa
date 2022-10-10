@@ -30,7 +30,7 @@ class BookPane extends React.Component {
                     <span className="flex text-stone-100 ml-2 text-3xl">{this.props.currShelfName}</span>
                 </div>
                 <div className="flex flex-wrap">
-                    <div className="relative w-1/6 h-64 place-content-center mb-1">
+                    <div className="relative w-48 h-64 place-content-center mb-1">
                         <button className="h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600">
                             <div className="flex justify-center w-full">
                                 <div className="w-12 h-12 text-stone-100">

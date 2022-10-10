@@ -13,7 +13,7 @@ class Book extends React.Component {
   render () {
     return (
             <>
-            <div className="relative w-1/6 h-64 place-content-center mb-1">
+            <div className="relative w-48 h-64 place-content-center mb-1">
                 <button className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden">
                     <img src="testbook.jpg" className="shrink-0 min-h-full min-w-full"alt="book cover" />
                 </button>
