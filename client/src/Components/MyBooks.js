@@ -44,13 +44,13 @@ function MyBooks () {
           setR(false)
           console.log(response)
           setBookData(response.data)
-          console.log(BookData)
         })
         .catch(error => console.error('Error: ', error))
     }
     const addBooksToList = async () => {
       await fetch()
       // test book
+      // console.log('a', BookData)
       setBooks([{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }])
     }
     addBooksToList()
@@ -115,7 +115,7 @@ function MyBooks () {
   }
 
   return (
-    (typeof (BookData[0].title) === 'undefined')
+    (typeof (BookData[0]) === 'undefined')
       ? (
         <p> loading... </p>
         )
@@ -126,7 +126,7 @@ function MyBooks () {
             <BookPane
               currShelf={currShelf}
               currShelfName={shelves[currShelf]}
-              books={books}
+              books={[{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }]}
               />
         </div>
       </>

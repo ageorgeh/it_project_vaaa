@@ -5,7 +5,7 @@ import { auth, logout } from '../firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import axios from 'axios'
 
-export default function Home () {
+export default function testForms () {
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
 
