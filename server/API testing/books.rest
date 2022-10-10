@@ -36,10 +36,3 @@ Content-Type: application/json
     "bookID": "osnij",
     "title": "l8ywe new title using Update API"
 }
-# b5flgl
-# b9ihu
-# d6m0l
-# fudpb
-# jey89
-# lzffyg
-# osnij
