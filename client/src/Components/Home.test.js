@@ -6,10 +6,8 @@ import { cleanup, fireEvent, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-
 it('displays home', () => {
-
-  //jest.mock('react-firebase-hooks/auth')
+  // jest.mock('react-firebase-hooks/auth')
   useAuthState.mockReturnValue([true, false])
 
   const { getByText } = render(
@@ -20,6 +18,4 @@ it('displays home', () => {
 
   // eslint-disable-next-line testing-library/prefer-screen-queries
   expect(getByText('Home')).not.toBeNull()
-
 })
-

@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 import {
-    useParams
-  } from "react-router-dom";
+  useParams
+} from 'react-router-dom'
 
-function EditBook() {
-    let {bookid} = useParams();
-    
-    return (
+function EditBook () {
+  const { bookid } = useParams()
+
+  return (
         <>
         <h1 className="text-white">{bookid}</h1>
         </>
-        );
+  )
 }
 
-export default EditBook;
+export default EditBook

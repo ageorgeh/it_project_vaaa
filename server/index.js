@@ -5,17 +5,17 @@ const app = express();
 // controllers
 const booksController = require('./controllers/booksController')
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001
 // Enable cors security headers
 app.use(cors())
 
 // add an express method to parse the POST method
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   res.send('Hi There')
-});
+})
 
 // MyBooks routes
 app.post('/MyBooks/AddNewBook', async (req, res) => {
@@ -31,4 +31,4 @@ app.post('/MyBooks/DeleteBook', async (req, res) => {
   booksController.deleteBook(req, res);
 });
 
-app.listen(port, () => { })
+app.listen(port, () => { console.log('Server listening on', port) })

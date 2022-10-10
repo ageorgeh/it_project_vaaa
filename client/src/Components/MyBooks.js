@@ -1,64 +1,136 @@
+/* eslint-disable no-unused-vars */
 
-import ShelfPane from './ShelfPane';
-import BookPane from './BookPane';
-import React from 'react';
+import ShelfPane from './ShelfPane'
+import BookPane from './BookPane'
+// eslint-disable-next-line no-unused-vars
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { auth, logout } from '../firebase-setup'
+// signInWithEmailAndPassword
+import { useAuthState } from 'react-firebase-hooks/auth'
+import axios from 'axios'
 
+function MyBooks () {
+  // renavigate user to login if not logged in
+  const [user, loading] = useAuthState(auth)
+  const navigate = useNavigate()
 
-class MyBooks extends React.Component {
-    constructor(props) {
-        super(props);
-        this.selectShelf = this.selectShelf.bind(this);
-        this.state = {
-            currShelf: 0,
-            shelves: ['All Books', 'Fiction', 'Non-Fiction', 'To-Read'],
-            books: [
-              {title: "The Great Gatsby", author: "F. Scott Fitzgerald", shelves: [0,1], image: "img/books/gatsby.jpg"},
-              {title: "1984", author: "George Orwell", shelves: [0,1], image: "img/books/1984.jpg"},
-              {title: "Moby Dick", author: "Herman Melville", shelves: [0,1], image: "img/books/moby.jpg"},
-              {title: "The Catcher in the Rye", author: "J. D. Salinger", shelves: [0,1], image: "img/books/catcher.jpg"},
-              {title: "Alice in Wonderland", author: "Lewis Carrol", shelves: [0,1], image: "img/books/alice.jpg"},
-              {title: "Anna Karenina", author: "Leo Tolstoy", shelves: [0,1], image: "img/books/anna.jpg"},
-              {title: "The Course of Love", author: "Alain de Botton", shelves: [0,2], image: "img/books/botton.jpg"},
-              {title: "Dune", author: "Frank Herbert", shelves: [0,1], image: "img/books/dune.jpg"},
-              {title: "How To Do Good Better", author: "William MacAskill", shelves: [0,2], image: "img/books/ea.jpg"},
-              {title: "My 60 Memorable Games", author: "Bobby Fischer", shelves: [0,1], image: "img/books/fischer.jpg"},
-              {title: "The Hobbit", author: "J.R. Tolkien", shelves: [0,1], image: "img/books/hobbit.jpg"},
-              {title: "How to Kill a Mockingbird", author: "Harper Lee", shelves: [0,1], image: "img/books/mockingbird.jpg"},
-              {title: "The Lion, the Witch and the Wardrobe", author: "C.S. Lewis", shelves: [0,1], image: "img/books/narnia.jpg"},
-              {title: "Harry Potter and the Philosopher's Stone", author: "J.K Rowling", shelves: [0,1], image: "img/books/potter1.jpg"},
-              {title: "Harry Potter and the Chamber of Secrets", author: "J.K Rowling", shelves: [0,1], image: "img/books/potter2.jpg"},
-              {title: "Harry Potter and the Prisoner of Azkaban", author: "J.K Rowling", shelves: [0,1], image: "img/books/potter3.jpg"},
-              {title: "Harry Potter and the Goblet of Fire", author: "J.K Rowling", shelves: [0,1], image: "img/books/potter4.jpg"},
-              {title: "Pride and Prejudice", author: "Jane Austen", shelves: [0,1], image: "img/books/prejudice.jpg"},
-              {title: "Sapiens", author: "Yuval Noah Harrari", shelves: [0,2], image: "img/books/sapiens.jpg"},
-              {title: "A Brief History of Time", author: "Stephen Hawking", shelves: [0,2], image: "img/books/time.jpg"},
-              {title: "A Walk in the Woods", author: "Bill Bryson", shelves: [0,2], image: "img/books/walk.jpg"},
-              {title: "Into the Wild", author: "Jon Krakauer", shelves: [0,1], image: "img/books/wild.jpg"},
-              ],
-        };
+  useEffect(() => {
+    if (loading) return
+    if (!user) return navigate('../login')
+  }, [user, loading, navigate])
+  const loginOut = (user) => {
+    if (user) {
+      return <button onClick={logout}>
+          Logout
+      </button>
     }
+  }
 
-    selectShelf(shelfKey) {
-        this.setState({
-            currShelf: shelfKey,
-            currShelfName: this.state.shelves[shelfKey],
-        });
+  const [BookData, setBookData] = useState([{}]) // Array of book objects sent from API
+  const [r, setR] = useState(false) // Refresh state
+  const [title, setTitle] = useState('') // Used for update title form
+  const [books, setBooks] = useState([{}]) // Books array in format with mybooks page
+
+  // getting all books and storing
+  useEffect(() => {
+    if (loading) return
+    if (!user) return navigate('../login')
+    const fetch = async () => {
+      await axios.post('/MyBooks', {
+        currUID: user.uid
+      })
+        .then(response => {
+          setR(false)
+          console.log(response)
+          setBookData(response.data)
+        })
+        .catch(error => console.error('Error: ', error))
     }
-    
-    render() {
-        return (
-            <>
-                <div className="flex relative bg-stone-900"> 
-                    <ShelfPane onSelect={this.selectShelf} shelves={this.state.shelves} />
-                    <BookPane 
-                      currShelf={this.state.currShelf} 
-                      currShelfName={this.state.shelves[this.state.currShelf]} 
-                      books={this.state.books}
-                      />
-                </div>
-            </>
-            )
+    const addBooksToList = async () => {
+      await fetch()
+      // test book
+      // console.log('a', BookData)
+      setBooks([{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }])
     }
+    addBooksToList()
+  }, [user, loading, navigate, r])
+
+  // const handleSubmit = event => {
+  //   console.log('submit done')
+  //   event.preventDefault()
+  //   event.target.reset()
+  // }
+
+  // const handleChange = event => {
+  //   setTitle(event.target.value)
+  // }
+
+  // adding a new book
+  const addNewBook = (tit) => {
+    setR(true)
+    axios.post('/MyBooks/AddNewBook', {
+      currUID: user.uid,
+      title: tit
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error('Error: ', error))
+  }
+
+  // edit book title
+  const editBook = (book, tit) => {
+    setR(true)
+    axios.post('/MyBooks/UpdateTitle', {
+      currUID: user.uid,
+      newTitle: tit,
+      bookID: book.bookID
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error('Error: ', error))
+  }
+
+  // delete book
+  const deleteBook = (id) => {
+    setR(true)
+    axios.post('/MyBooks/DeleteBook', {
+      bookID: id
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error('Error: ', error))
+  }
+
+  const [currShelf, setCurrShelf] = useState(0)
+  const [shelves, setShelves] = useState(['All Books', 'Fiction', 'Non-Fiction', 'To-Read'])
+  const [currShelfName, setCurrShelfName] = useState({})
+
+  const selectShelf = (shelfKey) => {
+    setCurrShelf(shelfKey)
+    setCurrShelfName(shelves[shelfKey])
+  }
+
+  return (
+    (typeof (BookData[0]) === 'undefined')
+      ? (
+        <p> loading... </p>
+        )
+      : (
+      <>
+        <div className="flex relative bg-stone-900">
+            <ShelfPane onSelect={selectShelf} shelves={shelves} />
+            <BookPane
+              currShelf={currShelf}
+              currShelfName={shelves[currShelf]}
+              books={[{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }]}
+              />
+        </div>
+      </>
+        ))
 }
 
-export default MyBooks;
+export default MyBooks
