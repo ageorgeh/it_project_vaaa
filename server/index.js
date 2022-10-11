@@ -22,11 +22,11 @@ app.get('/', (req, res) => {
 
 // MyBooks routes
 app.post('/MyBooks/AddNewBook', async (req, res) => {
-  booksController.addNewBook(req, res)
-})
+    booksController.addNewBook(req, res);
+});
 app.post('/MyBooks', async (req, res) => {
-  booksController.getUserBooks(req, res)
-})
+  booksController.getUserBooks(req, res);
+});
 app.post('/MyBooks/UpdateTitle', async (req, res) => {
   booksController.updateTitle(req, res)
 })
