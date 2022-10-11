@@ -1,10 +1,24 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react'
 import Book from './Book'
 import PropTypes from 'prop-types'
+import Modal from './Modal'
 
 function BookPane ({ books, currShelf, currShelfName }) {
+  const [showEditModal, setShowEditModal] = useState(false)
+  const handleOnEditClose = (response) => {
+    setShowEditModal(false)
+    if (response !== undefined && 'title' in response) {
+      books.push(response)
+    }
+  }
+
+  useEffect(() => {
+  }, [books])
+
   const bookElems = () => {
     const a = []
+    // console.log(books)
     for (let i = 0; i < books.length; i++) {
       if (books[i].shelves.includes(currShelf)) {
         a.push(
@@ -29,7 +43,7 @@ function BookPane ({ books, currShelf, currShelfName }) {
                   </div>
                   <div className="flex flex-wrap">
                       <div className="relative w-1/6 h-64 place-content-center mb-1">
-                          <button className="h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600">
+                          <button onClick={() => setShowEditModal(true)} className="hello h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600">
                               <div className="flex justify-center w-full">
                                   <div className="w-12 h-12 text-stone-100">
                                       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-full h-full" viewBox="0 0 24 24">
@@ -42,6 +56,7 @@ function BookPane ({ books, currShelf, currShelfName }) {
                       {bookElems()}
                   </div>
               </div>
+              <Modal onClose={handleOnEditClose} visible={showEditModal} />
               </>
   )
 }

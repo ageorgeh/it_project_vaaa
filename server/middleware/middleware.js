@@ -8,13 +8,11 @@ class Middleware {
       return res.json({ message: 'No authentication header found' })
     }
     const token = req.headers.authorization.split(' ')[1]
-    console.log('token', token)
 
     getAuth()
       .verifyIdToken(token)
       .then((decodedToken) => {
         req.user = decodedToken.uid
-        console.log('good')
         return next()
       // ...
       })

@@ -29,7 +29,7 @@ function MyBooks () {
     }
   }
 
-  const [BookData, setBookData] = useState([]) // Array of book objects sent from API
+  const [BookData, setBookData] = useState(null) // Array of book objects sent from API
   const [r, setR] = useState(false) // Refresh state
   const [title, setTitle] = useState('') // Used for update title form
   const [books, setBooks] = useState([{}]) // Books array in format with mybooks page
@@ -78,11 +78,11 @@ function MyBooks () {
   // }
 
   // adding a new book
-  const addNewBook = (tit) => {
+  const addNewBook = (data) => {
     setR(true)
     axios.post('/MyBooks/AddNewBook', {
       currUID: user.uid,
-      title: tit
+      title: data.title
     })
       .then(response => {
         console.log(response)
@@ -125,7 +125,8 @@ function MyBooks () {
     setCurrShelfName(shelves[shelfKey])
   }
 
-  if (BookData.length === 0) {
+  // eslint-disable-next-line no-constant-condition
+  if (BookData === null) {
     return (<div ><RotatingLines height="100" width="100"/></div>)
   } else {
     return (
@@ -135,12 +136,12 @@ function MyBooks () {
           <BookPane
             currShelf={currShelf}
             currShelfName={shelves[currShelf]}
-            books={[{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }]}
+            books={BookData}
             />
       </div>
     </>
     )
   }
 }
-
+// [{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: BookData[0].image }]
 export default MyBooks
