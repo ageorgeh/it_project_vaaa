@@ -4,30 +4,33 @@ import Book from './Book'
 import PropTypes from 'prop-types'
 import Modal from './Modal'
 
-function BookPane ({ books, currShelf, currShelfName }) {
+function BookPane ({ books, currShelf, currShelfName, shelves }) {
   const [showEditModal, setShowEditModal] = useState(false)
   const handleOnEditClose = (response) => {
     setShowEditModal(false)
-    if (response !== undefined && 'title' in response) {
+    console.log('ub', 'shelves' in response)
+
+    if (response !== undefined && 'shelves' in response) {
       books.push(response)
     }
   }
 
   useEffect(() => {
+    console.log('Refreshing books', books)
   }, [books])
 
   const bookElems = () => {
     const a = []
     // console.log(books)
     for (let i = 0; i < books.length; i++) {
-      if (books[i].shelves.includes(currShelf)) {
+      if ('shelves' in books[i] && books[i].shelves.includes(currShelf)) {
         a.push(
             <Book
-                title={books[i].title}
-                author={books[i].author}
+                title={'title' in books[i] ? books[i].title : '' }
+                author={'author' in books[i] ? books[i].author : ''}
                 bookKey={i}
                 key={i}
-                image={books[i].image}
+                image={'image' in books[i] ? books[i].image : 'noImageFound.jpg'}
             />
         )
       }
@@ -42,7 +45,7 @@ function BookPane ({ books, currShelf, currShelfName }) {
                       <span className="flex text-stone-100 ml-2 text-3xl">{currShelfName}</span>
                   </div>
                   <div className="flex flex-wrap">
-                      <div className="relative w-1/6 h-64 place-content-center mb-1">
+                      <div className="relative h-64 place-content-center mb-1 px-3">
                           <button onClick={() => setShowEditModal(true)} className="hello h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600">
                               <div className="flex justify-center w-full">
                                   <div className="w-12 h-12 text-stone-100">
@@ -56,12 +59,12 @@ function BookPane ({ books, currShelf, currShelfName }) {
                       {bookElems()}
                   </div>
               </div>
-              <Modal onClose={handleOnEditClose} visible={showEditModal} />
+              <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={null} shelves={shelves} />
               </>
   )
 }
 
-BookPane.propTypes = { books: PropTypes.array, currShelf: PropTypes.number, currShelfName: PropTypes.string }
+BookPane.propTypes = { books: PropTypes.array, currShelf: PropTypes.string, currShelfName: PropTypes.string, shelves: PropTypes.array }
 export default BookPane
 
 // deleteBook(bookKey) {

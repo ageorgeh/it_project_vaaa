@@ -116,13 +116,26 @@ function MyBooks () {
       .catch(error => console.error('Error: ', error))
   }
 
-  const [currShelf, setCurrShelf] = useState(0)
+  const getShelves = () => {
+    const allShelves = new Set()
+    allShelves.add('All Books')
+    BookData.forEach((arrayItem) => {
+      arrayItem.shelves.forEach((shelf) => {
+        allShelves.add(shelf)
+      })
+    })
+    console.log('allsheleves', allShelves)
+    return Array.from(allShelves)
+  }
+
+  const [currShelf, setCurrShelf] = useState('All Books')
   const [shelves, setShelves] = useState(['All Books', 'Fiction', 'Non-Fiction', 'To-Read'])
   const [currShelfName, setCurrShelfName] = useState({})
 
   const selectShelf = (shelfKey) => {
     setCurrShelf(shelfKey)
-    setCurrShelfName(shelves[shelfKey])
+    setCurrShelfName(shelfKey)
+    // setCurrShelfName(shelves[shelfKey])
   }
 
   // eslint-disable-next-line no-constant-condition
@@ -132,10 +145,11 @@ function MyBooks () {
     return (
     <>
       <div className="flex relative bg-stone-900">
-          <ShelfPane onSelect={selectShelf} shelves={shelves} />
+          <ShelfPane onSelect={selectShelf} shelves={getShelves()} />
           <BookPane
+            shelves={getShelves()}
             currShelf={currShelf}
-            currShelfName={shelves[currShelf]}
+            currShelfName={currShelf}
             books={BookData}
             />
       </div>

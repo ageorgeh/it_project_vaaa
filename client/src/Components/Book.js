@@ -12,11 +12,9 @@ function Book ({ title, author, image }) {
   }
   return (
         <>
-        <div className="relative w-1/6 h-64 place-content-center mb-1">
+        <div className="relative h-64 place-content-center mb-1 px-3">
             <button className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden">
-                <img src={image} className="shrink-0 min-h-full min-w-full"alt="book cover" />
-                {/* <div style={loaded ? { display: 'none' } : {}}><Oval height="100" width="100"/></div> */}
-                {/* <img style={loaded ? {} : { display: 'none' }} src = { image } onLoad={imageLoaded} /> */}
+                <img src={image} className="shrink-0 min-h-full min-w-full" alt="book cover" />
             </button>
             <div className="w-32">
                 <p className="text-stone-100 text-sm break-words line-clamp-2">{title}</p>

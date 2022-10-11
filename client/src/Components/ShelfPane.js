@@ -10,7 +10,6 @@ function ShelfPane ({ onSelect, shelves }) {
   const shelfElems = shelves.map((shelf, index) =>
     <Shelf
         name={shelf}
-        shelfKey={index}
         key={index}
         onSelect={selectShelf}
     />
