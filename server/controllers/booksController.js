@@ -45,16 +45,17 @@ const updateTitle = async function (req, res) {
   const author = req.body.author || ''
   const shelves = req.body.shelves || []
   const image = req.body.image || 'noImageFound.jpg'
+  const bookID = req.body.bookID 
+  console.log("bookid,", req.body)
   const bookRef = db.collection('books').doc(bookID)
   const res2 = await bookRef.set({
     bookID,
     currUID,
     title,
     author,
-    shelves,
     image
   }, { merge: true })
-  res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID)
+  res.status(200).send('Updated title to' + title + ' for bookID ' + bookID)
 }
 
 // DELETE: deletes a book

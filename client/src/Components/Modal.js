@@ -16,7 +16,6 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   const [image, setImage] = useState(null)
 
   //console.log("sada",fieldValues.title)
-
   const handleOnClose = (e) => {
     if (e.target.id === 'modalContainer' || e.target.id === 'buttonID') onClose()
   }
@@ -74,6 +73,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   }
 
   const updateBook = async (data) => {
+    console.log("bookid modal", fieldValues.bookID)
     setR(true)
     await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
       axios.post('/MyBooks/UpdateTitle', {
@@ -81,7 +81,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         title: data.title,
         author: data.author,
         image: data.image,
-        shelves: data.shelves
+        shelves: data.shelves,
+        bookID : fieldValues.bookID
       }, {
         headers: {
           Authorization: 'Bearer ' + idToken
@@ -167,7 +168,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           console.log(error)
         }) 
     } else {
-      updateBook({ title: event.target[0].value, author: event.target[1].value }).then(() => {
+      updateBook({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image}).then(() => {
         console.log('Book added')
         onClose({ title: event.target[0].value, author: event.target[1].value, shelves: getChosenShelves() })
         setUploading(false)
