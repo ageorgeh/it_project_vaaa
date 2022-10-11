@@ -9,6 +9,7 @@ import { auth, logout } from '../firebase-setup'
 // signInWithEmailAndPassword
 import { useAuthState } from 'react-firebase-hooks/auth'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
   // renavigate user to login if not logged in
@@ -19,6 +20,7 @@ function MyBooks () {
     if (loading) return
     if (!user) return navigate('../login')
   }, [user, loading, navigate])
+
   const loginOut = (user) => {
     if (user) {
       return <button onClick={logout}>
@@ -27,7 +29,7 @@ function MyBooks () {
     }
   }
 
-  const [BookData, setBookData] = useState([{}]) // Array of book objects sent from API
+  const [BookData, setBookData] = useState(null) // Array of book objects sent from API
   const [r, setR] = useState(false) // Refresh state
   const [title, setTitle] = useState('') // Used for update title form
   const [books, setBooks] = useState([{}]) // Books array in format with mybooks page
@@ -37,21 +39,30 @@ function MyBooks () {
     if (loading) return
     if (!user) return navigate('../login')
     const fetch = async () => {
-      await axios.post('/MyBooks', {
-        currUID: user.uid
-      })
-        .then(response => {
-          setR(false)
-          console.log(response)
-          setBookData(response.data)
+      await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+        axios.post('/MyBooks', {
+          currUID: user.uid
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + idToken
+          }
         })
-        .catch(error => console.error('Error: ', error))
+          .then(response => {
+            setR(false)
+            console.log('Response', response)
+            setBookData(response.data)
+          })
+          .catch(error => console.error('Error: ', error))
+      }).catch(function (error) {
+        console.log('Error', error)
+      })
     }
     const addBooksToList = async () => {
       await fetch()
       // test book
       // console.log('a', BookData)
-      setBooks([{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }])
+      // setBooks([{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }])
     }
     addBooksToList()
   }, [user, loading, navigate, r])
@@ -67,11 +78,11 @@ function MyBooks () {
   // }
 
   // adding a new book
-  const addNewBook = (tit) => {
+  const addNewBook = (data) => {
     setR(true)
     axios.post('/MyBooks/AddNewBook', {
       currUID: user.uid,
-      title: tit
+      title: data.title
     })
       .then(response => {
         console.log(response)
@@ -105,32 +116,46 @@ function MyBooks () {
       .catch(error => console.error('Error: ', error))
   }
 
-  const [currShelf, setCurrShelf] = useState(0)
+  const getShelves = () => {
+    const allShelves = new Set()
+    allShelves.add('All Books')
+    BookData.forEach((arrayItem) => {
+      arrayItem.shelves.forEach((shelf) => {
+        allShelves.add(shelf)
+      })
+    })
+    console.log('allsheleves', allShelves)
+    return Array.from(allShelves)
+  }
+
+  const [currShelf, setCurrShelf] = useState('All Books')
   const [shelves, setShelves] = useState(['All Books', 'Fiction', 'Non-Fiction', 'To-Read'])
   const [currShelfName, setCurrShelfName] = useState({})
 
   const selectShelf = (shelfKey) => {
     setCurrShelf(shelfKey)
-    setCurrShelfName(shelves[shelfKey])
+    setCurrShelfName(shelfKey)
+    // setCurrShelfName(shelves[shelfKey])
   }
 
-  return (
-    (typeof (BookData[0]) === 'undefined')
-      ? (
-        <p> loading... </p>
-        )
-      : (
-      <>
-        <div className="flex relative bg-stone-900">
-            <ShelfPane onSelect={selectShelf} shelves={shelves} />
-            <BookPane
-              currShelf={currShelf}
-              currShelfName={shelves[currShelf]}
-              books={[{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: 'testbook.jpg' }]}
-              />
-        </div>
-      </>
-        ))
+  // eslint-disable-next-line no-constant-condition
+  if (BookData === null) {
+    return (<div ><RotatingLines height="100" width="100"/></div>)
+  } else {
+    return (
+    <>
+      <div className="flex relative bg-stone-900">
+          <ShelfPane onSelect={selectShelf} shelves={getShelves()} />
+          <BookPane
+            shelves={getShelves()}
+            currShelf={currShelf}
+            currShelfName={currShelf}
+            books={BookData}
+            />
+      </div>
+    </>
+    )
+  }
 }
-
+// [{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: BookData[0].image }]
 export default MyBooks

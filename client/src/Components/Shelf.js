@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Shelf ({ onSelect, shelfKey, name }) {
+function Shelf ({ onSelect, name }) {
   const selectShelf = () => {
-    onSelect(shelfKey)
+    onSelect(name)
   }
 
   return (
@@ -18,5 +18,5 @@ function Shelf ({ onSelect, shelfKey, name }) {
     </>
   )
 }
-Shelf.propTypes = { onSelect: PropTypes.func, shelfKey: PropTypes.number, name: PropTypes.string }
+Shelf.propTypes = { onSelect: PropTypes.func, name: PropTypes.string }
 export default Shelf

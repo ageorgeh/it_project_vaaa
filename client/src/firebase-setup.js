@@ -1,5 +1,6 @@
 
-import { initializeApp, deleteApp } from 'firebase/app'
+import { initializeApp } from 'firebase/app'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import {
   getFirestore, collection, getDocs,
   query,
@@ -47,7 +48,7 @@ getDocs(colRef)
     console.log(err.message)
   })
 
-//console.log(books)
+// console.log(books)
 
 const auth = getAuth(app)
 
@@ -80,10 +81,55 @@ const logout = () => {
   signOut(auth)
 }
 
+const uploadImg = async (file) => {
+  console.log(file)
+  // Return a promise that will either resolve or emit an error
+  return new Promise((resolve, reject) => {
+    console.log('f', file)
+    // Create the file metadata
+    /** @type {any} */
+    const metadata = {
+      contentType: 'image/jpeg'
+    }
+    console.log('Uploading image ...')
+
+    const storage = getStorage()
+    const storageRef = ref(storage, 'images/' + file.name)
+    const uploadTask = uploadBytesResumable(storageRef, file, metadata)
+
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        console.log('snapshot', snapshot)
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        console.log('Upload is ' + progress + '% done')
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused')
+            break
+          case 'running':
+            console.log('Upload is running')
+            break
+        }
+      },
+      (error) => {
+        console.log(error)
+        reject(error)
+      },
+      async () => {
+        console.log('snap', uploadTask.snapshot)
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL)
+          resolve(downloadURL)
+        })
+      })
+  })
+}
 
 export {
   auth,
   db,
   signInWithGoogle,
-  logout, 
+  logout,
+  uploadImg
 }

@@ -3,8 +3,13 @@ const { db } = require('../models/admin')
 
 // CREATE: add a new book
 const addNewBook = async function (req, res) {
-  const { currUID, title, author, shelves, image } = req.body
-  // const bookID = (Math.random() + 1).toString(36).substring(7)
+  // const { currUID, title, author, shelves, image } = req.body
+  const currUID = req.body.currUID || res.status(500).send('No User id')
+  const title = req.body.title || ''
+  const author = req.body.author || ''
+  const shelves = req.body.shelves || []
+  const image = req.body.image || 'noImageFound.jpg'
+
   const newBookRef = db.collection('books').doc()
   const res2 = await newBookRef.set({
     bookID: newBookRef.id,
@@ -12,7 +17,7 @@ const addNewBook = async function (req, res) {
     title,
     author,
     image,
-    shelves
+    shelves: shelves.concat(['All Books'])
 
   }, { merge: true })
   console.log('New book created')
