@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Shelf from './Shelf.js'
 import PropTypes from 'prop-types'
@@ -9,7 +10,6 @@ function ShelfPane ({ onSelect, shelves }) {
   const shelfElems = shelves.map((shelf, index) =>
     <Shelf
         name={shelf}
-        shelfKey={index}
         key={index}
         onSelect={selectShelf}
     />
