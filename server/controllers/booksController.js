@@ -40,12 +40,19 @@ const getUserBooks = async function (req, res) {
 
 // UPDATE: change a book's title
 const updateTitle = async function (req, res) {
-  const { bookID, currUID, newTitle } = req.body
+  const currUID = req.body.currUID || res.status(500).send('No User id')
+  const title = req.body.title || ''
+  const author = req.body.author || ''
+  const shelves = req.body.shelves || []
+  const image = req.body.image || 'noImageFound.jpg'
   const bookRef = db.collection('books').doc(bookID)
   const res2 = await bookRef.set({
     bookID,
     currUID,
-    title: newTitle
+    title,
+    author,
+    shelves,
+    image
   }, { merge: true })
   res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID)
 }

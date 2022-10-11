@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import DeleteModal from "./DeleteModal";
 import {
-    useParams
+    useParams, useLocation
   } from "react-router-dom";
 //Sand Dollar : #E4D4C8
 // Tan : #D0B49F
 // Brown : #A47551
 // Carafe : $523A28
-function EditBook() {
+function ViewBook() {
     let {bookid} = useParams();
     //console.log(typeof(bookid));
+    const location = useLocation()
+    const { shelves, book } = location.state
+    console.log(location.state)
     const [showEditModal, setShowEditModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const handleOnEditClose = () => setShowEditModal(false)
@@ -32,8 +35,8 @@ function EditBook() {
             <br></br>
           </div>
           <div className="bg-[#E4D4C8] text-[#523A28]">
-            <h1 className="text-2xl">Title : {bookid}</h1>
-            <h1 className="text-2xl">Author:  </h1>
+            <h1 className="text-2xl">Title : {book.title}</h1>
+            <h1 className="text-2xl">Author:  {book.author} </h1>
             <h1 className="text-2xl">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor, erat a gravida ornare, magna leo rhoncus risus, et auctor turpis justo id elit. In faucibus, urna ut commodo tincidunt, sapien nulla rhoncus tellus, at tempus tortor nisi vitae ex. Curabitur lectus quam, lobortis in mi ut, consectetur consectetur risus. Donec venenatis ut felis vitae dignissim. Donec luctus sagittis purus, sed fermentum diam ullamcorper sit amet. Cras viverra suscipit arcu quis tincidunt. Etiam convallis non felis at sollicitudin. Quisque dictum rutrum enim, vitae tempor felis. Praesent neque tellus, finibus eu ultrices a, sagittis quis nunc. Cras vestibulum posuere purus a cursus. Fusce pulvinar fringilla libero. Integer vulputate nunc eget urna efficitur, a interdum metus laoreet. Donec sit amet ligula nisl.</h1>
             <button 
               type="button"
@@ -45,10 +48,10 @@ function EditBook() {
               className="mt-20 text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 m-2">Delete</button>
           </div>
         </div>  
-        <Modal onClose={handleOnEditClose} visible={showEditModal} />
+        <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={book} shelves={shelves}/>
         <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} />
         </>
         );
 }
 
-export default EditBook;
+export default ViewBook;

@@ -31,6 +31,9 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
                 bookKey={i}
                 key={i}
                 image={'image' in books[i] ? books[i].image : 'noImageFound.jpg'}
+                bookID={books[i].bookID}
+                shelves={shelves}
+                book={books[i]}
             />
         )
       }

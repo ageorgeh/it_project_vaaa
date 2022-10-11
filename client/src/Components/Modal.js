@@ -14,6 +14,9 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   const [uploading, setUploading] = useState(false) // Refresh state
   // this prevents the modal , when clicked, automatically closes
   const [image, setImage] = useState(null)
+
+  //console.log("sada",fieldValues.title)
+
   const handleOnClose = (e) => {
     if (e.target.id === 'modalContainer' || e.target.id === 'buttonID') onClose()
   }
@@ -42,6 +45,43 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         title: data.title,
         author: data.author,
         image: data.image
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + idToken
+        }
+      })
+        .then(response => {
+          console.log(response)
+          return response
+        })
+        .catch(error => console.error('Error: ', error))
+    }).catch(function (error) {
+      console.log('Error', error)
+    })
+  }
+
+  const editBook = (book, tit) => {
+    setR(true)
+    axios.post('/MyBooks/UpdateTitle', {
+      currUID: user.uid,
+      newTitle: tit,
+      bookID: book.bookID
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error('Error: ', error))
+  }
+
+  const updateBook = async (data) => {
+    setR(true)
+    await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+      axios.post('/MyBooks/UpdateTitle', {
+        currUID: user.uid,
+        title: data.title,
+        author: data.author,
+        image: data.image,
+        shelves: data.shelves
       }, {
         headers: {
           Authorization: 'Bearer ' + idToken
@@ -87,7 +127,6 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         .then((imgURL) => {
           console.log('Image upload finished! Pushing new marker to db')
           console.log(imgURL)
-
           addNewBook({ title: event.target[0].value, author: event.target[1].value, image: imgURL }).then(() => {
             console.log('Book added')
             onClose({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves() })
@@ -96,9 +135,39 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           })
         }).catch((error) => {
           console.log(error)
-        })
+        }) 
     } else {
       addNewBook({ title: event.target[0].value, author: event.target[1].value }).then(() => {
+        console.log('Book added')
+        onClose({ title: event.target[0].value, author: event.target[1].value, shelves: getChosenShelves() })
+        setUploading(false)
+      })
+    }
+
+    // const response = await addNewBook({ title: event.target[0].value, author: event.target[1].value, image: downloadURL })
+    // onClose({ title: event.target[0].value, author: event.target[1].value, image: downloadURL, shelves: [0, 1] })
+  }
+
+  const submitUpdate = async (event) => {
+    event.preventDefault()
+    setUploading(true)
+    // const downloadURL = await uploadImage(image)
+    if (image) {
+      uploadImg(image)
+        .then((imgURL) => {
+          console.log('Image upload finished! Pushing new marker to db')
+          console.log(imgURL)
+          updateBook({ title: event.target[0].value, author: event.target[1].value, image: imgURL }).then(() => {
+            console.log('Book updated')
+            onClose({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves() })
+            setUploading(false)
+            setImage(null)
+          })
+        }).catch((error) => {
+          console.log(error)
+        }) 
+    } else {
+      updateBook({ title: event.target[0].value, author: event.target[1].value }).then(() => {
         console.log('Book added')
         onClose({ title: event.target[0].value, author: event.target[1].value, shelves: getChosenShelves() })
         setUploading(false)
@@ -115,14 +184,14 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
             <div className ="bg-white p-5 rounded">
                 <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
-                <form onSubmit={submitChanges}>
+                <form onSubmit={fieldValues ?  submitUpdate : submitChanges}>
                 <div className="mb-6">
                     <label htmlFor="bookTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book title</label>
-                    <input type="text" id="bookTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="bookTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" />
                 </div>
                 <div className="mb-6">
                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book Author</label>
-                    <input type="text" id="bookAuthor" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.author : ''} id="bookAuthor" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" />
                 </div>
 
                 <div className="mb-6">
