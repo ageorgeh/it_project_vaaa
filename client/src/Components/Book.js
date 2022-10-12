@@ -15,7 +15,7 @@ function Book ({ title, author, image, bookID, shelves, book }) {
         <>
         <div className="relative h-64 place-content-center mb-1 px-3">
             <button className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden">
-                <Link to = {`/viewbook/${bookID}`} state = {{shelves:shelves , book}}  >
+                <Link to = {`/viewbook/${bookID}`} state = {{ shelves, book }} >
                   <img src={image} className="shrink-0 min-h-full min-w-full" alt="book cover" />
                 </Link>
             </button>
@@ -29,6 +29,6 @@ function Book ({ title, author, image, bookID, shelves, book }) {
         </>
   )
 }
-Book.propTypes = { title: PropTypes.string, author: PropTypes.string, image: PropTypes.string, bookID : PropTypes.string, shelves: PropTypes.array, book: PropTypes.object }
+Book.propTypes = { title: PropTypes.string, author: PropTypes.string, image: PropTypes.string, bookID: PropTypes.string, shelves: PropTypes.array, book: PropTypes.object }
 export default Book
 // {this.props.image}
