@@ -38,16 +38,36 @@ const getUserBooks = async function (req, res) {
   res.send(booksByUID)
 }
 
+const getBookFromID = async function (req, res) {
+  const { currUID, bookID } = req.body
+  const booksRef = db.collection('books').doc(bookID)
+  const doc = await booksRef.get()
+  if (!doc.exists) {
+    console.log('No such document!')
+  } else {
+    console.log('Document data:', doc.data())
+  }
+
+  res.send(doc.data())
+}
 // UPDATE: change a book's title
 const updateTitle = async function (req, res) {
-  const { bookID, currUID, newTitle } = req.body
+  const currUID = req.body.currUID || res.status(500).send('No User id')
+  const title = req.body.title || ''
+  const author = req.body.author || ''
+  const shelves = req.body.shelves || []
+  const image = req.body.image || 'noImageFound.jpg'
+  const bookID = req.body.bookID
+  console.log('bookid,', req.body)
   const bookRef = db.collection('books').doc(bookID)
   const res2 = await bookRef.set({
     bookID,
     currUID,
-    title: newTitle
+    title,
+    author,
+    image
   }, { merge: true })
-  res.status(200).send('Updated title to' + newTitle + ' for bookID ' + bookID)
+  res.status(200).send('Updated title to' + title + ' for bookID ' + bookID)
 }
 
 // DELETE: deletes a book
@@ -61,5 +81,6 @@ module.exports = {
   addNewBook,
   getUserBooks,
   updateTitle,
-  deleteBook
+  deleteBook,
+  getBookFromID
 }

@@ -9,6 +9,7 @@ export default function Home () {
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log(user)
     if (loading) return
     if (!user) return navigate('../login')
   }, [user, loading, navigate])
