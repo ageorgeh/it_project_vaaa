@@ -82,7 +82,7 @@ function MyBooks () {
   // adding a new book
   const addNewBook = (data) => {
     setR(true)
-    axios.post('/MyBooks/AddNewBook', {
+    axios.post(url + '/MyBooks/AddNewBook', {
       currUID: user.uid,
       title: data.title
     })
@@ -95,7 +95,7 @@ function MyBooks () {
   // edit book title
   const editBook = (book, tit) => {
     setR(true)
-    axios.post('/MyBooks/UpdateTitle', {
+    axios.post(url + '/MyBooks/UpdateTitle', {
       currUID: user.uid,
       newTitle: tit,
       bookID: book.bookID
@@ -109,7 +109,7 @@ function MyBooks () {
   // delete book
   const deleteBook = (id) => {
     setR(true)
-    axios.post('/MyBooks/DeleteBook', {
+    axios.post(url + '/MyBooks/DeleteBook', {
       bookID: id
     })
       .then(response => {

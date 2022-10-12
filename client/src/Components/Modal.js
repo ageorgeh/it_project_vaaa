@@ -10,6 +10,8 @@ import { ProgressBar } from 'react-loader-spinner'
 import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from '../firebase-setup'
 
 export default function Modal ({ visible, onClose, fieldValues, shelves }) {
+  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+
   const [r, setR] = useState(false) // Refresh state
   const [uploading, setUploading] = useState(false) // Refresh state
   // this prevents the modal , when clicked, automatically closes
@@ -37,7 +39,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   const addNewBook = async (data) => {
     setR(true)
     await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-      axios.post('/MyBooks/AddNewBook', {
+      axios.post(url + '/MyBooks/AddNewBook', {
         currUID: user.uid,
         title: data.title,
         author: data.author,
