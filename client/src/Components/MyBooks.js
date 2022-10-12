@@ -12,6 +12,8 @@ import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
+  console.log('Env', process.env.NODE_ENV)
+  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   // renavigate user to login if not logged in
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
@@ -50,7 +52,7 @@ function MyBooks () {
     if (!user) return navigate('../login')
     const fetch = async () => {
       await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-        axios.post('/MyBooks', {
+        axios.post(url + '/MyBooks', {
           currUID: user.uid
         },
         {
@@ -105,7 +107,7 @@ function MyBooks () {
   // adding a new book
   const addNewBook = (data) => {
     setR(true)
-    axios.post('/MyBooks/AddNewBook', {
+    axios.post(url + '/MyBooks/AddNewBook', {
       currUID: user.uid,
       title: data.title
     })
@@ -118,7 +120,7 @@ function MyBooks () {
   // edit book title
   const editBook = (book, tit) => {
     setR(true)
-    axios.post('/MyBooks/UpdateTitle', {
+    axios.post(url + '/MyBooks/UpdateTitle', {
       currUID: user.uid,
       newTitle: tit,
       bookID: book.bookID
@@ -132,7 +134,7 @@ function MyBooks () {
   // delete book
   const deleteBook = (id) => {
     setR(true)
-    axios.post('/MyBooks/DeleteBook', {
+    axios.post(url + '/MyBooks/DeleteBook', {
       bookID: id
     })
       .then(response => {
@@ -166,6 +168,7 @@ function MyBooks () {
   if (BookData === null || shelfData === null) {
     return (<div ><RotatingLines height="100" width="100"/></div>)
   } else {
+    console.log('booooks', BookData)
     return (
     <>
       <div className="flex relative bg-stone-900">

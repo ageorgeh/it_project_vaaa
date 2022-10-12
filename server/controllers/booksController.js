@@ -47,9 +47,9 @@ const getBookFromID = async function (req, res) {
   } else {
     console.log('Document data:', doc.data())
   }
+
   res.send(doc.data())
 }
-
 // UPDATE: change a book's title
 const updateTitle = async function (req, res) {
   const currUID = req.body.currUID || res.status(500).send('No User id')
