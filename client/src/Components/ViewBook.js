@@ -92,7 +92,7 @@ function ViewBook () {
             </div>
           </div>
           <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
-          <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} />
+          <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/>
           </>
 
     )
