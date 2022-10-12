@@ -15,7 +15,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   // this prevents the modal , when clicked, automatically closes
   const [image, setImage] = useState(null)
 
-  //console.log("sada",fieldValues.title)
+  // console.log("sada",fieldValues.title)
   const handleOnClose = (e) => {
     if (e.target.id === 'modalContainer' || e.target.id === 'buttonID') onClose()
   }
@@ -73,7 +73,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   }
 
   const updateBook = async (data) => {
-    console.log("bookid modal", fieldValues.bookID)
+    console.log('bookid modal', fieldValues.bookID)
     setR(true)
     await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
       axios.post('/MyBooks/UpdateTitle', {
@@ -82,7 +82,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         author: data.author,
         image: data.image,
         shelves: data.shelves,
-        bookID : fieldValues.bookID
+        bookID: fieldValues.bookID
       }, {
         headers: {
           Authorization: 'Bearer ' + idToken
@@ -136,7 +136,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           })
         }).catch((error) => {
           console.log(error)
-        }) 
+        })
     } else {
       addNewBook({ title: event.target[0].value, author: event.target[1].value }).then(() => {
         console.log('Book added')
@@ -166,11 +166,11 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           })
         }).catch((error) => {
           console.log(error)
-        }) 
+        })
     } else {
-      updateBook({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image}).then(() => {
+      updateBook({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image }).then(() => {
         console.log('Book added')
-        onClose({ title: event.target[0].value, author: event.target[1].value, shelves: getChosenShelves() })
+        onClose({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image, shelves: getChosenShelves() })
         setUploading(false)
       })
     }
@@ -185,7 +185,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
             <div className ="bg-white p-5 rounded">
                 <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
-                <form onSubmit={fieldValues ?  submitUpdate : submitChanges}>
+                <form onSubmit={fieldValues ? submitUpdate : submitChanges}>
                 <div className="mb-6">
                     <label htmlFor="bookTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book title</label>
                     <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="bookTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" />

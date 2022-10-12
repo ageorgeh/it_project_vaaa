@@ -33,5 +33,7 @@ app.post('/MyBooks/UpdateTitle', async (req, res) => {
 app.post('/MyBooks/DeleteBook', async (req, res) => {
   booksController.deleteBook(req, res)
 })
-
+app.post('/MyBooks/GetFromBookID', async (req, res) => {
+  booksController.getBookFromID(req, res)
+})
 app.listen(port, () => { console.log('Server listening on', port) })
