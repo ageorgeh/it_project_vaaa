@@ -1,19 +1,45 @@
+/* eslint-disable no-unused-vars */
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Shelf from './Shelf.js'
 import PropTypes from 'prop-types'
+import ShelfModal from './ShelfModal'
 
 function ShelfPane ({ onSelect, shelves }) {
+  const [allShelves, setAllShelves] = useState(shelves)
   const selectShelf = (shelfKey) => {
     onSelect(shelfKey)
   }
-  const shelfElems = shelves.map((shelf, index) =>
+  const handleOnEditClose = (response) => {
+    setShowEditModal(false)
+    console.log('close edit')
+
+    if (response !== undefined && 'name' in response) {
+      allShelves.push(response)
+    }
+  }
+  const handleOnDeleteClose = (response) => {
+    // setShowEditModal(false)
+    if (response !== undefined && 'delete' in response) {
+      for (let i = shelves.length - 1; i >= 0; --i) {
+        if (shelves[i].shelfID === response.delete) {
+          shelves.splice(i, 1)
+        }
+      }
+    }
+  }
+
+  const [showEditModal, setShowEditModal] = useState(false)
+  const shelfElems = allShelves.map((shelf, index) =>
     <Shelf
-        name={shelf}
+        name={shelf.name}
         key={index}
         onSelect={selectShelf}
+        shelfID={shelf.shelfID}
+        onDeleteClose={handleOnDeleteClose}
     />
   )
+
   return (
     <>
         <div className="sticky top-3 flex-auto w-1/6 rounded-lg bg-stone-800 h-fit mt-2 z-1 ml-2 py-2">
@@ -24,7 +50,7 @@ function ShelfPane ({ onSelect, shelves }) {
                 {shelfElems}
                 <li>
                     <div className="mx-2">
-                        <button className="place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-600">
+                        <button onClick={() => setShowEditModal(true)} className="theone place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-600">
                             <div className="flex justify-center w-full">
                                 <div className="w-6">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6">
@@ -38,6 +64,7 @@ function ShelfPane ({ onSelect, shelves }) {
                 </li>
             </ul>
         </div>
+        <ShelfModal onClose={handleOnEditClose} visible={showEditModal} fieldValues={null} shelves={allShelves} />
     </>
   )
 }
