@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:13.12.0-alpine
+FROM node:16.16.0-alpine
 
 # set working directory
 WORKDIR /app
@@ -15,6 +15,10 @@ RUN npm install --silent
 
 # add app
 COPY . ./
+RUN npm run build --production
 
+RUN npm install -g serve
+
+EXPOSE 3000
 # start app
-CMD ["npm", "start"]
+CMD serve -s build
