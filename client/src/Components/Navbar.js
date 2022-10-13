@@ -8,11 +8,11 @@ export default function Navbar () {
   if (user) { */
   return (
     <>
-      <nav className="bg-white px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+      <nav className="bg-white px-2 sm:px-4 py-2.5 rounded ">
         <div className="flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
                 <img src={bookIcon} className="mr-3 h-6" alt="Book Logo"></img>
-                    <span className="self-center text-xl font-semibold dark:text-white">Mid-Reads</span>
+                    <span className="self-center text-xl font-semibold">Mid-Reads</span>
             </a>
             <ul className="font-medium dark:border-gray-700">
                 <li>
