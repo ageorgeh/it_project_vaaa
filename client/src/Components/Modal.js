@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import axios from 'axios'
 import { ProgressBar } from 'react-loader-spinner'
+import { Rating } from 'react-simple-star-rating'
 
 import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from '../firebase-setup'
 
@@ -50,6 +51,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
     fieldValues ? getChecked() : new Array(shelves.length).fill(false)
   )
 
+  const [rating, setRating] = useState(fieldValues ? fieldValues.rating : 0)
+
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
@@ -68,7 +71,9 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           title: data.title,
           author: data.author,
           image: data.image,
-          shelves: data.shelves
+          shelves: data.shelves,
+          rating: data.rating,
+          description: data.description
         }, {
           headers: {
             Authorization: 'Bearer ' + idToken
@@ -93,7 +98,9 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         author: data.author,
         image: data.image,
         shelves: data.shelves,
-        bookID: fieldValues.bookID
+        bookID: fieldValues.bookID,
+        rating: data.rating,
+        description: data.description
       }, {
         headers: {
           Authorization: 'Bearer ' + idToken
@@ -138,10 +145,10 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         .then(async (imgURL) => {
           console.log('Image upload finished! Pushing new marker to db')
           console.log(imgURL)
-          addNewBook({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves() }).then(async (response) => {
+          addNewBook({ title: event.target[0].value, author: event.target[1].value, description: event.target[2].value, image: imgURL, shelves: getChosenShelves(), rating }).then(async (response) => {
             console.log('Book added')
             console.log(response)
-            onClose({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves(), bookID: response.data })
+            onClose({ title: event.target[0].value, author: event.target[1].value, description: event.target[2].value, image: imgURL, shelves: getChosenShelves(), bookID: response.data, rating })
             setUploading(false)
             setImage(null)
           })
@@ -149,11 +156,11 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           console.log(error)
         })
     } else {
-      addNewBook({ title: event.target[0].value, author: event.target[1].value, shelves: getChosenShelves() }).then((response) => {
+      addNewBook({ title: event.target[0].value, author: event.target[1].value, description: event.target[2].value, shelves: getChosenShelves(), rating }).then((response) => {
         console.log('Book added')
         console.log(response)
         console.log(getChosenShelves())
-        onClose({ title: event.target[0].value, author: event.target[1].value, shelves: getChosenShelves(), bookID: response.data })
+        onClose({ title: event.target[0].value, author: event.target[1].value, description: event.target[2].value, shelves: getChosenShelves(), bookID: response.data, rating })
         setUploading(false)
       })
     }
@@ -168,9 +175,9 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         .then((imgURL) => {
           console.log('Image upload finished! Pushing new marker to db')
           console.log(imgURL)
-          updateBook({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves() }).then(() => {
+          updateBook({ title: event.target[0].value, author: event.target[1].value, description: event.target[2].value, image: imgURL, shelves: getChosenShelves(), rating }).then(() => {
             console.log('Book updated')
-            onClose({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves(), bookID: fieldValues.bookID })
+            onClose({ title: event.target[0].value, author: event.target[1].value, description: event.target[2].value, image: imgURL, shelves: getChosenShelves(), bookID: fieldValues.bookID, rating })
             setUploading(false)
             setImage(null)
           })
@@ -178,9 +185,18 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           console.log(error)
         })
     } else {
-      updateBook({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image, shelves: getChosenShelves() }).then(() => {
-        console.log('Book added')
-        onClose({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image, shelves: getChosenShelves(), bookID: fieldValues.bookID })
+      const book = {
+        title: event.target[0].value,
+        author: event.target[1].value,
+        description: event.target[2].value,
+        image: fieldValues.image,
+        shelves: getChosenShelves(),
+        bookID: fieldValues.bookID,
+        rating
+      }
+      updateBook(book).then(() => {
+        console.log('Book updated')
+        onClose(book)
         setUploading(false)
       })
     }
@@ -203,6 +219,24 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                 <div className="mb-6">
                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book Author</label>
                     <input type="text" defaultValue={fieldValues ? fieldValues.author : ''} id="bookAuthor" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" />
+                </div>
+
+                <div className="mb-6">
+                    <label htmlFor="bookDescription" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book Description</label>
+                    <input type="text" defaultValue={fieldValues ? fieldValues.description : ''} id="bookDescription" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" />
+                </div>
+
+                <div className="mb-6">
+                    <label htmlFor="bookRating" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book Rating</label>
+                    <Rating
+                      initialValue={fieldValues ? fieldValues.rating : ''}
+                      size={40}
+                      transition
+                      fillColor='orange'
+                      emptyColor='gray'
+                      onClick={(rating) => { setRating(rating) } }
+                      allowFraction={true}
+                    />
                 </div>
 
                 <div className="mb-6">
@@ -240,7 +274,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                   <div style={uploading ? { } : { display: 'none' }}><ProgressBar barColor="#147014" borderColor="#8c8c8b" height="100" width="100"/></div>
                 </div>
 
-                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{fieldValues ? 'Update' : 'Add'}</button>
                 <button id='buttonID' type="button" onClick={onClose} className="ml-12 text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Cancel</button>
                 </form>
             </div>
