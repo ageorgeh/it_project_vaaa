@@ -25,7 +25,7 @@ export default function Login () {
   useEffect(() => {
     if (loading) return
     // if (!user) return navigate('./login');
-    if (user) return navigate('../home')
+    if (user) return navigate('../mybooks')
     // fetchUserName()
   }, [user, loading, navigate])
 

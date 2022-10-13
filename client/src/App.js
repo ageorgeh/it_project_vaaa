@@ -1,10 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Navbar from './Components/Navbar'
-import Home from './Components/Home'
 import Login from './Components/Login'
 import MyBooks from './Components/MyBooks'
-import Friends from './Components/Friends'
-import Profile from './Components/Profile'
 import ViewBook from './Components/ViewBook'
 import React from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
@@ -18,12 +15,9 @@ function App () {
     <>
     {user ? <Navbar /> : null}
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<MyBooks />} />
       <Route path="/mybooks" element={<MyBooks />} />
-      <Route path="/friends" element={<Friends />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/profile" element={<Profile />} />
       <Route path="/viewbook/:bookid" element={<ViewBook />} />
     </Routes>
 
