@@ -6,6 +6,8 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, logout } from '../firebase-setup'
 import { RotatingLines } from 'react-loader-spinner'
 import axios from 'axios'
+import { Rating } from 'react-simple-star-rating'
+
 import {
   useNavigate,
   useParams, useLocation
@@ -23,7 +25,6 @@ function ViewBook () {
   const navigate = useNavigate()
   const [user, loading] = useAuthState(auth)
   const { shelves } = location.state
-  console.log(location.state)
   const [showEditModal, setShowEditModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
 
@@ -35,6 +36,9 @@ function ViewBook () {
       setUpdatedBook(response)
     }
   }
+
+  useEffect(() => {
+  }, [updatedBook])
 
   const handleOnDeleteClose = () => setShowDeleteModal(false)
 
@@ -57,7 +61,6 @@ function ViewBook () {
         })
           .then(response => {
             setR(false)
-            console.log('Response', response)
             setBookData(response.data)
           })
           .catch(error => console.error('Error: ', error))
@@ -70,6 +73,8 @@ function ViewBook () {
     }
     addBooksToList()
   }, [user, loading, navigate, r])
+
+  const val = 0
   if (!BookData) {
     return (<div ><RotatingLines height="100" width="100"/></div>)
   } else {
@@ -82,7 +87,16 @@ function ViewBook () {
             <div className="bg-[#E4D4C8] text-[#523A28]">
               <h1 className="text-2xl">Title : {updatedBook ? updatedBook.title : BookData.title}</h1>
               <h1 className="text-2xl">Author:  {updatedBook ? updatedBook.author : BookData.author} </h1>
-              <h1 className="text-2xl">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor, erat a gravida ornare, magna leo rhoncus risus, et auctor turpis justo id elit. In faucibus, urna ut commodo tincidunt, sapien nulla rhoncus tellus, at tempus tortor nisi vitae ex. Curabitur lectus quam, lobortis in mi ut, consectetur consectetur risus. Donec venenatis ut felis vitae dignissim. Donec luctus sagittis purus, sed fermentum diam ullamcorper sit amet. Cras viverra suscipit arcu quis tincidunt. Etiam convallis non felis at sollicitudin. Quisque dictum rutrum enim, vitae tempor felis. Praesent neque tellus, finibus eu ultrices a, sagittis quis nunc. Cras vestibulum posuere purus a cursus. Fusce pulvinar fringilla libero. Integer vulputate nunc eget urna efficitur, a interdum metus laoreet. Donec sit amet ligula nisl.</h1>
+              <Rating
+                initialValue={updatedBook ? updatedBook.rating : BookData.rating}
+                readonly={true}
+                size={40}
+                transition
+                fillColor='orange'
+                emptyColor='gray'
+                allowFraction={true}
+              />
+              <h1 className="text-2xl">Description: {updatedBook ? updatedBook.description : BookData.description}</h1>
               <button
                 type="button"
                 onClick={() => setShowEditModal(true)}
