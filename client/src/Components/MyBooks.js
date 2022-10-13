@@ -12,7 +12,6 @@ import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
-  console.log('Env', process.env.NODE_ENV)
   const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   // renavigate user to login if not logged in
   const [user, loading] = useAuthState(auth)
@@ -32,9 +31,19 @@ function MyBooks () {
   }
 
   const [BookData, setBookData] = useState(null) // Array of book objects sent from API
+  const [shelfData, setShelfData] = useState(null) // Array of shelf objects sent from API
   const [r, setR] = useState(false) // Refresh state
   const [title, setTitle] = useState('') // Used for update title form
   const [books, setBooks] = useState([{}]) // Books array in format with mybooks page
+
+  const getShelves = (shelfResponse) => {
+    const shelves = []
+    shelfResponse.forEach((shelf) => {
+      shelves.push(shelf)
+    })
+    shelves.sort((x, y) => { return x.name === 'All Books' ? -1 : y.name === 'All Books' ? 1 : 0 })
+    return shelves
+  }
 
   // getting all books and storing
   useEffect(() => {
@@ -54,6 +63,21 @@ function MyBooks () {
             setR(false)
             console.log('Response', response)
             setBookData(response.data)
+          })
+          .catch(error => console.error('Error: ', error))
+
+        axios.post(url + '/MyShelves', {
+          currUID: user.uid
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + idToken
+          }
+        })
+          .then(response => {
+            setR(false)
+            console.log('Response', response)
+            setShelfData(getShelves(response.data))
           })
           .catch(error => console.error('Error: ', error))
       }).catch(function (error) {
@@ -118,20 +142,24 @@ function MyBooks () {
       .catch(error => console.error('Error: ', error))
   }
 
-  const getShelves = () => {
-    const allShelves = new Set()
-    allShelves.add('All Books')
-    BookData.forEach((arrayItem) => {
-      arrayItem.shelves.forEach((shelf) => {
-        allShelves.add(shelf)
-      })
-    })
-    console.log('allsheleves', allShelves)
-    return Array.from(allShelves)
+  const onShelfChange = (response) => {
+    console.log('shelf change', shelfData, response)
+    setShelfData(response)
   }
 
+  // const getShelves = () => {
+  //   const allShelves = new Set()
+  //   allShelves.add('All Books')
+  //   BookData.forEach((arrayItem) => {
+  //     arrayItem.shelves.forEach((shelf) => {
+  //       allShelves.add(shelf)
+  //     })
+  //   })
+  //   console.log('allsheleves', allShelves)
+  //   return Array.from(allShelves)
+  // }
+
   const [currShelf, setCurrShelf] = useState('All Books')
-  const [shelves, setShelves] = useState(['All Books', 'Fiction', 'Non-Fiction', 'To-Read'])
   const [currShelfName, setCurrShelfName] = useState({})
 
   const selectShelf = (shelfKey) => {
@@ -141,16 +169,15 @@ function MyBooks () {
   }
 
   // eslint-disable-next-line no-constant-condition
-  if (BookData === null) {
+  if (BookData === null || shelfData === null) {
     return (<div ><RotatingLines height="100" width="100"/></div>)
   } else {
-    console.log('booooks', BookData)
     return (
     <>
       <div className="flex relative bg-stone-900">
-          <ShelfPane onSelect={selectShelf} shelves={getShelves()} />
+          <ShelfPane onSelect={selectShelf} shelves={getShelves(shelfData)} onShelfChange={onShelfChange} />
           <BookPane
-            shelves={getShelves()}
+            shelves={shelfData}
             currShelf={currShelf}
             currShelfName={currShelf}
             books={BookData}
@@ -160,5 +187,4 @@ function MyBooks () {
     )
   }
 }
-// [{ title: BookData[0].title, author: 'F. Scott Fitzgerald', shelves: [0, 1], image: BookData[0].image }]
 export default MyBooks

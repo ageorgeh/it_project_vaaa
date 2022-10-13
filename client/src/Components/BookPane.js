@@ -5,10 +5,17 @@ import PropTypes from 'prop-types'
 import Modal from './Modal'
 
 function BookPane ({ books, currShelf, currShelfName, shelves }) {
+  const getShelfNames = (shelfResponse) => {
+    const shelves = []
+    shelfResponse.forEach((shelf) => {
+      shelves.push(shelf.name)
+    })
+    return shelves
+  }
+
   const [showEditModal, setShowEditModal] = useState(false)
   const handleOnEditClose = (response) => {
     setShowEditModal(false)
-    console.log('ub', 'shelves' in response)
 
     if (response !== undefined && 'shelves' in response) {
       books.push(response)
@@ -16,8 +23,7 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
   }
 
   useEffect(() => {
-    console.log('Refreshing books', books)
-  }, [books])
+  }, [books, shelves])
 
   const bookElems = () => {
     const a = []

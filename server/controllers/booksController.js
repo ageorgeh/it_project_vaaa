@@ -17,11 +17,11 @@ const addNewBook = async function (req, res) {
     title,
     author,
     image,
-    shelves: shelves.concat(['All Books'])
+    shelves: Array.from(new Set(shelves.concat(['All Books'])))
 
   }, { merge: true })
   console.log('New book created')
-  res.status(200).send('Added new book ' + title + ' for user ' + currUID)
+  res.status(200).send(newBookRef.id)
 }
 
 // READ: get books data by user id
@@ -65,7 +65,8 @@ const updateTitle = async function (req, res) {
     currUID,
     title,
     author,
-    image
+    image,
+    shelves
   }, { merge: true })
   res.status(200).send('Updated title to' + title + ' for bookID ' + bookID)
 }
