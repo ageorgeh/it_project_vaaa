@@ -1,6 +1,30 @@
 /* eslint-disable no-unused-vars */
 const { db } = require('../models/admin')
 
+const setupNewGoogleUser = async function (req, res) {
+  const user = req.body.user
+  const userRef = db.collection('users').doc(user.uid)
+  const doc = await userRef.get()
+
+  if (!doc.exists) {
+    userRef.set({
+      uid: user.uid,
+      name: user.displayName,
+      authProvider: 'google',
+      email: user.email
+    })
+
+    const newShelfRef = db.collection('shelves').doc()
+    const res2 = await newShelfRef.set({
+      shelfID: newShelfRef.id,
+      uid: user.uid,
+      name: 'All Books'
+
+    }, { merge: true })
+  }
+  res.status(200).send('New user added')
+}
+
 // CREATE: add a new book
 const addNewShelf = async function (req, res) {
   // const { currUID, title, author, shelves, image } = req.body
@@ -57,5 +81,6 @@ module.exports = {
   addNewShelf,
   getUserShelves,
   updateShelf,
-  deleteShelf
+  deleteShelf,
+  setupNewGoogleUser
 }

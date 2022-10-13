@@ -38,6 +38,10 @@ app.post('/MyBooks/GetFromBookID', async (req, res) => {
   booksController.getBookFromID(req, res)
 })
 
+app.post('/SetupNewGoogleUser', async (req, res) => {
+  shelfController.setupNewGoogleUser(req, res)
+})
+
 app.post('/MyShelves/AddNewShelf', async (req, res) => {
   shelfController.addNewShelf(req, res)
 })

@@ -17,17 +17,19 @@ export default function Login () {
   // login with email password
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [ready, setReady] = useState(false)
   // error
   const navigate = useNavigate()
 
   // This runs after every render of the page
   // It doesn't navigate the user because they are already on the user page
   useEffect(() => {
+    // eslint-disable-next-line no-useless-return
     if (loading) return
     // if (!user) return navigate('./login');
-    if (user) return navigate('../mybooks')
+    if (user && ready) return navigate('../mybooks')
     // fetchUserName()
-  }, [user, loading, navigate])
+  }, [user, ready, loading, navigate])
 
   const renderForm = (
     <div className="form">
@@ -50,6 +52,11 @@ export default function Login () {
   return <div className="login-container" data-testid = 'loginForm'>
         <div className="title-login">Mid-Reads</div>
         {renderForm}
-        <GoogleButton className="google-login" onClick={signInWithGoogle}></GoogleButton>
+        <GoogleButton className="google-login" onClick={() => {
+          signInWithGoogle().then((response) => {
+            console.log('signresponse', response)
+            setReady(true)
+          })
+        }}></GoogleButton>
         </div>
 }
