@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 // import { Link, useNavigate } from 'react-router-dom'
-import { auth, signInWithGoogle, db, logout } from '../firebase-setup'
+import { auth, signInWithGoogle } from '../firebase-setup'
 // signInWithEmailAndPassword
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { query, collection, getDocs, where } from 'firebase/firestore'
+
 // import { getAdditionalUserInfo } from 'firebase/auth'
 import GoogleButton from 'react-google-button'
 import { useNavigate } from 'react-router-dom'
