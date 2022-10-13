@@ -46,7 +46,7 @@ function ShelfPane ({ onSelect, shelves, onShelfChange }) {
     <>
         <div className="sticky top-3 flex-auto rounded-lg bg-stone-800 h-fit mt-2 z-1 ml-2 py-2">
             <a href="/img/echidna.jpg" className="flex items-center pl-2.5 mb-2">
-                <span className="self-center text-xl ml-2 font-semibold whitespace-nowrap dark:text-white">Shelves</span>
+                <span className="self-center text-xl ml-2 font-semibold whitespace-nowrap text-white">Shelves</span>
             </a>
             <ul className="space-y-2 border-t-2 border-stone-500 pt-2">
                 {shelfElems}

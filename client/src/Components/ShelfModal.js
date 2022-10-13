@@ -140,7 +140,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                 <p className="text-center mb-5">{fieldValues ? 'Update shelf' : 'Add shelf'}</p>
                 <form onSubmit={fieldValues ? submitUpdate : submitChanges}>
                 <div className="mb-6">
-                    <label htmlFor="shelfName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book title</label>
+                    <label htmlFor="shelfName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Shelf Name</label>
                     <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="shelfName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" />
                 </div>
 

@@ -44,13 +44,8 @@ body {
   text-decoration: none;
 }
 
-.active {
-  background-color: #555;
-}
 
-.nav li:hover {
-  background-color: #555;
-}
+
 
 .title-login {
   text-align: center;

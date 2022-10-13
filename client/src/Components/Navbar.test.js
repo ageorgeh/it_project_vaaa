@@ -5,10 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
 
 const links = [
-  { text: 'Home', location: '/home' },
-  { text: 'My Books', location: '/mybooks' },
-  { text: 'Friends', location: '/friends' },
-  { text: 'Profile', location: '/profile' }
+  { text: 'My Books', location: '/mybooks' }
 ]
 
 test.each(links)(
