@@ -1,5 +1,17 @@
 /* eslint-disable no-unused-vars */
 const { db } = require('../models/admin')
+const Joi = require('joi')
+
+const bookSchema = Joi.object().keys({
+  bookID: Joi.string(),
+  uid: Joi.string(),
+  title: Joi.string().optional().allow(''),
+  author: Joi.string().optional().allow(''),
+  image: Joi.string(),
+  shelves: Joi.array().items(Joi.string()),
+  rating: Joi.number().min(0).max(5),
+  description: Joi.string().optional().allow('')
+})
 
 // CREATE: add a new book
 const addNewBook = async function (req, res) {
@@ -9,19 +21,38 @@ const addNewBook = async function (req, res) {
   const author = req.body.author || ''
   const shelves = req.body.shelves || []
   const image = req.body.image || 'noImageFound.jpg'
+  const rating = req.body.rating || 0
+  const description = req.body.description || ''
 
   const newBookRef = db.collection('books').doc()
-  const res2 = await newBookRef.set({
+  const data = {
     bookID: newBookRef.id,
     uid: currUID,
     title,
     author,
     image,
-    shelves: Array.from(new Set(shelves.concat(['All Books'])))
+    shelves: Array.from(new Set(shelves.concat(['All Books']))),
+    rating,
+    description
+  }
 
-  }, { merge: true })
-  console.log('New book created')
-  res.status(200).send(newBookRef.id)
+  const result = bookSchema.validate(data)
+  const { value, error } = result
+  const valid = error == null
+  console.log(error)
+  if (!valid) {
+    res.status(422).json({
+      message: 'Invalid request',
+      data
+    })
+  } else {
+    const res2 = await newBookRef.set(data, { merge: true })
+    res.status(200).send(newBookRef.id)
+  }
+
+  // const res2 = await newBookRef.set(data, { merge: true })
+  // console.log('New book created')
+  // res.status(200).send(newBookRef.id)
 }
 
 // READ: get books data by user id
@@ -58,17 +89,35 @@ const updateTitle = async function (req, res) {
   const shelves = req.body.shelves || []
   const image = req.body.image || 'noImageFound.jpg'
   const bookID = req.body.bookID
-  console.log('bookid,', req.body)
+  const rating = req.body.rating || 0
+  const description = req.body.description || ''
+
   const bookRef = db.collection('books').doc(bookID)
-  const res2 = await bookRef.set({
+
+  const data = {
     bookID,
-    currUID,
+    uid: currUID,
     title,
     author,
     image,
-    shelves
-  }, { merge: true })
-  res.status(200).send('Updated title to' + title + ' for bookID ' + bookID)
+    shelves: Array.from(new Set(shelves.concat(['All Books']))),
+    rating,
+    description
+  }
+
+  const result = bookSchema.validate(data)
+  const { value, error } = result
+  const valid = error == null
+  console.log(error)
+  if (!valid) {
+    res.status(422).json({
+      message: 'Invalid request',
+      data
+    })
+  } else {
+    const res2 = await bookRef.set(data, { merge: true })
+    res.status(200).send('Updated title to' + title + ' for bookID ' + bookID)
+  }
 }
 
 // DELETE: deletes a book
