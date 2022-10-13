@@ -1,20 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
+import Modal from './Modal'
+import DeleteModal from './DeleteModal'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth, logout } from '../firebase-setup'
+import { RotatingLines } from 'react-loader-spinner'
+import axios from 'axios'
 import {
   useNavigate,
   useParams, useLocation
 } from 'react-router-dom'
-import { auth } from '../firebase-setup'
-import Modal from './Modal'
-import DeleteModal from './DeleteModal'
-import axios from 'axios'
-import { RotatingLines } from 'react-loader-spinner'
+
 // Sand Dollar : #E4D4C8
 // Tan : #D0B49F
 // Brown : #A47551
 // Carafe : $523A28
 function ViewBook () {
+  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   const { bookid } = useParams()
   // console.log(typeof(bookid));
   const location = useLocation()
@@ -44,7 +46,7 @@ function ViewBook () {
     if (!user) return navigate('../login')
     const fetch = async () => {
       await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-        axios.post('/MyBooks/GetFromBookID', {
+        axios.post(url + '/MyBooks/GetFromBookID', {
           currUID: user.uid,
           bookID: bookid
         },

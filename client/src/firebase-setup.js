@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import { initializeApp } from 'firebase/app'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
@@ -5,6 +6,8 @@ import {
   getFirestore, collection, getDocs,
   query,
   where,
+  doc,
+  setDoc,
   addDoc
 } from 'firebase/firestore'
 
@@ -68,6 +71,14 @@ const signInWithGoogle = async () => {
         name: user.displayName,
         authProvider: 'google',
         email: user.email
+      })
+
+      const newShelfRef = doc(collection(db, 'shelves'))
+
+      await setDoc(newShelfRef, {
+        uid: user.uid,
+        name: 'All Books',
+        shelfID: newShelfRef.id
       })
     }
   } catch (err) {
