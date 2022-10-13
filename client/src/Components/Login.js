@@ -35,22 +35,22 @@ export default function Login () {
     <div className="form">
       <form>
         <div className="input-container">
-          <input type="text" name="uname" className="inputC" placeholder="e-mail" value={email}
+          <input type="text" name="uname" className="inputC px-1" placeholder="Email" value={email}
             onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div className="input-container">
-          <input type="password" name="pass" placeholder="password" required value={password}
+          <input type="password" name="pass" className="inputC px-1" placeholder="Password" required value={password}
             onChange={(e) => setPassword(e.target.value)} />
         </div>
       </form>
       <div className="button-container">
-        <button className='buttonC' onClick={() => signIn(email, password)}> Submit </button>
+        <button className='buttonC' onClick={() => signIn(email, password)}> Login </button>
       </div>
     </div>
   )
 
   return <div className="login-container" data-testid = 'loginForm'>
-        <div className="title-login">Mid-Reads</div>
+        <div className="title-login text-white">Mid-Reads</div>
         {renderForm}
         <GoogleButton className="google-login" onClick={() => {
           signInWithGoogle().then((response) => {

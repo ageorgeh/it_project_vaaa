@@ -21,8 +21,9 @@ const setupNewGoogleUser = async function (req, res) {
       name: 'All Books'
 
     }, { merge: true })
+    res.status(200).status('New user added')
   }
-  res.status(200).send('New user added')
+  res.status(200).send('User already exists')
 }
 
 // CREATE: add a new book
