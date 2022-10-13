@@ -13,6 +13,8 @@ const bookSchema = Joi.object().keys({
   description: Joi.string().optional().allow('')
 })
 
+const NO_IMAGE = 'https://firebasestorage.googleapis.com/v0/b/it-project-vaah-dev.appspot.com/o/images%2FnoImageAvailable.png?alt=media&token=322759be-2aa3-434e-92d2-6f4ebb7db747'
+
 // CREATE: add a new book
 const addNewBook = async function (req, res) {
   // const { currUID, title, author, shelves, image } = req.body
@@ -20,7 +22,7 @@ const addNewBook = async function (req, res) {
   const title = req.body.title || ''
   const author = req.body.author || ''
   const shelves = req.body.shelves || []
-  const image = req.body.image || 'noImageFound.jpg'
+  const image = req.body.image || NO_IMAGE
   const rating = req.body.rating || 0
   const description = req.body.description || ''
 
@@ -87,7 +89,7 @@ const updateTitle = async function (req, res) {
   const title = req.body.title || ''
   const author = req.body.author || ''
   const shelves = req.body.shelves || []
-  const image = req.body.image || 'noImageFound.jpg'
+  const image = req.body.image || NO_IMAGE
   const bookID = req.body.bookID
   const rating = req.body.rating || 0
   const description = req.body.description || ''

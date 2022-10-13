@@ -36,7 +36,7 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
                 author={'author' in books[i] ? books[i].author : ''}
                 bookKey={i}
                 key={i}
-                image={'image' in books[i] ? books[i].image : 'noImageFound.jpg'}
+                image={'image' in books[i] ? books[i].image : process.env.REACT_APP_NO_IMAGE}
                 bookID={books[i].bookID}
                 shelves={shelves}
                 book={books[i]}

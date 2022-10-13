@@ -10,6 +10,26 @@ import { Rating } from 'react-simple-star-rating'
 
 import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from '../firebase-setup'
 
+const MODAL_STYLES = {
+  position: 'absolute',
+  backgroundColor: '#FFF',
+  zIndex: '1000',
+  width: '35%',
+  borderRadius: '.5em'
+}
+const OVERLAY_STYLE = {
+  position: 'fixed',
+  display: 'flex',
+  justifyContent: 'center',
+  top: '0',
+  left: '0',
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0,0,0, .8)',
+  zIndex: '1000',
+  overflowY: 'auto'
+}
+
 export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
 
@@ -207,9 +227,10 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
 
   return (
         <div id='modalContainer'
+        style={OVERLAY_STYLE}
         onClick ={handleOnClose}
         className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
-            <div className ="bg-white p-5 rounded">
+            <div className ="bg-white p-5 rounded" style={MODAL_STYLES}>
                 <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
                 <form onSubmit={fieldValues ? submitUpdate : submitChanges}>
                 <div className="mb-6">
