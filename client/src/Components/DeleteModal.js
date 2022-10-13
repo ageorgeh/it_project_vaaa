@@ -7,6 +7,7 @@ import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from 
 import { useNavigate } from 'react-router-dom'
 
 export default function DeleteModal ({ visible, onClose, bookID }) {
+  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   // this prevents the modal , when clicked, automatically closes
   const handleOnClose = (e) => {
     if (e.target.id === 'deleteModalContainer' || e.target.id === 'buttonID') onClose()
@@ -17,7 +18,7 @@ export default function DeleteModal ({ visible, onClose, bookID }) {
   const deleteBook = async (data) => {
     setR(true)
     await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-      axios.post('/MyBooks/DeleteBook', {
+      axios.post(url + '/MyBooks/DeleteBook', {
         bookID
       }, {
         headers: {
@@ -27,7 +28,6 @@ export default function DeleteModal ({ visible, onClose, bookID }) {
         .then(response => {
           onClose()
           navigate('../MyBooks')
-          console.log(response)
           return response
         })
         .catch(error => console.error('Error: ', error))

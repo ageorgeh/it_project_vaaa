@@ -23,11 +23,9 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
   }
 
   useEffect(() => {
-    console.log('Refreshing books', books)
-  }, [books])
+  }, [books, shelves])
 
   const bookElems = () => {
-    console.log('rerender')
     const a = []
     // console.log(books)
     for (let i = 0; i < books.length; i++) {
@@ -40,7 +38,7 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
                 key={i}
                 image={'image' in books[i] ? books[i].image : 'noImageFound.jpg'}
                 bookID={books[i].bookID}
-                shelves={getShelfNames(shelves)}
+                shelves={shelves}
                 book={books[i]}
             />
         )
@@ -70,7 +68,7 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
                       {bookElems()}
                   </div>
               </div>
-              <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={null} shelves={getShelfNames(shelves)} />
+              <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={null} shelves={shelves} />
               </>
   )
 }

@@ -5,8 +5,8 @@ import Shelf from './Shelf.js'
 import PropTypes from 'prop-types'
 import ShelfModal from './ShelfModal'
 
-function ShelfPane ({ onSelect, shelves }) {
-  const [allShelves, setAllShelves] = useState(shelves)
+function ShelfPane ({ onSelect, shelves, onShelfChange }) {
+  // const [allShelves, setAllShelves] = useState(shelves)
   const selectShelf = (shelfKey) => {
     onSelect(shelfKey)
   }
@@ -15,8 +15,9 @@ function ShelfPane ({ onSelect, shelves }) {
     console.log('close edit')
 
     if (response !== undefined && 'name' in response) {
-      allShelves.push(response)
+      shelves.push(response)
     }
+    onShelfChange(shelves)
   }
   const handleOnDeleteClose = (response) => {
     // setShowEditModal(false)
@@ -27,10 +28,11 @@ function ShelfPane ({ onSelect, shelves }) {
         }
       }
     }
+    onShelfChange(shelves)
   }
 
   const [showEditModal, setShowEditModal] = useState(false)
-  const shelfElems = allShelves.map((shelf, index) =>
+  const shelfElems = shelves.map((shelf, index) =>
     <Shelf
         name={shelf.name}
         key={index}
@@ -64,10 +66,10 @@ function ShelfPane ({ onSelect, shelves }) {
                 </li>
             </ul>
         </div>
-        <ShelfModal onClose={handleOnEditClose} visible={showEditModal} fieldValues={null} shelves={allShelves} />
+        <ShelfModal onClose={handleOnEditClose} visible={showEditModal} fieldValues={null} shelves={shelves} />
     </>
   )
 }
 
-ShelfPane.propTypes = { onSelect: PropTypes.func, shelves: PropTypes.array }
+ShelfPane.propTypes = { onSelect: PropTypes.func, shelves: PropTypes.array, onShelfChange: PropTypes.func }
 export default ShelfPane

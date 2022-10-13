@@ -65,7 +65,8 @@ const updateTitle = async function (req, res) {
     currUID,
     title,
     author,
-    image
+    image,
+    shelves
   }, { merge: true })
   res.status(200).send('Updated title to' + title + ' for bookID ' + bookID)
 }

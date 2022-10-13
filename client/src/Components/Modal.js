@@ -1,7 +1,7 @@
 
 /* eslint-disable no-unused-vars */
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import axios from 'axios'
@@ -11,6 +11,18 @@ import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from 
 
 export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+
+  useEffect(() => {
+    setCheckedState(fieldValues ? getChecked() : new Array(shelves.length).fill(false))
+  }, [shelves])
+
+  const getShelfNames = (shelfResponse) => {
+    const shelves = []
+    shelfResponse.forEach((shelf) => {
+      shelves.push(shelf.name)
+    })
+    return shelves
+  }
 
   const [r, setR] = useState(false) // Refresh state
   const [uploading, setUploading] = useState(false) // Refresh state
@@ -25,14 +37,12 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
   const getChecked = () => {
     const checked = []
     for (let i = 0; i < shelves.length; i++) {
-      console.log(shelves[i])
-      if (fieldValues.shelves.includes(shelves[i])) {
+      if (fieldValues.shelves.includes(shelves[i].name)) {
         checked.push(true)
       } else {
         checked.push(false)
       }
     }
-    console.log('checked', checked)
     return checked
   }
 
@@ -40,13 +50,10 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
     fieldValues ? getChecked() : new Array(shelves.length).fill(false)
   )
 
-  const [total, setTotal] = useState(0)
-
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     )
-
     setCheckedState(updatedCheckedState)
   }
 
@@ -56,7 +63,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
     return new Promise((resolve, reject) => {
       setR(true)
       user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-        axios.post('/MyBooks/AddNewBook', {
+        axios.post(url + '/MyBooks/AddNewBook', {
           currUID: user.uid,
           title: data.title,
           author: data.author,
@@ -68,7 +75,6 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           }
         })
           .then(async (response) => {
-            console.log('response before resolve', response)
             resolve(response)
           })
           .catch(error => console.error('Error: ', error))
@@ -78,24 +84,10 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
     })
   }
 
-  const editBook = (book, tit) => {
-    setR(true)
-    axios.post('/MyBooks/UpdateTitle', {
-      currUID: user.uid,
-      newTitle: tit,
-      bookID: book.bookID
-    })
-      .then(response => {
-        console.log(response)
-      })
-      .catch(error => console.error('Error: ', error))
-  }
-
   const updateBook = async (data) => {
-    console.log('bookid modal', fieldValues.bookID)
     setR(true)
     await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-      axios.post('/MyBooks/UpdateTitle', {
+      axios.post(url + '/MyBooks/UpdateTitle', {
         currUID: user.uid,
         title: data.title,
         author: data.author,
@@ -108,7 +100,6 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         }
       })
         .then(response => {
-          console.log(response)
           return response
         })
         .catch(error => console.error('Error: ', error))
@@ -132,7 +123,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
     const chosenShelves = ['All Books']
     for (let i = 0; i < shelves.length; i++) {
       if (checkedState[i]) {
-        chosenShelves.push(shelves[i])
+        chosenShelves.push(shelves[i].name)
       }
     }
     return Array.from(new Set(chosenShelves))
@@ -166,9 +157,6 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         setUploading(false)
       })
     }
-
-    // const response = await addNewBook({ title: event.target[0].value, author: event.target[1].value, image: downloadURL })
-    // onClose({ title: event.target[0].value, author: event.target[1].value, image: downloadURL, shelves: [0, 1] })
   }
 
   const submitUpdate = async (event) => {
@@ -180,9 +168,9 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         .then((imgURL) => {
           console.log('Image upload finished! Pushing new marker to db')
           console.log(imgURL)
-          updateBook({ title: event.target[0].value, author: event.target[1].value, image: imgURL }).then(() => {
+          updateBook({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves() }).then(() => {
             console.log('Book updated')
-            onClose({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves() })
+            onClose({ title: event.target[0].value, author: event.target[1].value, image: imgURL, shelves: getChosenShelves(), bookID: fieldValues.bookID })
             setUploading(false)
             setImage(null)
           })
@@ -190,9 +178,9 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
           console.log(error)
         })
     } else {
-      updateBook({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image }).then(() => {
+      updateBook({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image, shelves: getChosenShelves() }).then(() => {
         console.log('Book added')
-        onClose({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image, shelves: getChosenShelves() })
+        onClose({ title: event.target[0].value, author: event.target[1].value, image: fieldValues.image, shelves: getChosenShelves(), bookID: fieldValues.bookID })
         setUploading(false)
       })
     }
@@ -219,7 +207,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
 
                 <div className="mb-6">
                 <ul className="shelves-list">
-                  {shelves.map((name, index) => {
+                  {getShelfNames(shelves).map((name, index) => {
                     return (
                       <li key={index}>
                         <div className="shelf-list-item">

@@ -12,7 +12,6 @@ import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
-  console.log('Env', process.env.NODE_ENV)
   const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   // renavigate user to login if not logged in
   const [user, loading] = useAuthState(auth)
@@ -67,7 +66,7 @@ function MyBooks () {
           })
           .catch(error => console.error('Error: ', error))
 
-        axios.post('/MyShelves', {
+        axios.post(url + '/MyShelves', {
           currUID: user.uid
         },
         {
@@ -143,6 +142,11 @@ function MyBooks () {
       .catch(error => console.error('Error: ', error))
   }
 
+  const onShelfChange = (response) => {
+    console.log('shelf change', shelfData, response)
+    setShelfData(response)
+  }
+
   // const getShelves = () => {
   //   const allShelves = new Set()
   //   allShelves.add('All Books')
@@ -168,11 +172,10 @@ function MyBooks () {
   if (BookData === null || shelfData === null) {
     return (<div ><RotatingLines height="100" width="100"/></div>)
   } else {
-    console.log('booooks', BookData)
     return (
     <>
       <div className="flex relative bg-stone-900">
-          <ShelfPane onSelect={selectShelf} shelves={shelfData} />
+          <ShelfPane onSelect={selectShelf} shelves={getShelves(shelfData)} onShelfChange={onShelfChange} />
           <BookPane
             shelves={shelfData}
             currShelf={currShelf}

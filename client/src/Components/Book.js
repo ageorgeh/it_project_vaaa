@@ -5,8 +5,6 @@ import React, { useState } from 'react'
 // import { Oval } from 'react-loader-spinner'
 
 function Book ({ title, author, image, bookID, shelves, book }) {
-  // console.log(title)
-  // console.log(image)
   const [loaded, setLoaded] = useState(false)
   const imageLoaded = () => {
     setLoaded(true)
@@ -15,7 +13,7 @@ function Book ({ title, author, image, bookID, shelves, book }) {
         <>
         <div className="relative h-64 place-content-center mb-1 px-3">
             <button className="h-48 w-32 flex justify-center items-center rounded-lg overflow-hidden">
-                <Link to = {`/viewbook/${bookID}`} state = {{ shelves, book }} >
+                <Link to = {`/viewbook/${bookID}`} state = {{ shelves }} >
                   <img src={image} className="shrink-0 min-h-full min-w-full" alt="book cover" />
                 </Link>
             </button>

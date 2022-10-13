@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 export default function DeleteShelfModal ({ visible, onClose, shelfID }) {
+  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   // this prevents the modal , when clicked, automatically closes
   const handleOnClose = (e) => {
     if (e.target.id === 'deleteModalContainer' || e.target.id === 'buttonID') onClose()
@@ -18,21 +19,10 @@ export default function DeleteShelfModal ({ visible, onClose, shelfID }) {
 
   if (!visible) return null
 
-  //   const deleteBook = (id) => {
-  //     setR(true)
-  //     axios.post('/MyBooks/DeleteBook', {
-  //       bookID: id
-  //     })
-  //       .then(response => {
-  //         console.log(response)
-  //       })
-  //       .catch(error => console.error('Error: ', error))
-  //   }
-
   const deleteBook = async (data) => {
     setR(true)
     await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-      axios.post('/MyShelves/DeleteShelf', {
+      axios.post(url + '/MyShelves/DeleteShelf', {
         shelfID
       }, {
         headers: {
@@ -40,7 +30,6 @@ export default function DeleteShelfModal ({ visible, onClose, shelfID }) {
         }
       })
         .then(response => {
-          console.log(response)
           onClose({ delete: response.data })
           navigate('../MyBooks')
           return response

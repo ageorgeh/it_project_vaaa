@@ -16,6 +16,7 @@ import {
 // Brown : #A47551
 // Carafe : $523A28
 function ViewBook () {
+  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
   const { bookid } = useParams()
   // console.log(typeof(bookid));
   const location = useLocation()
@@ -45,7 +46,7 @@ function ViewBook () {
     if (!user) return navigate('../login')
     const fetch = async () => {
       await user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-        axios.post('/MyBooks/GetFromBookID', {
+        axios.post(url + '/MyBooks/GetFromBookID', {
           currUID: user.uid,
           bookID: bookid
         },
