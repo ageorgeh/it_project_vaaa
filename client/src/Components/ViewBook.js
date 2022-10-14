@@ -81,35 +81,6 @@ function ViewBook () {
     return (
           <>
 
-          {/* the buttons only shows when the parent div is hovered */}
-      {/*    <div className="grid grid-cols-2 gap-2">
-            <img src={updatedBook ? updatedBook.image : BookData.image} className="object-contain w-full h-screen" />
-            <div className="bg-[#E4D4C8] text-[#523A28]">
-              <h1 className="text-2xl">Title : {updatedBook ? updatedBook.title : BookData.title}</h1>
-              <h1 className="text-2xl">Author:  {updatedBook ? updatedBook.author : BookData.author} </h1>
-              <Rating
-                initialValue={updatedBook ? updatedBook.rating : BookData.rating}
-                readonly={true}
-                size={40}
-                transition
-                fillColor='orange'
-                emptyColor='gray'
-                allowFraction={true}
-              />
-              <h1 className="text-2xl">Description: {updatedBook ? updatedBook.description : BookData.description}</h1>
-              <button
-                type="button"
-                onClick={() => setShowEditModal(true)}
-                className="mb-10 text-[#523A28] bg-[#D0B49F] font-medium rounded-lg text-sm px-5 py-2.5 m-2" id="open-edit">Edit</button>
-              <button
-                type="button"
-                onClick={() => setShowDeleteModal(true)}
-                className="mt-20 text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 m-2">Delete</button>
-            </div>
-          </div>
-          <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
-    <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/> */}
-
           <div className="flex flex-col m-auto mt-10 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100">
               <img className="object-fill w-full h-full rounded-lg md:h-full md:w-60 md:rounded-none md:rounded-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
               <div className="flex flex-col justify-between p-10 leading-relaxed">
