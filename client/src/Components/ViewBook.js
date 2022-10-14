@@ -111,7 +111,7 @@ function ViewBook () {
     <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/> */}
 
           <div className="flex flex-col m-auto mt-10 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-              <img className="object-fill w-full h-full rounded-t-lg md:h-full md:w-60 md:rounded-none md:rounded-l-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
+              <img className="object-fill w-full h-full rounded-lg md:h-full md:w-60 md:rounded-none md:rounded-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
               <div className="flex flex-col justify-between p-10 leading-normal">
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{updatedBook ? updatedBook.title : BookData.title}</h5>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">by {updatedBook ? updatedBook.author : BookData.author}</p>
