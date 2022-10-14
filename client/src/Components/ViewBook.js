@@ -82,7 +82,7 @@ function ViewBook () {
           <>
 
           {/* the buttons only shows when the parent div is hovered */}
-          <div className="grid grid-cols-2 gap-2">
+      {/*    <div className="grid grid-cols-2 gap-2">
             <img src={updatedBook ? updatedBook.image : BookData.image} className="object-contain w-full h-screen" />
             <div className="bg-[#E4D4C8] text-[#523A28]">
               <h1 className="text-2xl">Title : {updatedBook ? updatedBook.title : BookData.title}</h1>
@@ -108,7 +108,36 @@ function ViewBook () {
             </div>
           </div>
           <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
-          <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/>
+    <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/> */}
+
+          <div className="flex flex-col m-auto mt-10 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <img className="object-fill w-full h-full rounded-t-lg md:h-full md:w-60 md:rounded-none md:rounded-l-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
+              <div className="flex flex-col justify-between p-10 leading-normal">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{updatedBook ? updatedBook.title : BookData.title}</h5>
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">by {updatedBook ? updatedBook.author : BookData.author}</p>
+                  <Rating
+                    initialValue={updatedBook ? updatedBook.rating : BookData.rating}
+                    readonly={true}
+                    size={40}
+                    transition
+                    fillColor='orange'
+                    emptyColor='gray'
+                    allowFraction={true}
+                  />
+                  <p className="mb-4 font-sm text-gray-700"> {updatedBook ? updatedBook.description : BookData.description}</p>
+                  <button
+                    type="button"
+                    onClick={() => setShowEditModal(true)}
+                    className="mb-2 text-[#523A28] bg-[#D0B49F] font-medium rounded-lg text-sm px-5 py-2.5" id="open-edit">Edit</button>
+                  <button
+                    type="button"
+                    onClick={() => setShowDeleteModal(true)}
+                    className="text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Delete</button>
+                  <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
+                  <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/>
+              </div>
+          </div>
+
           </>
 
     )
