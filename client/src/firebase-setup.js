@@ -2,14 +2,8 @@
 
 import { initializeApp } from 'firebase/app'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import {
-  getFirestore, collection, getDocs,
-  query,
-  where,
-  doc,
-  setDoc,
-  addDoc
-} from 'firebase/firestore'
+
+import axios from 'axios'
 
 import {
   GoogleAuthProvider,
@@ -32,59 +26,40 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 
-// fetching data from firebase
-const db = getFirestore(app)
-
-// collection ref
-const colRef = collection(db, 'books')
-
-const books = []
-
-// get an array of all the documents in the collection 'books'
-getDocs(colRef)
-  .then(snapshot => {
-    snapshot.docs.forEach(doc => {
-      books.push({ ...doc.data(), id: doc.id })
-    })
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
-
-// console.log(books)
-
 const auth = getAuth(app)
 
 const googleProvider = new GoogleAuthProvider()
 
-// A function to sign in with a google popup
-// Also adds the user information to the firestore DB if they don't already exist
+const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+
 const signInWithGoogle = async () => {
-  try {
-    const res = await signInWithPopup(auth, googleProvider)
-    const user = res.user
-    const q = query(collection(db, 'users'), where('uid', '==', user.uid))
-    const docs = await getDocs(q)
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, 'users'), {
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: 'google',
-        email: user.email
+  // eslint-disable-next-line no-async-promise-executor
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await signInWithPopup(auth, googleProvider)
+      const user = res.user
+      user.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+        axios.post(url + '/SetupNewGoogleUser', {
+          user
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + idToken
+          }
+        })
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => console.error('Error: ', error))
+      }).catch(function (error) {
+        console.log('Error', error)
       })
-
-      const newShelfRef = doc(collection(db, 'shelves'))
-
-      await setDoc(newShelfRef, {
-        uid: user.uid,
-        name: 'All Books',
-        shelfID: newShelfRef.id
-      })
+    } catch (err) {
+      console.error(err)
+      alert(err.message)
     }
-  } catch (err) {
-    console.error(err)
-    alert(err.message)
   }
+  )
 }
 
 // Logs the user out
@@ -139,7 +114,6 @@ const uploadImg = async (file) => {
 
 export {
   auth,
-  db,
   signInWithGoogle,
   logout,
   uploadImg

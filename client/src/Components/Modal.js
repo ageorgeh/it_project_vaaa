@@ -263,7 +263,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                 <div className="mb-6">
                 <ul className="shelves-list">
                   {getShelfNames(shelves).map((name, index) => {
-                    return (
+                    if (name !== 'All Books') {
+                      return (
                       <li key={index}>
                         <div className="shelf-list-item">
                           <div className="left-section">
@@ -280,7 +281,10 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
 
                         </div>
                       </li>
-                    )
+                      )
+                    } else {
+                      return null
+                    }
                   })}
                 </ul>
                 </div>
