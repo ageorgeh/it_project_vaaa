@@ -9,7 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import GoogleButton from 'react-google-button'
 import { useNavigate } from 'react-router-dom'
 
-import { signIn } from '../userAuth'
+import { signIn, signUp } from '../userAuth'
 
 export default function Login () {
   const [user, loading] = useAuthState(auth)
@@ -46,6 +46,16 @@ export default function Login () {
       <div className="button-container">
         <button className='buttonC' onClick={() => signIn(email, password)}> Login </button>
       </div>
+
+      {/* <div className="button-container">
+        <button className='buttonC' onClick={() => {
+          signUp(email, password).then((response) => {
+            console.log('signupresponse', response)
+            setReady(true)
+          })
+        }}> Signup </button>
+      </div> */}
+
     </div>
   )
 

@@ -9,7 +9,7 @@ const setupNewGoogleUser = async function (req, res) {
   if (!doc.exists) {
     userRef.set({
       uid: user.uid,
-      name: user.displayName,
+      name: user.displayName || '',
       authProvider: 'google',
       email: user.email
     })
@@ -21,9 +21,11 @@ const setupNewGoogleUser = async function (req, res) {
       name: 'All Books'
 
     }, { merge: true })
-    res.status(200).status('New user added')
+    console.log('new user added')
+    res.status(200).send('New user added')
+  } else {
+    res.status(200).send('User already exists')
   }
-  res.status(200).send('User already exists')
 }
 
 // CREATE: add a new book
