@@ -10,7 +10,7 @@ import { ProgressBar } from 'react-loader-spinner'
 import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from '../firebase-setup'
 
 export default function Modal ({ visible, onClose, fieldValues, shelves }) {
-  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+  const url = process.env.REACT_APP_API_URL
   const [r, setR] = useState(false) // Refresh state
   const [uploading, setUploading] = useState(false) // Refresh state
   // this prevents the modal , when clicked, automatically closes

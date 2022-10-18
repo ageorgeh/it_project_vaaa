@@ -31,8 +31,7 @@ const OVERLAY_STYLE = {
 }
 
 export default function Modal ({ visible, onClose, fieldValues, shelves }) {
-  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
-
+  const url = process.env.REACT_APP_API_URL
   useEffect(() => {
     setCheckedState(fieldValues ? getChecked() : new Array(shelves.length).fill(false))
   }, [shelves])
