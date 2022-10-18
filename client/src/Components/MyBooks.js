@@ -12,7 +12,7 @@ import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
-  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+  const url = process.env.REACT_APP_API_URL
   // renavigate user to login if not logged in
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()

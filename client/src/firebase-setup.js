@@ -30,8 +30,7 @@ const auth = getAuth(app)
 
 const googleProvider = new GoogleAuthProvider()
 
-const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
-
+const url = process.env.REACT_APP_API_URL
 const signInWithGoogle = async () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {

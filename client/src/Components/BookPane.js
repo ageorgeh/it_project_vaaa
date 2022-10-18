@@ -49,12 +49,12 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
 
   return (
               <>
-              <div className="w-5/6 m-2 pl-5 rounded-lg">
+              <div className="w-5/6 m-2 pl-5 rounded-lg z-1">
                   <div className="flex text-center items-center pb-2 border-b-2 mb-8 border-stone-500">
                       <span className="flex text-stone-100 ml-2 text-3xl">{currShelfName}</span>
                   </div>
                   <div className="flex flex-wrap">
-                      <div className="relative h-64 place-content-center mb-1 px-3">
+                      <div className="h-64 place-content-center mb-1 px-3">
                           <button onClick={() => setShowEditModal(true)} className="hello h-48 w-32 flex justify-center bg-emerald-700 rounded-lg items-center overflow-hidden hover:bg-emerald-600">
                               <div className="flex justify-center w-full">
                                   <div className="w-12 h-12 text-stone-100">

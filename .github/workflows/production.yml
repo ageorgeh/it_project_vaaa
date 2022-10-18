@@ -1,25 +1,27 @@
-name: Production workflow
-
+name: Production workflow 
 on:
   push:
     branches:
-      - main
-
+      - main 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Node.js 17.x
-        uses: actions/setup-node@v1
+      - working-directory: ./client
+        run: npm install
+      - working-directory: ./client
+        run: npm test
+      - working-directory: ./client
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+      - working-directory: ./server
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+      - name: Build, Push and Deploy to Heroku 
+        id: heroku
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0  
         with:
-          node-version: 17.x
-      - run: npm install
-      - run: npm run build --if-present
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: 'it-project-vaaah-prod'
-          heroku_email: 'anakamura@student.unimelb.edu.au'
+          email: anakamura@student.unimelb.edu.au # your heroku email
+          api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
+          docker_compose_file: 'docker-compose-prod.yaml' # set the path to the folder where the docker-compose file is located
+          heroku_apps: '[{"imagename":"api","appname":"it-project-vaaah-prod-api","apptype":"web"},{"imagename":"client","appname":"it-project-vaaah-prod-client","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type

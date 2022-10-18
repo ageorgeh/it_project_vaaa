@@ -7,7 +7,7 @@ import { uploadImage, downloadImage, storageRef, auth, logout, uploadImg } from 
 import { useNavigate } from 'react-router-dom'
 
 export default function DeleteModal ({ visible, onClose, bookID }) {
-  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+  const url = process.env.REACT_APP_API_URL
   // this prevents the modal , when clicked, automatically closes
   const handleOnClose = (e) => {
     if (e.target.id === 'deleteModalContainer' || e.target.id === 'buttonID') onClose()
