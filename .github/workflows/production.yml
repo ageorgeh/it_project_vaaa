@@ -13,9 +13,11 @@ jobs:
         run: npm install
       - working-directory: ./client
         run: npm test
-      - working-directory: ./client
+      - name: Client eslint
+        working-directory: ./client
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
-      - working-directory: ./server
+      - name: Server eslint
+        working-directory: ./server
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
       - name: Build, Push and Deploy to Heroku 
         id: heroku
