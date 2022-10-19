@@ -16,7 +16,7 @@ import {
 } from 'firebase/auth'
 
 let firebaseConfig
-if (process.env.NODE_ENV === 'production') {
+if (process.env.REACT_APP_ENV === 'production') {
   firebaseConfig = {
     apiKey: 'AIzaSyDgF5XkiDel5y5h4OZlHJSRbzJH5-THY1M',
     authDomain: 'it-project-vaah-prod.firebaseapp.com',
