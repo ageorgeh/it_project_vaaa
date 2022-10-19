@@ -15,13 +15,26 @@ import {
   signOut
 } from 'firebase/auth'
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyAaeqcgpLuc8grPbbZreVXyYIWU8gfpp6k',
-  authDomain: 'it-project-vaah-dev.firebaseapp.com',
-  projectId: 'it-project-vaah-dev',
-  storageBucket: 'it-project-vaah-dev.appspot.com',
-  messagingSenderId: '412593831296',
-  appId: '1:412593831296:web:b6f1db57e42cc73cfe5565'
+let firebaseConfig
+if (process.env.NODE_ENV === 'production') {
+  firebaseConfig = {
+    apiKey: 'AIzaSyDgF5XkiDel5y5h4OZlHJSRbzJH5-THY1M',
+    authDomain: 'it-project-vaah-prod.firebaseapp.com',
+    projectId: 'it-project-vaah-prod',
+    storageBucket: 'it-project-vaah-prod.appspot.com',
+    messagingSenderId: '1064149758347',
+    appId: '1:1064149758347:web:85cad5b0a3d8d96ba7bf8e',
+    measurementId: 'G-E31RB72LE2'
+  }
+} else {
+  firebaseConfig = {
+    apiKey: 'AIzaSyAaeqcgpLuc8grPbbZreVXyYIWU8gfpp6k',
+    authDomain: 'it-project-vaah-dev.firebaseapp.com',
+    projectId: 'it-project-vaah-dev',
+    storageBucket: 'it-project-vaah-dev.appspot.com',
+    messagingSenderId: '412593831296',
+    appId: '1:412593831296:web:b6f1db57e42cc73cfe5565'
+  }
 }
 
 const app = initializeApp(firebaseConfig)
