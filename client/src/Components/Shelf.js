@@ -17,7 +17,7 @@ function Shelf ({ onSelect, name, shelfID, onDeleteClose }) {
     <>
         <li>
             <div className="mx-2">
-                <button onClick={selectShelf} className="place-items-left py-2 font-normal pr-3 text-white rounded-lg  pl-3 hover:bg-stone-700">
+                <button onClick={selectShelf} className="place-items-left py-2 font-normal pr-3 text-white rounded-lg  pl-3 hover:bg-bgHover">
                 {name}
                 </button>
                 {name === 'All Books'

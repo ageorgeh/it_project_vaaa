@@ -44,15 +44,15 @@ function ShelfPane ({ onSelect, shelves, onShelfChange }) {
 
   return (
     <>
-        <div className="sticky top-3 flex-auto rounded-lg bg-stone-800 h-fit mt-2 z-1 ml-2 py-2">
+        <div className="sticky top-3 flex-auto rounded-lg bg-stoneMed h-fit mt-2 z-1 ml-2 py-2">
             <a href="/img/echidna.jpg" className="flex items-center pl-2.5 mb-2">
-                <span className="self-center text-xl ml-2 font-semibold whitespace-nowrap text-white">Shelves</span>
+                <span className="self-center text-xl ml-2 font-semibold whitespace-nowrap text-font">Shelves</span>
             </a>
-            <ul className="space-y-2 border-t-2 border-stone-500 pt-2">
+            <ul className="space-y-2 border-t-2 border-divider pt-2">
                 {shelfElems}
                 <li>
                     <div className="mx-2">
-                        <button onClick={() => setShowEditModal(true)} className="theone place-items-center py-2 w-full pl-3 text-base font-normal text-stone-900 bg-emerald-700 rounded-lg dark:text-white hover:bg-emerald-600">
+                        <button onClick={() => setShowEditModal(true)} className="theone place-items-center py-2 w-full pl-3 text-base font-normal text-bgDark bg-buttonAdd rounded-lg dark:text-white hover:bg-buttonAddHover">
                             <div className="flex justify-center w-full">
                                 <div className="w-6">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6">

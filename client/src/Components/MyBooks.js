@@ -99,7 +99,7 @@ function MyBooks () {
   } else {
     return (
     <>
-      <div className="flex relative bg-stone-900">
+      <div className="flex relative bg-bgDark">
           <ShelfPane onSelect={selectShelf} shelves={getShelves(shelfData)} onShelfChange={onShelfChange} />
           <BookPane
             shelves={shelfData}

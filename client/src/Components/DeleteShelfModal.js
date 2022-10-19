@@ -43,11 +43,11 @@ export default function DeleteShelfModal ({ visible, onClose, shelfID }) {
   return (
         <div id='deleteModalContainer'
         onClick ={handleOnClose}
-        className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
-            <div className ="bg-white p-5 rounded">
+        className="fixed inset-0 bg-bgDark bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
+            <div className ="bg-bgLight p-5 rounded">
                 <p className="text-center mb-5">Are you sure you want to delete this shelf?</p>
-                <button onClick={deleteBook} type="submit" className="ml-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Yes</button>
-                <button id='buttonID' type="button" onClick={onClose} className="ml-20 text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">No</button>
+                <button onClick={deleteBook} type="submit" className="ml-10 text-white bg-buttonAdd hover:bg-buttonAddHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Yes</button>
+                <button id='buttonID' type="button" onClick={onClose} className="ml-20 text-gray-100 bg-buttonDelete font-medium rounded-lg text-sm px-5 py-2.5">No</button>
             </div>
 
         </div>

@@ -229,22 +229,22 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         <div id='modalContainer'
         style={OVERLAY_STYLE}
         onClick ={handleOnClose}
-        className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
-            <div className ="bg-white p-5 rounded" style={MODAL_STYLES}>
+        className="fixed inset-0 bg-bgDark bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
+            <div className ="bg-buttonAdd p-5 rounded" style={MODAL_STYLES}>
                 <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
                 <form onSubmit={fieldValues ? submitUpdate : submitChanges}>
                 <div className="mb-6">
                     <label htmlFor="bookTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book title</label>
-                    <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="bookTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="bookTitle" className="bg-bgLight border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title" />
                 </div>
                 <div className="mb-6">
                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book Author</label>
-                    <input type="text" defaultValue={fieldValues ? fieldValues.author : ''} id="bookAuthor" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.author : ''} id="bookAuthor" className="bg-bgLight border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Author" />
                 </div>
 
                 <div className="mb-6">
                     <label htmlFor="bookDescription" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Book Description</label>
-                    <input type="text" defaultValue={fieldValues ? fieldValues.description : ''} id="bookDescription" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.description : ''} id="bookDescription" className="bg-bgLight border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" />
                 </div>
 
                 <div className="mb-6">
@@ -299,8 +299,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                   <div style={uploading ? { } : { display: 'none' }}><ProgressBar barColor="#147014" borderColor="#8c8c8b" height="100" width="100"/></div>
                 </div>
 
-                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{fieldValues ? 'Update' : 'Add'}</button>
-                <button id='buttonID' type="button" onClick={onClose} className="ml-12 text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Cancel</button>
+                <button type="submit" className="text-white bg-buttonAdd hover:bg-buttonAddHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{fieldValues ? 'Update' : 'Add'}</button>
+                <button id='buttonID' type="button" onClick={onClose} className="ml-12 text-gray-100 bg-buttonDelete font-medium rounded-lg text-sm px-5 py-2.5">Cancel</button>
                 </form>
             </div>
 

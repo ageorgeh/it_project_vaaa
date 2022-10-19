@@ -8,7 +8,7 @@ export default function Navbar () {
   if (user) { */
   return (
     <>
-      <nav className="bg-white px-2 sm:px-4 py-2.5 rounded ">
+      <nav className="bg-bgLight px-2 sm:px-4 py-2.5 rounded ">
         <div className="flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
                 <img src={bookIcon} className="mr-3 h-6" alt="Book Logo"></img>
