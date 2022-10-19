@@ -11,6 +11,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: "./server"
+      args:
+        NODE_ENV: prod
     image: api
     volumes:
       - /app/node_modules
