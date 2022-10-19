@@ -81,7 +81,7 @@ function ViewBook () {
     return (
           <>
 
-          <div className="flex flex-col m-auto mt-10 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100">
+          <div className="flex flex-col m-auto mt-10 items-center bg-bgLight rounded-lg border shadow-md md:flex-row md:max-w-xl">
               <img className="object-fill w-full h-full rounded-lg md:h-full md:w-60 md:rounded-none md:rounded-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
               <div className="flex flex-col justify-between p-10 leading-relaxed">
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{updatedBook ? updatedBook.title : BookData.title}</h5>
@@ -99,11 +99,11 @@ function ViewBook () {
                   <button
                     type="button"
                     onClick={() => setShowEditModal(true)}
-                    className="mb-2 text-[#523A28] bg-[#D0B49F] font-medium rounded-lg text-sm px-5 py-2.5" id="open-edit">Edit</button>
+                    className="mb-2 text-fontDark bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5" id="open-edit">Edit</button>
                   <button
                     type="button"
                     onClick={() => setShowDeleteModal(true)}
-                    className="text-gray-100 bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Delete</button>
+                    className="text-fontDark bg-buttonDelete font-medium rounded-lg text-sm px-5 py-2.5">Delete</button>
                   <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
                   <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/>
               </div>

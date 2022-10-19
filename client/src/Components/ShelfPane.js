@@ -44,18 +44,18 @@ function ShelfPane ({ onSelect, shelves, onShelfChange }) {
 
   return (
     <>
-        <div className="sticky top-3 flex-auto rounded-lg bg-stoneMed h-fit mt-2 z-1 ml-2 py-2">
-            <a href="/img/echidna.jpg" className="flex items-center pl-2.5 mb-2">
+        <div className="sticky top-3 flex-auto rounded-lg bg-bgMed h-fit mt-2 z-1 ml-2 py-2">
+            <a className="flex items-center pl-2.5 mb-2">
                 <span className="self-center text-xl ml-2 font-semibold whitespace-nowrap text-font">Shelves</span>
             </a>
             <ul className="space-y-2 border-t-2 border-divider pt-2">
                 {shelfElems}
                 <li>
                     <div className="mx-2">
-                        <button onClick={() => setShowEditModal(true)} className="theone place-items-center py-2 w-full pl-3 text-base font-normal text-bgDark bg-buttonAdd rounded-lg dark:text-white hover:bg-buttonAddHover">
+                        <button onClick={() => setShowEditModal(true)} className="theone place-items-center py-2 w-full pl-3 text-base font-normal text-fontDark bg-buttonAdd rounded-lg hover:bg-buttonAddHover">
                             <div className="flex justify-center w-full">
                                 <div className="w-6">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6 text-font">
                                         <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z" clipRule="evenodd" />
                                     </svg>
                                 </div>

@@ -22,7 +22,7 @@ function Shelf ({ onSelect, name, shelfID, onDeleteClose }) {
                 </button>
                 {name === 'All Books'
                   ? null
-                  : <button onClick={() => setShowDeleteModal(true)} className="place-items-right py-2 overflow-visible pl-3 bg-red-700 rounded-lg dark:text-white hover:bg-red-600">
+                  : <button onClick={() => setShowDeleteModal(true)} className="place-items-right py-2 overflow-visible pl-3 bg-buttonDelete rounded-lg hover:bg-buttonDeleteHover">
                             <div className="flex">
                                 <div className="w-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="6 0 24 24" fill="currentColor" className="overflow-visible">
