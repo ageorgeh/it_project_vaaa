@@ -81,7 +81,14 @@ function ViewBook () {
     return (
           <>
 
-          <div className="flex flex-col m-auto mt-10 items-center bg-bgLight rounded-lg border shadow-md md:flex-row md:max-w-xl">
+          <div className="flex flex-col relative m-auto mt-10 items-center bg-bgLight rounded-lg border shadow-md md:flex-row md:max-w-xl">
+              <div className="absolute top-2 right-2">
+                <button className="mb-2 text-font bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5 hover:bg-buttonNeutralHover">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                  </svg>
+                  </button>
+              </div>
               <img className="object-fill w-full h-full rounded-lg md:h-full md:w-60 md:rounded-none md:rounded-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
               <div className="flex flex-col justify-between p-10 leading-relaxed">
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{updatedBook ? updatedBook.title : BookData.title}</h5>
@@ -107,14 +114,6 @@ function ViewBook () {
                   <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
                   <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/>
               </div>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <button className="mb-2 text-font bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-              </svg>
-              </button>
           </div>
 
           </>
