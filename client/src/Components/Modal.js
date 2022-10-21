@@ -271,7 +271,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                       <li key={index} className="w-full border-b border-font">
                           <div className="flex items-center pl-3">
                             <input
-                              className="w-4 h-4 text-bgDark bg-bgLight rounded border-font"
+                              className="w-4 h-4 text-bgDark bg-bgLight rounded border-font accent-buttonNeutral"
                               type="checkbox"
                               id={`custom-checkbox-${index}`}
                               name={name}
@@ -293,7 +293,13 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                 <div className="mb-6">
                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-fontDark">Book cover</label>
                     <img className="h-48 w-32 shrink-0" src={image ? URL.createObjectURL(image) : image} />
-                    <input type="file" name="myImage" onChange={onImageChange} />
+                    <input type="file" name="myImage" onChange={onImageChange} className="block w-full mt-2 text-sm text-fontDark
+                      file:mr-4 file:py-2 file:px-4
+                      file:rounded-full file:border-0
+                      file:text-sm file:font-semibold
+                      file:font file:text-font
+                      file:bg-buttonNeutral
+                      hover:file:bg-buttonNeutralHover"/>
                 </div>
 
                 <div className="mb-6">

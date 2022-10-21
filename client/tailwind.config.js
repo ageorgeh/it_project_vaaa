@@ -19,14 +19,14 @@ const greenScheme = {
 }
 
 const brownScheme = {
-  buttonAdd: '#047857',
-  buttonAddHover: '#059669',
-  buttonDelete: '#c81e1e',
-  buttonDeleteHover: '#e02424',
+  buttonAdd: '#8a5a44',
+  buttonAddHover: '#9d6b53',
+  buttonDelete: '#991b1b',
+  buttonDeleteHover: '#b91c1c',
   buttonDeleteDark: '#991b1b',
   buttonDeleteDarkHover: '#b91c1c',
-  buttonNeutral: '#1e429f',
-  buttonNeutralHover: '#1a56db',
+  buttonNeutral: '#8a5a44',
+  buttonNeutralHover: '#9d6b53',
   bgDark: '#1c1917',
   bgMedDark: '#292524',
   bgMed: '#44403c',
@@ -64,7 +64,7 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    colors: blueScheme,
+    colors: greenScheme,
     extend: {
       minWidth: {
         48: '12rem'
