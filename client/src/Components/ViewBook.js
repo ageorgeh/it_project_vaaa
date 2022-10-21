@@ -7,8 +7,8 @@ import { auth, logout } from '../firebase-setup'
 import { RotatingLines } from 'react-loader-spinner'
 import axios from 'axios'
 import { Rating } from 'react-simple-star-rating'
-
 import {
+  NavLink,
   useNavigate,
   useParams, useLocation
 } from 'react-router-dom'
@@ -82,12 +82,14 @@ function ViewBook () {
           <>
 
           <div className="flex flex-col relative m-auto mt-10 items-center bg-bgLight rounded-lg border shadow-md md:flex-row md:max-w-xl">
-              <div className="absolute top-2 right-2">
-                <button className="mb-2 text-font bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5 hover:bg-buttonNeutralHover">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                  </svg>
+              <div className="absolute top-2 right-2" >
+                <NavLink to ="/mybooks"> {/* className={({ isActive }) => isActive ? 'active' : ''}> */}
+                  <button className="mb-2 text-font bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5 hover:bg-buttonNeutralHover">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                    </svg>
                   </button>
+                </NavLink>
               </div>
               <img className="object-fill w-full h-full rounded-lg md:h-full md:w-60 md:rounded-none md:rounded-lg" src={updatedBook ? updatedBook.image : BookData.image} alt="" />
               <div className="flex flex-col justify-between p-10 leading-relaxed">
