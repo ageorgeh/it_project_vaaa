@@ -49,7 +49,7 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
 
   return (
               <>
-              <div className="w-5/6 m-2 pl-5 rounded-lg">
+              <div className="w-5/6 m-2 pl-5 rounded-lg h-full">
                   <div className="flex text-center items-center pb-2 border-b-2 mb-8 border-divider">
                       <span className="flex text-font ml-2 text-3xl">{currShelfName}</span>
                   </div>
@@ -75,9 +75,3 @@ function BookPane ({ books, currShelf, currShelfName, shelves }) {
 
 BookPane.propTypes = { books: PropTypes.array, currShelf: PropTypes.string, currShelfName: PropTypes.string, shelves: PropTypes.array }
 export default BookPane
-
-// deleteBook(bookKey) {
-//     let currBooks = this.props.books;
-//     currBooks.splice(bookKey,1);
-//     this.setState({books: currBooks});
-// }

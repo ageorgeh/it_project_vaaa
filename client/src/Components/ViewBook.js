@@ -99,11 +99,11 @@ function ViewBook () {
                   <button
                     type="button"
                     onClick={() => setShowEditModal(true)}
-                    className="mb-2 text-fontDark bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5" id="open-edit">Edit</button>
+                    className="mb-2 text-font bg-buttonNeutral font-medium rounded-lg text-sm px-5 py-2.5" id="open-edit">Edit</button>
                   <button
                     type="button"
                     onClick={() => setShowDeleteModal(true)}
-                    className="text-fontDark bg-buttonDelete font-medium rounded-lg text-sm px-5 py-2.5">Delete</button>
+                    className="text-font bg-buttonDelete font-medium rounded-lg text-sm px-5 py-2.5">Delete</button>
                   <Modal onClose={handleOnEditClose} visible={showEditModal} fieldValues={updatedBook || BookData} shelves={shelves}/>
                   <DeleteModal onClose={handleOnDeleteClose} visible={showDeleteModal} bookID={bookid}/>
               </div>

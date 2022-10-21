@@ -14,6 +14,7 @@ const MODAL_STYLES = {
   position: 'absolute',
   zIndex: '1000',
   width: '35%',
+  height: '90%',
   borderRadius: '.5em'
 }
 const OVERLAY_STYLE = {
@@ -229,21 +230,23 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
         style={OVERLAY_STYLE}
         onClick ={handleOnClose}
         className="fixed inset-0 bg-bgDark bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
-            <div className ="bg-bgLighter p-5 rounded" style={MODAL_STYLES}>
-                <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
+            <div className ="bg-bgLighter p-5 rounded fixed overflow-auto" style={MODAL_STYLES}>
                 <form onSubmit={fieldValues ? submitUpdate : submitChanges}>
+                <div className="h-8">
+                <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
+                </div>
                 <div className="mb-6">
                     <label htmlFor="bookTitle" className="block mb-2 text-sm font-medium text-fontDark">Book title</label>
-                    <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="bookTitle" className="bg-bgLight border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Title" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.title : ''} id="bookTitle" className="bg-bgMed border border-bgLight text-font text-sm rounded-lg block w-full p-2.5 placeholder:text-bgLight" placeholder="Title" />
                 </div>
                 <div className="mb-6">
                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-fontDark">Book Author</label>
-                    <input type="text" defaultValue={fieldValues ? fieldValues.author : ''} id="bookAuthor" className="bg-bgLight border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Author" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.author : ''} id="bookAuthor" className="bg-bgMed border border-bgLight text-font text-sm rounded-lg block w-full p-2.5 placeholder:text-bgLight" placeholder="Author" />
                 </div>
 
                 <div className="mb-6">
                     <label htmlFor="bookDescription" className="block mb-2 text-sm font-medium text-fontDark">Book Description</label>
-                    <input type="text" defaultValue={fieldValues ? fieldValues.description : ''} id="bookDescription" className="bg-bgLight border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Description" />
+                    <input type="text" defaultValue={fieldValues ? fieldValues.description : ''} id="bookDescription" className="bg-bgMed border border-bgLight text-font text-sm rounded-lg block w-full p-2.5 placeholder:text-bgLight" placeholder="Description" />
                 </div>
 
                 <div className="mb-6">
@@ -260,14 +263,15 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                 </div>
 
                 <div className="mb-6">
-                <ul className="shelves-list">
+                <label className="block mb-2 text-sm font-medium text-fontDark">Shelves</label>
+                <ul className="shelves-list w-48 text-sm font-medium text-fontDark bg-bgLight rounded-lg border border-font">
                   {getShelfNames(shelves).map((name, index) => {
                     if (name !== 'All Books') {
                       return (
-                      <li key={index}>
-                        <div className="shelf-list-item">
-                          <div className="left-section">
+                      <li key={index} className="w-full border-b border-font">
+                          <div className="flex items-center pl-3">
                             <input
+                              className="w-4 h-4 text-bgDark bg-bgLight rounded border-font"
                               type="checkbox"
                               id={`custom-checkbox-${index}`}
                               name={name}
@@ -275,10 +279,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                               checked={checkedState[index]}
                               onChange={() => handleOnChange(index)}
                             />
-                            <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                            <label htmlFor={`custom-checkbox-${index}`} className="py-3 ml-2 w-full text-sm font-medium text-fontDark">{name}</label>
                           </div>
-
-                        </div>
                       </li>
                       )
                     } else {
@@ -298,8 +300,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                   <div style={uploading ? { } : { display: 'none' }}><ProgressBar barColor="#147014" borderColor="#8c8c8b" height="100" width="100"/></div>
                 </div>
 
-                <button type="submit" className="text-fontDark bg-buttonNeutral hover:bg-buttonNeutralHover font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{fieldValues ? 'Update' : 'Add'}</button>
-                <button id='buttonID' type="button" onClick={onClose} className="ml-12 text-fontDark bg-buttonDelete hover:bg-buttonDeleteHover font-medium rounded-lg text-sm px-5 py-2.5">Cancel</button>
+                <button type="submit" className="text-font bg-buttonNeutral hover:bg-buttonNeutralHover font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{fieldValues ? 'Update' : 'Add'}</button>
+                <button id='buttonID' type="button" onClick={onClose} className="ml-12 text-font bg-buttonDelete hover:bg-buttonDeleteHover font-medium rounded-lg text-sm px-5 py-2.5">Cancel</button>
                 </form>
             </div>
 

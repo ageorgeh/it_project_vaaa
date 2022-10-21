@@ -29,4 +29,3 @@ function Book ({ title, author, image, bookID, shelves, book }) {
 }
 Book.propTypes = { title: PropTypes.string, author: PropTypes.string, image: PropTypes.string, bookID: PropTypes.string, shelves: PropTypes.array, book: PropTypes.object }
 export default Book
-// {this.props.image}

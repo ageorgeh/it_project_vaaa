@@ -44,11 +44,11 @@ function ShelfPane ({ onSelect, shelves, onShelfChange }) {
 
   return (
     <>
-        <div className="sticky top-3 flex-auto rounded-lg bg-bgMed h-fit mt-2 z-1 ml-2 py-2">
+        <div className="sticky top-3 flex-auto rounded-lg bg-bgMedDark h-full mt-2 z-10 ml-2 py-2 min-w-60">
             <a className="flex items-center pl-2.5 mb-2">
                 <span className="self-center text-xl ml-2 font-semibold whitespace-nowrap text-font">Shelves</span>
             </a>
-            <ul className="space-y-2 border-t-2 border-divider pt-2">
+            <ul className="border-t-2 border-divider">
                 {shelfElems}
                 <li>
                     <div className="mx-2">
