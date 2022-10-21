@@ -3,8 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'fire
 
 import axios from 'axios'
 
-const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
-
+const url = process.env.REACT_APP_API_URL
 const signIn = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)

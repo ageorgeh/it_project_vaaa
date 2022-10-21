@@ -18,7 +18,7 @@ import {
 // Brown : #A47551
 // Carafe : $523A28
 function ViewBook () {
-  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+  const url = process.env.REACT_APP_API_URL
   const { bookid } = useParams()
   // console.log(typeof(bookid));
   const location = useLocation()

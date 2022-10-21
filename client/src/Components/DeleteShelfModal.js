@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 export default function DeleteShelfModal ({ visible, onClose, shelfID }) {
-  const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
+  const url = process.env.REACT_APP_API_URL
   // this prevents the modal , when clicked, automatically closes
   const handleOnClose = (e) => {
     if (e.target.id === 'deleteModalContainer' || e.target.id === 'buttonID') onClose()
