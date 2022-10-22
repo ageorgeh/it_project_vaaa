@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const greenScheme = {
   buttonAdd: '#047857',
   buttonAddHover: '#059669',

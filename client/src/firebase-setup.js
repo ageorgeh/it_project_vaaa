@@ -9,9 +9,6 @@ import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
-  // signInWithEmailAndPassword,
-  // createUserWithEmailAndPassword,
-  // sendPasswordResetEmail,
   signOut
 } from 'firebase/auth'
 
@@ -80,10 +77,8 @@ const logout = () => {
 }
 
 const uploadImg = async (file) => {
-  console.log(file)
   // Return a promise that will either resolve or emit an error
   return new Promise((resolve, reject) => {
-    console.log('f', file)
     // Create the file metadata
     /** @type {any} */
     const metadata = {
@@ -97,7 +92,6 @@ const uploadImg = async (file) => {
 
     uploadTask.on('state_changed',
       (snapshot) => {
-        console.log('snapshot', snapshot)
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         console.log('Upload is ' + progress + '% done')

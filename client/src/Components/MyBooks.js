@@ -13,7 +13,6 @@ import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
   const url = process.env.REACT_APP_API_URL
-  console.log(process.env.REACT_APP_ENV)
   // renavigate user to login if not logged in
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
