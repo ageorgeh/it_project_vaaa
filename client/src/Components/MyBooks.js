@@ -82,6 +82,7 @@ function MyBooks () {
 
   const onShelfChange = (response) => {
     setShelfData(response)
+    setCurrShelf('All Books')
   }
 
   const [currShelf, setCurrShelf] = useState('All Books')
