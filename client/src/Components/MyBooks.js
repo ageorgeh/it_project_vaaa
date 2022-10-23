@@ -13,7 +13,6 @@ import { RotatingLines } from 'react-loader-spinner'
 
 function MyBooks () {
   const url = process.env.REACT_APP_API_URL
-  console.log(process.env.REACT_APP_ENV)
   // renavigate user to login if not logged in
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
@@ -83,6 +82,7 @@ function MyBooks () {
 
   const onShelfChange = (response) => {
     setShelfData(response)
+    setCurrShelf('All Books')
   }
 
   const [currShelf, setCurrShelf] = useState('All Books')
@@ -100,7 +100,7 @@ function MyBooks () {
   } else {
     return (
     <>
-      <div className="flex relative bg-stone-900">
+      <div className="flex relative bg-bgDark">
           <ShelfPane onSelect={selectShelf} shelves={getShelves(shelfData)} onShelfChange={onShelfChange} />
           <BookPane
             shelves={shelfData}

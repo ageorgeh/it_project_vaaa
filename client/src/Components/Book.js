@@ -18,10 +18,10 @@ function Book ({ title, author, image, bookID, shelves, book }) {
                 </Link>
             </button>
             <div className="w-32">
-                <p className="text-stone-100 text-sm break-words line-clamp-2">{title}</p>
+                <p className="text-font text-sm break-words line-clamp-2">{title}</p>
             </div>
             <div className="w-32">
-                <p className="text-stone-300 text-xs break-words line-clamp-1">{author}</p>
+                <p className="text-font text-xs break-words line-clamp-1">{author}</p>
             </div>
         </div>
         </>
@@ -29,4 +29,3 @@ function Book ({ title, author, image, bookID, shelves, book }) {
 }
 Book.propTypes = { title: PropTypes.string, author: PropTypes.string, image: PropTypes.string, bookID: PropTypes.string, shelves: PropTypes.array, book: PropTypes.object }
 export default Book
-// {this.props.image}

@@ -44,7 +44,7 @@ export default function Login () {
         </div>
       </form>
       <div className="button-container">
-        <button className='buttonC' onClick={() => signIn(email, password)}> Login </button>
+        <button className='text-font bg-bgMed rounded-lg px-2 py-1 hover:brightness-125' onClick={() => signIn(email, password)}> Login </button>
       </div>
 
       {/* <div className="button-container">
@@ -60,7 +60,7 @@ export default function Login () {
   )
 
   return <div className="login-container" data-testid = 'loginForm'>
-        <div className="title-login text-white">Mid-Reads</div>
+        <div className="title-login text-font">Mid-Reads</div>
         {renderForm}
         <GoogleButton className="google-login" onClick={() => {
           signInWithGoogle().then((response) => {

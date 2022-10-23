@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 
+@layer base {
+  body {
+    @apply bg-bgDark;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
