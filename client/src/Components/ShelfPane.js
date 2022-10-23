@@ -52,7 +52,7 @@ function ShelfPane ({ onSelect, shelves, onShelfChange }) {
                 {shelfElems}
                 <li>
                     <div className="mx-2">
-                        <button onClick={() => setShowEditModal(true)} className="theone place-items-center py-2 w-full pl-3 text-base font-normal text-fontDark bg-buttonAdd rounded-lg hover:bg-buttonAddHover">
+                        <button onClick={() => setShowEditModal(true)} className="place-items-center py-2 w-full pl-3 text-base font-normal text-fontDark bg-buttonAdd rounded-lg hover:bg-buttonAddHover">
                             <div className="flex justify-center w-full">
                                 <div className="w-6">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6 text-font">
