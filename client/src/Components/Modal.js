@@ -293,7 +293,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                 <div className="mb-6">
                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-fontDark">Book cover</label>
                     <img className="h-48 w-32 shrink-0" src={image ? URL.createObjectURL(image) : image} />
-                    <input type="file" name="myImage" onChange={onImageChange} className="block w-full mt-2 text-sm text-fontDark
+                    <input type="file" name="myImage" onChange={onImageChange} className="block w-full mt-2 text-sm text-fontDark file:cursor-pointer
                       file:mr-4 file:py-2 file:px-4
                       file:rounded-full file:border-0
                       file:text-sm file:font-semibold
