@@ -1,51 +1,31 @@
-# name: Development workflow
-
-# on:
-#   push:
-#     branches:
-#       - develop
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Development Code
-#         uses: actions/checkout@v2
-#       # - name: Use Node.js 17.x
-#       #   uses: actions/setup-node@v1
-#       #   with:
-#       #     node-version: 17.x
-#       - run: npm install
-#       - run: npm test
-#       # - run: npm run build --if-present
-#       - name: Deploy to Heroku
-#         uses: akhileshns/heroku-deploy@v3.12.12
-#         with:
-#           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-#           heroku_app_name: 'it-project-vaaah-dev'
-#           heroku_email: 'anakamura@student.unimelb.edu.au'
-#           usedocker: true
-#           ### add docker setting once setup
-#
-name: Development workflow #set whatevername you want to your github job
+name: Development workflow 
 on:
   push:
     branches:
-      - develop # set the events you would like to trigger this job
+      - develop 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - working-directory: ./client
+      - name: Client install
+        working-directory: ./client
+        run: npm install
+      - name: Server install
+        working-directory: ./server
         run: npm install
       - working-directory: ./client
         run: npm test
-      - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step
+      - name: Client eslint 
+        working-directory: ./client
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+      - name: Server eslint
+        working-directory: ./server
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+      - name: Build, Push and Deploy to Heroku 
         id: heroku
-        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0  # use the latest version of the action
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0  
         with:
           email: anakamura@student.unimelb.edu.au # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key

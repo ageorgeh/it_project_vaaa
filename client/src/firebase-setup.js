@@ -9,19 +9,29 @@ import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
-  // signInWithEmailAndPassword,
-  // createUserWithEmailAndPassword,
-  // sendPasswordResetEmail,
   signOut
 } from 'firebase/auth'
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyAaeqcgpLuc8grPbbZreVXyYIWU8gfpp6k',
-  authDomain: 'it-project-vaah-dev.firebaseapp.com',
-  projectId: 'it-project-vaah-dev',
-  storageBucket: 'it-project-vaah-dev.appspot.com',
-  messagingSenderId: '412593831296',
-  appId: '1:412593831296:web:b6f1db57e42cc73cfe5565'
+let firebaseConfig
+if (process.env.REACT_APP_ENV === 'production') {
+  firebaseConfig = {
+    apiKey: 'AIzaSyDgF5XkiDel5y5h4OZlHJSRbzJH5-THY1M',
+    authDomain: 'it-project-vaah-prod.firebaseapp.com',
+    projectId: 'it-project-vaah-prod',
+    storageBucket: 'it-project-vaah-prod.appspot.com',
+    messagingSenderId: '1064149758347',
+    appId: '1:1064149758347:web:85cad5b0a3d8d96ba7bf8e',
+    measurementId: 'G-E31RB72LE2'
+  }
+} else {
+  firebaseConfig = {
+    apiKey: 'AIzaSyAaeqcgpLuc8grPbbZreVXyYIWU8gfpp6k',
+    authDomain: 'it-project-vaah-dev.firebaseapp.com',
+    projectId: 'it-project-vaah-dev',
+    storageBucket: 'it-project-vaah-dev.appspot.com',
+    messagingSenderId: '412593831296',
+    appId: '1:412593831296:web:b6f1db57e42cc73cfe5565'
+  }
 }
 
 const app = initializeApp(firebaseConfig)
@@ -30,8 +40,7 @@ const auth = getAuth(app)
 
 const googleProvider = new GoogleAuthProvider()
 
-const url = process.env.NODE_ENV === 'production' ? 'https://it-project-vaaah-dev-api.herokuapp.com' : ''
-
+const url = process.env.REACT_APP_API_URL
 const signInWithGoogle = async () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
@@ -68,10 +77,8 @@ const logout = () => {
 }
 
 const uploadImg = async (file) => {
-  console.log(file)
   // Return a promise that will either resolve or emit an error
   return new Promise((resolve, reject) => {
-    console.log('f', file)
     // Create the file metadata
     /** @type {any} */
     const metadata = {
@@ -85,7 +92,6 @@ const uploadImg = async (file) => {
 
     uploadTask.on('state_changed',
       (snapshot) => {
-        console.log('snapshot', snapshot)
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         console.log('Upload is ' + progress + '% done')

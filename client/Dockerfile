@@ -1,6 +1,8 @@
 # pull official base image
 FROM node:16.16.0-alpine
 
+ARG REACT_ENV
+
 # set working directory
 WORKDIR /app
 
@@ -15,7 +17,7 @@ RUN npm install
 
 # add app
 COPY . ./
-RUN npm run build --production
+RUN npm run build:${REACT_ENV} --production
 
 RUN npm install -g serve
 
