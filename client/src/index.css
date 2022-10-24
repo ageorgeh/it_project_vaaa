@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  body {
+    @apply bg-bgDark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.empty-icons {
+  display: flex !important;
+}
+.filled-icons {
+  display: -webkit-inline-box !important;
+}
+
+.my-reads {
+  font-weight: bolder;
+  font-size: larger;
+  margin-left: 1em;
+}
+
+.nav {
+  background-color: #000;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin-right: 2rem;
+}
+
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+
+.title-login {
+  text-align: center;
+  font-weight: bolder;
+  font-size: xx-large;
+  padding-top: 100px;
+}
+
+.google-login {
+  /* aligning the google login to middle */
+  display: grid;
+  margin: auto;
+}
+
+.form {
+  text-align: center;
+}
+
+.input-container {
+  padding-bottom: 10px;
+}
+
+.inputC {
+  border-radius : 5px;
+}
+
+.button-container {
+  padding-bottom : 10px;
+}
+
+.buttonC{
+  background-color: #000;
+  color:white;
+  font-weight: bolder;
+  font-size: larger;
+  border-radius: 5px;
+}
