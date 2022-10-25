@@ -11,7 +11,7 @@ export default function Navbar () {
         <div className="flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
                 <img src={bookIcon} className="mr-3 h-6" alt="Book Logo"></img>
-                    <span className="self-center text-xl font-semibold">Mid-Reads</span>
+                    <span className="self-center text-xl font-semibold">MidReads</span>
             </a>
             <button type="button" onClick={logout} className="text-font bg-bgDark hover:bg-bgHover font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log Out</button>
         </div>

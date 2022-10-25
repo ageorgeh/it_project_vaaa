@@ -232,7 +232,7 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
             <div className ="bg-bgLighter p-5 rounded fixed overflow-auto" style={MODAL_STYLES}>
                 <form onSubmit={fieldValues ? submitUpdate : submitChanges}>
                 <div className="h-8">
-                <p className="text-center mb-5">{fieldValues ? 'Update books' : 'Add book'}</p>
+                <p className="text-center mb-5 font-semibold">{fieldValues ? 'Update books' : 'Add book'}</p>
                 </div>
                 <div className="mb-6">
                     <label htmlFor="bookTitle" className="block mb-2 text-sm font-medium text-fontDark">Book title</label>
@@ -263,7 +263,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
 
                 <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-fontDark">Shelves</label>
-                <ul className="shelves-list w-48 text-sm font-medium text-fontDark bg-bgLight rounded-lg border border-font">
+                {getShelfNames(shelves).length > 1
+                  ? <ul className="shelves-list w-48 text-sm font-medium text-fontDark bg-bgLight rounded-lg border border-font">
                   {getShelfNames(shelves).map((name, index) => {
                     if (name !== 'All Books') {
                       return (
@@ -287,6 +288,8 @@ export default function Modal ({ visible, onClose, fieldValues, shelves }) {
                     }
                   })}
                 </ul>
+                  : <p className="text-sm text-fontDark">No shelves currently in use</p>
+                }
                 </div>
 
                 <div className="mb-6">
